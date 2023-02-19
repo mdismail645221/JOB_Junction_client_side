@@ -1,9 +1,12 @@
 import React from "react";
+import NewsFeeds from "./NewsFeeds/NewsFeeds";
+import StartingLoading from '../../Components/StartingLoading/StartingLoading.js'
+
 
 const Home = () => {
   return (
     <>
-      <div>this is home</div>
+      <NewsFeeds></NewsFeeds>
     </>
   );
 };
