@@ -1,11 +1,17 @@
 import React from "react";
+import Recommened from "./Recommened/Recommened";
+import Remote from "./Remote/Remote";
 
 const Jobs = () => {
+
   return (
     <div>
-      <h1>this is job section</h1>
+      <Recommened></Recommened>
+      <Remote></Remote>
     </div>
   );
 };
+
+
 
 export default Jobs;
