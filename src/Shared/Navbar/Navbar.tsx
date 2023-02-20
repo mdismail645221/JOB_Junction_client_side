@@ -101,7 +101,9 @@ const Navbar = () => {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+      <Link to={"/my-profile"}>
+        <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+      </Link>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
     </Menu>
   );
@@ -170,27 +172,37 @@ const Navbar = () => {
           > */}
           {/* <MenuIcon /> */}
 
-          <Box sx={{ mr: 2, display: "flex", placeItems: "center" }}>
-            <Avatar
-              src="https://i.ibb.co/6FzXScD/JJ.png"
-              sx={{ width: 42, height: 42 }}
-              variant="rounded"
-              alt="job junction"
-            >
-              {/* <AssignmentIcon /> */}
-            </Avatar>
-            <Typography
-              variant="h6"
-              noWrap
-              component="div"
-              sx={{
-                display: { xs: "none", sm: "block" },
-                ml: "5px",
-              }}
-            >
-              Jub_Junction
-            </Typography>
-          </Box>
+          <Link
+            style={{
+              textDecoration: "none",
+            }}
+            to={"/"}
+          >
+            <Box sx={{ mr: 2, display: "flex", placeItems: "center" }}>
+              <Avatar
+                src="https://i.ibb.co/6FzXScD/JJ.png"
+                sx={{ width: 42, height: 42 }}
+                variant="rounded"
+                alt="job junction"
+              >
+                {/* <AssignmentIcon /> */}
+              </Avatar>
+              <Typography
+                variant="h6"
+                noWrap
+                component="div"
+                sx={{
+                  display: { xs: "none", sm: "block" },
+                  ml: "5px",
+                  color: "#ffffff",
+                  fontWeight: 900,
+                }}
+              >
+                Jub_Junction
+              </Typography>
+            </Box>
+          </Link>
+
           {/* </IconButton> */}
           {/* <Typography
             variant="h6"
@@ -232,7 +244,7 @@ const Navbar = () => {
               >
                 <Box color="inherit">
                   <Badge badgeContent={4} color="error">
-                    <MailIcon color="action" />
+                    <MailIcon sx={{ color: "#ffffff" }} />
                   </Badge>
                 </Box>
                 <Typography
@@ -248,6 +260,7 @@ const Navbar = () => {
                     fontWeight: "bold",
                     position: "relative",
                     top: "-6px",
+                    color: "#ffffff",
                   }}
                 >
                   Message
@@ -269,7 +282,7 @@ const Navbar = () => {
               >
                 <Box color="inherit">
                   <Badge badgeContent={4} color="error">
-                    <RecordVoiceOverIcon color="action" />
+                    <RecordVoiceOverIcon sx={{ color: "#ffffff" }} />
                   </Badge>
                 </Box>
                 <Typography
@@ -285,6 +298,7 @@ const Navbar = () => {
                     fontWeight: "bold",
                     position: "relative",
                     top: "-6px",
+                    color: "#ffffff",
                   }}
                 >
                   My Network
@@ -306,7 +320,7 @@ const Navbar = () => {
               >
                 <Box color="inherit">
                   <Badge badgeContent={4} color="error">
-                    <WorkIcon color="action" />
+                    <WorkIcon sx={{ color: "#ffffff" }} />
                   </Badge>
                 </Box>
                 <Typography
@@ -322,6 +336,7 @@ const Navbar = () => {
                     fontWeight: "bold",
                     position: "relative",
                     top: "-6px",
+                    color: "#ffffff",
                   }}
                 >
                   Jobs
@@ -397,7 +412,7 @@ const Navbar = () => {
             >
               <Box color="inherit">
                 <Badge badgeContent={17} color="error">
-                  <NotificationsIcon color="action" />
+                  <NotificationsIcon sx={{ color: "#ffffff" }} />
                 </Badge>
               </Box>
               <Typography
@@ -413,11 +428,48 @@ const Navbar = () => {
                   fontWeight: "bold",
                   position: "relative",
                   top: "-6px",
+                  color: "#ffffff",
                 }}
               >
                 Notification
               </Typography>
             </Box>
+
+            <Link to="/signin" style={{ textDecoration: "none" }}>
+              <Box
+                sx={{
+                  display: { xs: "none", md: "flex" },
+                  flexDirection: "column",
+                  placeItems: "center",
+                  position: "relative",
+                  top: "4px",
+                  margin: "0px 5px",
+                }}
+              >
+                <Box color="inherit">
+                  <Badge badgeContent={17} color="error">
+                    <NotificationsIcon sx={{ color: "#ffffff" }} />
+                  </Badge>
+                </Box>
+                <Typography
+                  variant="h1"
+                  noWrap
+                  component="div"
+                  sx={{
+                    display: { xs: "none", sm: "block" },
+                    mt: "0px",
+                    padding: "0px",
+                    fontSize: "20px",
+                    fontWeight: "bold",
+                    position: "relative",
+                    top: "-6px",
+                    color: "#ffffff",
+                  }}
+                >
+                  Join
+                </Typography>
+              </Box>
+            </Link>
 
             {/* <IconButton
               size="large"
