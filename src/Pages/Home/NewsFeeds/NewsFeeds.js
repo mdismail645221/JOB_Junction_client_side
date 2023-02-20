@@ -1,18 +1,19 @@
 import React from "react";
 import { Container } from "@mui/material";
-import NewsFeedCard from "../../../Components/NewsFeedCard/NewsFeedCard";
 import { NewsFeedContainer } from "./NewsFeeds.styled";
+import UserPost from "./UserPost/UserPost";
+import NewsFeedCard from "./NewsFeedCard/NewsFeedCard";
 
 const NewsFeeds = () => {
-
   // json data in news feed web page
-  const NewsFeedCards  = [
+  const NewsFeedCards = [
     {
       userLogo: "https://i.ibb.co/4MnMYkJ/Joseph-Gray.png",
       userName: "Joseph-Gray",
       occupation: "software developer",
       times: "50 mins ago",
-      description: "this is paragraph.this is paragraph.this is paragraph.this is paragraph.this is paragraph.this is paragraph.",
+      description:
+        "this is paragraph.this is paragraph.this is paragraph.this is paragraph.this is paragraph.this is paragraph.",
       images: "https://i.ibb.co/zNjDjvy/redux-png.png",
       liked: "300",
       allComments: "150",
@@ -49,15 +50,15 @@ const NewsFeeds = () => {
       liked: "100k",
       allComments: "200",
     },
-  ]
-
-
+  ];
 
   return (
     <Container maxWidth="lg">
-      <h1>this is header</h1>
+      <UserPost />
       <NewsFeedContainer>
-        {NewsFeedCards.map((newsFeed, i) => <NewsFeedCard key={i} newsFeed={newsFeed}></NewsFeedCard>)}
+        {NewsFeedCards.map((newsFeed, i) => (
+          <NewsFeedCard key={i} newsFeed={newsFeed}></NewsFeedCard>
+        ))}
       </NewsFeedContainer>
     </Container>
   );
