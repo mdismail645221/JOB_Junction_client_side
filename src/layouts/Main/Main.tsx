@@ -8,21 +8,19 @@ import Navbar from "../../Shared/Navbar/Navbar";
 import darkTheme from "../Theme/DarkTheme";
 import lightTheme from "../Theme/LightTheme";
 
-
 const Main = () => {
-  const [selectTheme,setSelectTheme]=useState(false);
+  const [selectTheme, setSelectTheme] = useState(false);
   return (
-    <ThemeProvider theme={selectTheme?lightTheme:darkTheme}>
-      <CssBaseline/>
-        <div>
-          <Navbar />
-          <Typography variant="h1">this is h1</Typography>
-            <input type="checkbox" onClick={()=>setSelectTheme(!selectTheme)}/>
-          <Outlet />
-          <Footer />
-        </div>
+    <ThemeProvider theme={selectTheme ? darkTheme : lightTheme}>
+      <CssBaseline />
+      <div>
+        <Navbar />
+        <Typography variant="h1">this is h1</Typography>
+        <input type="checkbox" onClick={() => setSelectTheme(!selectTheme)} />
+        <Outlet />
+        <Footer />
+      </div>
     </ThemeProvider>
-    
   );
 };
 
