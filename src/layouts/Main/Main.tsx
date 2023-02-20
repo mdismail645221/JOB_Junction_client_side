@@ -16,7 +16,6 @@ const Main = () => {
       <CssBaseline/>
         <div>
           <Navbar />
-          <Typography variant="h1">this is h1</Typography>
             <input type="checkbox" onClick={()=>setSelectTheme(!selectTheme)}/>
           <Outlet />
           <Footer />
