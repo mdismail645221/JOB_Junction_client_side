@@ -39,9 +39,6 @@ const NewsFeeds = () => {
       allComments: "200",
     }
   ]
-
-
-
   return (
     <Container maxWidth="lg">
       <h1>this is header</h1>
