@@ -17,6 +17,7 @@ export const PROFILEINFOACCEPT = styled(Box)(({ theme }) => ({
     'h5, h6': {
         padding: 0,
         margin: 0,
+        fontSize: '1rem'
     }
 }))
 
