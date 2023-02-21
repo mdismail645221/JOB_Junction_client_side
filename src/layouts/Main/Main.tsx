@@ -11,12 +11,14 @@ import lightTheme from "../Theme/LightTheme";
 import { Container } from "@mui/material";
 const Main = () => {
   const [selectTheme, setSelectTheme] = useState(false);
+  const [seaarchBarIsOpen, setSeaarchBarIsOpen] = useState(false);
   return (
     <ThemeProvider theme={selectTheme ? darkTheme : lightTheme}>
       <CssBaseline />
       <Box sx={{ backgroundColor: "#F3F2EF" }}>
         <Container maxWidth="lg">
           <Navbar />
+          <div></div>
           <div>
             {/* <Typography variant="h1">this is h1</Typography>
         <input type="checkbox" onClick={() => setSelectTheme(!selectTheme)} /> */}
