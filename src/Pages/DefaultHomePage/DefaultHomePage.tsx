@@ -1,8 +1,8 @@
 import { Box, Button, Chip, Divider, IconButton, InputAdornment, OutlinedInput, Stack, TextField, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import { FORGOTPASSWORD, HOMEPAGECONTAINER, HOMEPAGESIGNIN, LEFTSIDECONTAINER, SIGNINBUTTON, SOCIALSIGNCONTAINER } from './DefaultHomePage.styled';
-// import Visibility from '@mui/icons-material/Visibility';
-// import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import GoogleIcon from '@mui/icons-material/Google';
 
 const DefaultHomePage = () => {
@@ -64,7 +64,7 @@ const DefaultHomePage = () => {
                                         onClick={handleClickShowPassword}
                                     >
                                         <Button>
-                                            {showPassword ? "Hide" : "Show"}
+                                            {showPassword ? <VisibilityOff /> : <Visibility/>}
                                         </Button>
                                     </IconButton>
                                 </Box>
