@@ -1,9 +1,10 @@
 import React from "react";
+import DefaultHomePage from "../DefaultHomePage/DefaultHomePage";
 
 const Messaging = () => {
   return (
     <div>
-      <h1>this is messaging</h1>
+      <DefaultHomePage></DefaultHomePage>
     </div>
   );
 };
