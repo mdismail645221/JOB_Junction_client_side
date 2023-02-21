@@ -1,15 +1,20 @@
-import React from 'react';
-import { Avatar, Button, Divider, Typography } from '@mui/material';
-import { Box } from '@mui/system';
+import { Avatar, Box, Button, Divider, Typography } from '@mui/material';
 import TurnedInNotIcon from '@mui/icons-material/TurnedInNot';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
-const Recommened = () => {
+const MoreJob = () => {
 
     const datas = [
         {
-            name: "React Developer",
-            image: "https://media.licdn.com/dms/image/C4D0BAQHP4eEyShE6Ew/company-logo_100_100/0/1664197000461?e=1684972800&v=beta&t=8lGBkOzB3mOCqL7E85-HBBWjg55AxI4l5aifj2phjFI",
+            name: "MERN Developer",
+            image: "https://media.licdn.com/dms/image/C4E0BAQGyqhhBHOf2XQ/company-logo_100_100/0/1625272333522?e=1684972800&v=beta&t=So6VTqdzR--PvrSP5pW-RBvx_llXTrEGEQAm4NVtXqc",
+            c_name: "CBTS",
+            location: "Washington, DC (Remote)",
+            time: "Now"
+        },
+        {
+            name: "MERN Stack Developer",
+            image: "https://media.licdn.com/dms/image/C4E0BAQHLbXvWKmvvrg/company-logo_100_100/0/1653297275586?e=1684972800&v=beta&t=hWwiLnqiMSuguqenJ3fHccUZnnJdtxbbHLneLb0eSTA",
             c_name: "American Technology Consulting - ATC",
             location: "Chicago, IL (Hybrid)",
             time: "12 Hour's ago"
@@ -22,13 +27,6 @@ const Recommened = () => {
             time: "1 Hour's ago"
         },
         {
-            name: "MERN Developer",
-            image: "https://media.licdn.com/dms/image/C560BAQFNcEA9mCxUIA/company-logo_100_100/0/1656879570827?e=1684972800&v=beta&t=YFQPK2hqUoMD9eVqhu9GHzLQiqZmc6urdm2q84go8F8",
-            c_name: "CBTS",
-            location: "Washington, DC (Remote)",
-            time: "Now"
-        },
-        {
             name: "Foull Stack Developer",
             image: "https://media.licdn.com/dms/image/C4D0BAQF53y2mahFyEw/company-logo_100_100/0/1573672272355?e=1684972800&v=beta&t=vlGac1v0fGeoRT1Op3A0nwwYgaGQsIhoB6HyexyDj5U",
             c_name: "DICE",
@@ -36,21 +34,19 @@ const Recommened = () => {
             time: "Now"
         }
     ]
-
-
     return (
-        <div style={{ border: "2px solid lightGray", backgroundColor: "white", borderRadius: "1em" }}>
+        <div style={{ border: "2px solid lightGray", backgroundColor: "white", borderRadius: "1em", marginTop: "1em" }}>
 
             {/* recommendetion start */}
             <div>
 
                 {/* header section */}
                 <Box sx={{ m: 1, p: 2 }} >
-                    <Typography variant="h5" sx={{ fontWeight: "600" }}>
-                        Recommended for you
+                    <Typography variant="h6" sx={{ fontWeight: "600" }}>
+                        Remote opportunities
                     </Typography>
                     <Typography variant="body2">
-                        Based on your profile and search history
+                        Because you expressed interest in remote work
                     </Typography>
                 </Box>
 
@@ -83,9 +79,10 @@ const Recommened = () => {
                                 </Typography>
                             </Box>
 
-                            <Box sx={{ p: '7px', ":hover": { backgroundColor: "lightGray",  borderRadius: "100%", cursor: "pointer" }, display: 'flex', placeItems: "center" }}>
+                            <Box sx={{ p: '7px', ":hover": { backgroundColor: "lightGray", borderRadius: "100%", cursor: "pointer" }, display: 'flex', placeItems: "center" }}>
                                 <TurnedInNotIcon sx={{}} />
                             </Box>
+
                         </div>
 
                         {/* divider */}
@@ -107,4 +104,4 @@ const Recommened = () => {
     );
 };
 
-export default Recommened;
+export default MoreJob;

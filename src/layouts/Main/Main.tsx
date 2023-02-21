@@ -17,11 +17,11 @@ const Main = () => {
       <Box sx={{ backgroundColor: "#F3F2EF" }}>
         <Container maxWidth="lg">
           <Navbar />
-          <div>
+          <Box>
             {/* <Typography variant="h1">this is h1</Typography>
         <input type="checkbox" onClick={() => setSelectTheme(!selectTheme)} /> */}
             <Outlet />
-          </div>
+          </Box>
           <Footer />
         </Container>
       </Box>
