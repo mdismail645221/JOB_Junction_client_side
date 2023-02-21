@@ -18,9 +18,8 @@ const darkTheme = createTheme({
     }
   },
   typography: {
-    fontFamily: 'Times New Roman',
     h1:{
-      color:"yellow"
+      color:"black"
     }
   },
   

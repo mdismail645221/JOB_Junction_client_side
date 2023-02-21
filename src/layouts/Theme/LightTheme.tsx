@@ -18,9 +18,8 @@ const lightTheme = createTheme({
     },
   },
   typography: {
-    fontFamily: "Times New Roman",
     h1: {
-      color: "red",
+      color: "black",
     },
   },
 });
