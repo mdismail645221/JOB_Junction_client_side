@@ -9,15 +9,17 @@ import Navbar from "../../Shared/Navbar/Navbar";
 import darkTheme from "../Theme/DarkTheme";
 import lightTheme from "../Theme/LightTheme";
 import { Container } from "@mui/material";
+import SearchActionType from "./SearchActionType/SearchActionType";
 const Main = () => {
   const [selectTheme, setSelectTheme] = useState(false);
-  const [seaarchBarIsOpen, setSeaarchBarIsOpen] = useState(false);
+  const [searchBarIsOpen, setSearchBarIsOpen] = useState(false);
   return (
     <ThemeProvider theme={selectTheme ? darkTheme : lightTheme}>
       <CssBaseline />
       <Box sx={{ backgroundColor: "#F3F2EF" }}>
         <Container maxWidth="lg">
-          <Navbar />
+          <Navbar setSearchBarIsOpen={setSearchBarIsOpen} />
+          {searchBarIsOpen && <SearchActionType />}
           <Box>
             {/* <Typography variant="h1">this is h1</Typography>
         <input type="checkbox" onClick={() => setSelectTheme(!selectTheme)} /> */}

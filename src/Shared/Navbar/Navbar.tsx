@@ -20,6 +20,9 @@ import Avatar from "@mui/material/Avatar";
 import { Link } from "react-router-dom";
 import RecordVoiceOverIcon from "@mui/icons-material/RecordVoiceOver";
 import WorkIcon from "@mui/icons-material/Work";
+interface IPROPS {
+  setSearchBarIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
@@ -59,7 +62,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
   },
 }));
-const Navbar = () => {
+const Navbar: React.FC<IPROPS> = ({ setSearchBarIsOpen }) => {
+  const [searchInput, setSearchInput] = React.useState("");
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
     React.useState<null | HTMLElement>(null);
@@ -159,6 +163,18 @@ const Navbar = () => {
       </MenuItem>
     </Menu>
   );
+
+  const handleSearch: React.FormEventHandler<HTMLFormElement> = (e) => {
+    e.preventDefault();
+    console.log(searchInput);
+    setSearchBarIsOpen(true);
+  };
+  const handleInputChange:
+    | React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>
+    | undefined = (e) => {
+    if (!e.target.value) setSearchBarIsOpen(false);
+    setSearchInput(e.target.value);
+  };
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -218,15 +234,21 @@ const Navbar = () => {
             >
             </Avatar>
           </Typography> */}
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ "aria-label": "search" }}
-            />
-          </Search>
+          <form onSubmit={handleSearch}>
+            <Search>
+              <SearchIconWrapper>
+                <SearchIcon />
+              </SearchIconWrapper>
+              <StyledInputBase
+                placeholder="Search…"
+                name="searchInput"
+                id="searchInput"
+                onChange={handleInputChange}
+                inputProps={{ "aria-label": "search" }}
+              />
+            </Search>
+          </form>
+
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             <Link
