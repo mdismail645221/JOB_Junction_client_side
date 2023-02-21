@@ -10,14 +10,13 @@ import {
 const MyNetworkMain = () => {
   return (
     <div>
-      <h1>this is my network</h1>
       <Stack>
-        <INVITATION>
+        <INVITATION paddingX={2}>
           <h5>Invitations</h5>
           <h5>See all 5</h5>
         </INVITATION>
         {/* Accept or ignore area */}
-        <PROFILEINFOACCEPT>
+        <PROFILEINFOACCEPT paddingX={2}>
           {/* profile img or degecnation */}
           <Box
             sx={{
@@ -46,7 +45,7 @@ const MyNetworkMain = () => {
           </ACCEPTIGNORE>
         </PROFILEINFOACCEPT>
         {/* Accept or ignore area */}
-        <PROFILEINFOACCEPT>
+        <PROFILEINFOACCEPT paddingX={2}>
           {/* profile img or degecnation */}
           <Box
             sx={{
@@ -75,7 +74,7 @@ const MyNetworkMain = () => {
           </ACCEPTIGNORE>
         </PROFILEINFOACCEPT>
         {/* Accept or ignore area */}
-        <PROFILEINFOACCEPT>
+        <PROFILEINFOACCEPT paddingX={2}>
           {/* profile img or degecnation */}
           <Box
             sx={{
