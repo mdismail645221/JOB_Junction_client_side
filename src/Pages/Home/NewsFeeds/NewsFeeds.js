@@ -38,20 +38,8 @@ const NewsFeeds = () => {
       images: "https://i.ibb.co/dD39NC4/jhankar-mahbub-sir-img1.png",
       liked: "100k",
       allComments: "200",
-    },
-    {
-      userLogo: "https://i.ibb.co/4Wk94qt/sumit-shah-logo.png",
-      userName: "Sumit Saha",
-      occupation: "Entrepreneur | Educator | Programming Enthusiast",
-      times: "30 mins ago",
-      description: `The "Think in a Redux way" course mainly emphasizes project-based teaching methods. Throughout the course many projects are presented and given as assignments. Since this is a front-end course and focused on state management and redux, we will provide the back-end and APIs for each project. The student just needs to use them in the front end and manage the state properly. Some such projects are shown in the video.
-      If you want to take full advantage of this course's project-based teaching method and take your skills to the next level, enroll in our Redux course now instead of waiting until the last day for a discount.`,
-      images: "https://i.ibb.co/zNjDjvy/redux-png.png",
-      liked: "100k",
-      allComments: "200",
-    },
-  ];
-
+    }
+  ]
   return (
     <Container maxWidth="lg">
       <UserPost />
