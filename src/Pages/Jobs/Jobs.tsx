@@ -1,5 +1,4 @@
 import { Box } from "@mui/material";
-import React from "react";
 import LeftSideMain from "./LeftSide/LeftSideMain";
 import MoreJob from "./MoreJob/MoreJob";
 import Recommened from "./Recommened/Recommened";
