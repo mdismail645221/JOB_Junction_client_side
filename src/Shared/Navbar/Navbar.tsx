@@ -205,8 +205,8 @@ const Navbar: React.FC<IPROPS> = ({ setSearchBarIsOpen }) => {
 
   const handleSearch: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
-    console.log(searchInput);
-    setSearchBarIsOpen(true);
+    if (searchInput) setSearchBarIsOpen(true);
+    // console.log(searchInput);
   };
   const handleInputChange:
     | React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>
