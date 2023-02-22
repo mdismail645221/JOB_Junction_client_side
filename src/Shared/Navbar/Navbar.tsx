@@ -215,7 +215,7 @@ const Navbar: React.FC<IPROPS> = ({ setSearchBarIsOpen }) => {
     setSearchInput(e.target.value);
   };
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1, position: "sticky", top: "0px", zIndex: "1000" }}>
       <AppBar position="static" sx={{ backgroundColor: "#FFFFFF" }}>
         <Toolbar>
           {/* <IconButton

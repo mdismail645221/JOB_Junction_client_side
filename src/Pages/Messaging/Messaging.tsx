@@ -1,12 +1,35 @@
+import { Box } from "@mui/system";
 import React from "react";
 import DefaultHomePage from "../DefaultHomePage/DefaultHomePage";
+import MessagingDetails from "./MessagingDetails/MessagingDetails";
+import MessagingList from "./MessagingList/MessagingList";
 
 const Messaging = () => {
   return (
-    <div>
-      <h2>This is message components</h2>
-      {/* <DefaultHomePage /> */}
-    </div>
+    <Box
+      sx={{
+        display: "grid",
+        gridTemplateColumns: {
+          xs: "1fr",
+          md: "4fr 7fr",
+        },
+      }}
+    >
+      <Box
+        sx={{
+          display: {
+            xs: "none",
+            md: "block",
+          },
+        }}
+      >
+        <MessagingList />
+      </Box>
+
+      <Box sx={{}}>
+        <MessagingDetails />
+      </Box>
+    </Box>
   );
 };
 
