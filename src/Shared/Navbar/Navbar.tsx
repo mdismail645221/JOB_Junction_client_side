@@ -32,6 +32,7 @@ const Search = styled("div")(({ theme }) => ({
   },
   marginRight: theme.spacing(2),
   marginLeft: 0,
+  border: "1px solid black",
   width: "100%",
   [theme.breakpoints.up("sm")]: {
     marginLeft: theme.spacing(3),
@@ -129,15 +130,53 @@ const Navbar: React.FC<IPROPS> = ({ setSearchBarIsOpen }) => {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
-            <MailIcon />
-          </Badge>
-        </IconButton>
-        <p>Messages</p>
-      </MenuItem>
-      <MenuItem>
+      <Link to="/messaging" style={{ textDecoration: "none" }}>
+        <MenuItem sx={{ textDecoration: "none", color: "black" }}>
+          <IconButton
+            sx={{ textDecoration: "none" }}
+            size="large"
+            aria-label="show 4 new mails"
+            color="inherit"
+          >
+            <Badge badgeContent={4} color="error">
+              <MailIcon sx={{ textDecoration: "none" }} />
+            </Badge>
+          </IconButton>
+          <Typography sx={{ textDecoration: "none" }}>Messages</Typography>
+        </MenuItem>
+      </Link>
+      <Link to="/my-network" style={{ textDecoration: "none" }}>
+        <MenuItem sx={{ textDecoration: "none", color: "black" }}>
+          <IconButton
+            sx={{ textDecoration: "none" }}
+            size="large"
+            aria-label="show 4 new mails"
+            color="inherit"
+          >
+            <Badge badgeContent={4} color="error">
+              <RecordVoiceOverIcon sx={{ textDecoration: "none" }} />
+            </Badge>
+          </IconButton>
+          <Typography sx={{ textDecoration: "none" }}>My Network</Typography>
+        </MenuItem>
+      </Link>
+      <Link to="/jobs" style={{ textDecoration: "none" }}>
+        <MenuItem sx={{ textDecoration: "none", color: "black" }}>
+          <IconButton
+            sx={{ textDecoration: "none" }}
+            size="large"
+            aria-label="show 4 new mails"
+            color="inherit"
+          >
+            <Badge badgeContent={4} color="error">
+              <WorkIcon sx={{ textDecoration: "none" }} />
+            </Badge>
+          </IconButton>
+          <Typography sx={{ textDecoration: "none" }}>Jobs</Typography>
+        </MenuItem>
+      </Link>
+
+      {/* <MenuItem>
         <IconButton
           size="large"
           aria-label="show 17 new notifications"
@@ -148,7 +187,7 @@ const Navbar: React.FC<IPROPS> = ({ setSearchBarIsOpen }) => {
           </Badge>
         </IconButton>
         <p>Notifications</p>
-      </MenuItem>
+      </MenuItem> */}
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
           size="large"
@@ -177,7 +216,7 @@ const Navbar: React.FC<IPROPS> = ({ setSearchBarIsOpen }) => {
   };
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar position="static" sx={{ backgroundColor: "#FFFFFF" }}>
         <Toolbar>
           {/* <IconButton
             size="large"
@@ -208,9 +247,10 @@ const Navbar: React.FC<IPROPS> = ({ setSearchBarIsOpen }) => {
                 noWrap
                 component="div"
                 sx={{
-                  display: { xs: "none", sm: "block" },
+                  display: { xs: "none", lg: "block" },
                   ml: "5px",
-                  color: "#ffffff",
+                  color: "#535353",
+                  ":hover": { color: "#000000" },
                   fontWeight: 900,
                 }}
               >
@@ -218,22 +258,6 @@ const Navbar: React.FC<IPROPS> = ({ setSearchBarIsOpen }) => {
               </Typography>
             </Box>
           </Link>
-
-          {/* </IconButton> */}
-          {/* <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ display: { xs: "none", sm: "block" } }}
-          >
-          MUI
-            <Avatar
-              src="../../assets/logos/jobjunction.jpg"
-              sx={{ width: 56, height: 56 }}
-              variant="rounded"
-            >
-            </Avatar>
-          </Typography> */}
           <form onSubmit={handleSearch}>
             <Search>
               <SearchIconWrapper>
@@ -250,7 +274,12 @@ const Navbar: React.FC<IPROPS> = ({ setSearchBarIsOpen }) => {
           </form>
 
           <Box sx={{ flexGrow: 1 }} />
-          <Box sx={{ display: { xs: "none", md: "flex" } }}>
+          <Box
+            sx={{
+              display: "flex",
+              gap: "10px",
+            }}
+          >
             <Link
               to={"/messaging"}
               style={{ textDecoration: "none", margin: "0px 5px" }}
@@ -262,11 +291,13 @@ const Navbar: React.FC<IPROPS> = ({ setSearchBarIsOpen }) => {
                   placeItems: "center",
                   position: "relative",
                   top: "4px",
+                  color: "#535353",
+                  ":hover": { color: "#000000" },
                 }}
               >
-                <Box color="inherit">
+                <Box>
                   <Badge badgeContent={4} color="error">
-                    <MailIcon sx={{ color: "#ffffff" }} />
+                    <MailIcon />
                   </Badge>
                 </Box>
                 <Typography
@@ -275,15 +306,15 @@ const Navbar: React.FC<IPROPS> = ({ setSearchBarIsOpen }) => {
                   component="div"
                   sx={{
                     display: { xs: "none", sm: "block" },
-
+                    textDecoration: "none",
                     mt: "0px",
                     padding: "0px",
-                    fontSize: "20px",
-                    fontWeight: "bold",
+                    fontSize: "14px",
+                    fontWeight: 300,
                     position: "relative",
-                    top: "-6px",
-                    color: "#ffffff",
+                    top: "0px",
                   }}
+                  style={{ fontWeight: 300 }}
                 >
                   Message
                 </Typography>
@@ -300,11 +331,13 @@ const Navbar: React.FC<IPROPS> = ({ setSearchBarIsOpen }) => {
                   placeItems: "center",
                   position: "relative",
                   top: "4px",
+                  color: "#535353",
+                  ":hover": { color: "#000000" },
                 }}
               >
                 <Box color="inherit">
                   <Badge badgeContent={4} color="error">
-                    <RecordVoiceOverIcon sx={{ color: "#ffffff" }} />
+                    <RecordVoiceOverIcon />
                   </Badge>
                 </Box>
                 <Typography
@@ -313,15 +346,14 @@ const Navbar: React.FC<IPROPS> = ({ setSearchBarIsOpen }) => {
                   component="div"
                   sx={{
                     display: { xs: "none", sm: "block" },
-
+                    textDecoration: "none",
                     mt: "0px",
                     padding: "0px",
-                    fontSize: "20px",
-                    fontWeight: "bold",
+                    fontSize: "14px",
                     position: "relative",
-                    top: "-6px",
-                    color: "#ffffff",
+                    top: "0px",
                   }}
+                  style={{ fontWeight: 300 }}
                 >
                   My Network
                 </Typography>
@@ -338,11 +370,13 @@ const Navbar: React.FC<IPROPS> = ({ setSearchBarIsOpen }) => {
                   placeItems: "center",
                   position: "relative",
                   top: "4px",
+                  color: "#535353",
+                  ":hover": { color: "#000000" },
                 }}
               >
                 <Box color="inherit">
                   <Badge badgeContent={4} color="error">
-                    <WorkIcon sx={{ color: "#ffffff" }} />
+                    <WorkIcon />
                   </Badge>
                 </Box>
                 <Typography
@@ -350,91 +384,38 @@ const Navbar: React.FC<IPROPS> = ({ setSearchBarIsOpen }) => {
                   noWrap
                   component="div"
                   sx={{
+                    textDecoration: "none",
                     display: { xs: "none", sm: "block" },
 
                     mt: "0px",
                     padding: "0px",
-                    fontSize: "20px",
-                    fontWeight: "bold",
+                    fontSize: "14px",
+
                     position: "relative",
-                    top: "-6px",
-                    color: "#ffffff",
+                    top: "0px",
                   }}
+                  style={{ fontWeight: 300 }}
                 >
                   Jobs
                 </Typography>
               </Box>
             </Link>
-            {/* <Link to={"/my-network"} style={{ textDecoration: "none" }}>
-              <Box
-                sx={{
-                  display: { xs: "none", md: "flex" },
-                  placeItems: "center",
-                }}
-              >
-                <IconButton
-                  size="large"
-                  aria-label="show 8 new network"
-                  color="inherit"
-                >
-                  <Badge badgeContent={8} color="error">
-                    <RecordVoiceOverIcon color="action" />
-                  </Badge>
-                </IconButton>
-
-                <Typography
-                  variant="h6"
-                  noWrap
-                  component="div"
-                  sx={{
-                    display: { xs: "none", sm: "block" },
-                    ml: "0px",
-                  }}
-                >
-                  My Network
-                </Typography>
-              </Box>
-
-            </Link> */}
-
-            {/* <Box
-              sx={{ display: { xs: "none", md: "flex" }, placeItems: "center" }}
-            >
-              <IconButton
-                size="large"
-                aria-label="show 17 new notifications"
-                color="inherit"
-              >
-                <Badge badgeContent={17} color="error">
-                  <NotificationsIcon />
-                </Badge>
-              </IconButton>
-              <Typography
-                variant="h6"
-                noWrap
-                component="div"
-                sx={{
-                  display: { xs: "none", sm: "block" },
-                  ml: "0px",
-                }}
-              >
-                Noification
-              </Typography>
-            </Box> */}
 
             <Box
               sx={{
-                display: { xs: "none", md: "flex" },
+                display: "flex",
                 flexDirection: "column",
                 placeItems: "center",
                 position: "relative",
                 top: "4px",
                 margin: "0px 5px",
+                color: "#535353",
+                ":hover": { color: "#000000", cursor: "pointer" },
               }}
             >
               <Box color="inherit">
                 <Badge badgeContent={17} color="error">
-                  <NotificationsIcon sx={{ color: "#ffffff" }} />
+                  <NotificationsIcon />
                 </Badge>
               </Box>
               <Typography
@@ -442,22 +423,22 @@ const Navbar: React.FC<IPROPS> = ({ setSearchBarIsOpen }) => {
                 noWrap
                 component="div"
                 sx={{
+                  textDecoration: "none",
                   display: { xs: "none", sm: "block" },
-
                   mt: "0px",
                   padding: "0px",
-                  fontSize: "20px",
-                  fontWeight: "bold",
+                  fontSize: "14px",
+                  fontWeight: 300,
                   position: "relative",
-                  top: "-6px",
-                  color: "#ffffff",
+                  top: "0px",
                 }}
+                style={{ fontWeight: 300 }}
               >
                 Notification
               </Typography>
             </Box>
 
-            <Link to="/signin" style={{ textDecoration: "none" }}>
+            {/* <Link to="/signin" style={{ textDecoration: "none" }}>
               <Box
                 sx={{
                   display: { xs: "none", md: "flex" },
@@ -466,11 +447,13 @@ const Navbar: React.FC<IPROPS> = ({ setSearchBarIsOpen }) => {
                   position: "relative",
                   top: "4px",
                   margin: "0px 5px",
+                  color: "#535353",
+                  ":hover": { color: "#000000" },
                 }}
               >
                 <Box color="inherit">
                   <Badge badgeContent={17} color="error">
-                    <NotificationsIcon sx={{ color: "#ffffff" }} />
+                    <NotificationsIcon />
                   </Badge>
                 </Box>
                 <Typography
@@ -478,20 +461,21 @@ const Navbar: React.FC<IPROPS> = ({ setSearchBarIsOpen }) => {
                   noWrap
                   component="div"
                   sx={{
+                    textDecoration: "none",
                     display: { xs: "none", sm: "block" },
                     mt: "0px",
                     padding: "0px",
-                    fontSize: "20px",
-                    fontWeight: "bold",
+                    fontSize: "16px",
+                    fontWeight: 100,
                     position: "relative",
-                    top: "-6px",
-                    color: "#ffffff",
+                    top: "0px",
                   }}
+                  style={{ fontWeight: 300 }}
                 >
                   Join
                 </Typography>
               </Box>
-            </Link>
+            </Link> */}
 
             {/* <IconButton
               size="large"
