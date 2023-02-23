@@ -63,6 +63,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
   },
 }));
+
 const Navbar: React.FC<IPROPS> = ({ setSearchBarIsOpen }) => {
   const [searchInput, setSearchInput] = React.useState("");
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
