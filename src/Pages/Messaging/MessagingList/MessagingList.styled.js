@@ -80,3 +80,13 @@ export const SIGNLEMESSAGINGINFO = styled(Box)(({ theme }) => ({
     }
 }));
 
+
+
+export const CHATINGINPUT = styled('input')(({theme})=> ({
+    width: '100%',
+    padding: '0.7rem',
+    border: '1px solid #ddd',
+    borderRadius: '0.25rem',
+    boxShadow: '1px 1px 5px #ddd'
+}))
+

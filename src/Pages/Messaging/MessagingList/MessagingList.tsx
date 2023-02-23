@@ -108,7 +108,7 @@ const MessagingList = () => {
 
 
         {/* message user data */}
-        <Box paddingY={2} sx={{ overflowY: 'scroll', height: '100vh' }}>
+        <Box paddingY={2} sx={{ overflowY: 'scroll', height: '700px' }}>
           {
             userInfo.map(info => {
               return (
