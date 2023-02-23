@@ -24,8 +24,8 @@ const Main = () => {
     <ThemeProvider theme={selectTheme ? darkTheme : lightTheme}>
       <CssBaseline />
       <Box sx={{ backgroundColor: "#F3F2EF" }}>
+        <Navbar setSearchBarIsOpen={setSearchBarIsOpen} />
         <Container maxWidth="lg">
-          <Navbar setSearchBarIsOpen={setSearchBarIsOpen} />
           {searchBarIsOpen && <SearchActionType />}
           
           <Box>

@@ -20,6 +20,7 @@ import Avatar from "@mui/material/Avatar";
 import { Link } from "react-router-dom";
 import RecordVoiceOverIcon from "@mui/icons-material/RecordVoiceOver";
 import WorkIcon from "@mui/icons-material/Work";
+import Container from "@mui/material/Container";
 interface IPROPS {
   setSearchBarIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -216,89 +217,223 @@ const Navbar: React.FC<IPROPS> = ({ setSearchBarIsOpen }) => {
     setSearchInput(e.target.value);
   };
   return (
-    <Box sx={{ flexGrow: 1, position: "sticky", top: "0px", zIndex: "1000" }}>
-      <AppBar position="static" sx={{ backgroundColor: "#FFFFFF" }}>
-        <Toolbar>
-          {/* <IconButton
+    <Box
+      sx={{
+        flexGrow: 1,
+        position: "sticky",
+        top: "0px",
+        // left: "0px",
+        // right: "0px",
+        zIndex: "1000",
+        // backgroundColor: "#FFFFFF",
+      }}
+    >
+      <AppBar
+        position="static"
+        sx={{ background: "#FFFFFF" }}
+        style={{ padding: "0px" }}
+      >
+        {/* <Box sx={{ maxWidth: "lg", marginX: "auto" }}> */}
+        <Container maxWidth="lg">
+          <Toolbar style={{ padding: "0px" }}>
+            {/* <IconButton
             size="large"
             edge="start"
             color="inherit"
             aria-label="open drawer"
             sx={{ mr: 2 }}
           > */}
-          {/* <MenuIcon /> */}
+            {/* <MenuIcon /> */}
 
-          <Link
-            style={{
-              textDecoration: "none",
-            }}
-            to={"/"}
-          >
-            <Box sx={{ mr: 2, display: "flex", placeItems: "center" }}>
-              <Avatar
-                src="https://i.ibb.co/6FzXScD/JJ.png"
-                sx={{ width: 42, height: 42 }}
-                variant="rounded"
-                alt="job junction"
-              >
-                {/* <AssignmentIcon /> */}
-              </Avatar>
-              <Typography
-                variant="h6"
-                noWrap
-                component="div"
-                sx={{
-                  display: { xs: "none", lg: "block" },
-                  ml: "5px",
-                  color: "#535353",
-                  ":hover": { color: "#000000" },
-                  fontWeight: 900,
-                }}
-              >
-                Jub_Junction
-              </Typography>
-            </Box>
-          </Link>
-          <form onSubmit={handleSearch}>
-            <Search>
-              <SearchIconWrapper>
-                <SearchIcon />
-              </SearchIconWrapper>
-              <StyledInputBase
-                placeholder="Search…"
-                name="searchInput"
-                id="searchInput"
-                onChange={handleInputChange}
-                inputProps={{ "aria-label": "search" }}
-              />
-            </Search>
-          </form>
-
-          <Box sx={{ flexGrow: 1 }} />
-          <Box
-            sx={{
-              display: "flex",
-              gap: "10px",
-            }}
-          >
             <Link
-              to={"/messaging"}
-              style={{ textDecoration: "none", margin: "0px 5px" }}
+              style={{
+                textDecoration: "none",
+              }}
+              to={"/"}
             >
+              <Box sx={{ display: "flex", placeItems: "center" }}>
+                <Avatar
+                  src="https://i.ibb.co/6FzXScD/JJ.png"
+                  sx={{ width: 42, height: 42 }}
+                  variant="rounded"
+                  alt="job junction"
+                >
+                  {/* <AssignmentIcon /> */}
+                </Avatar>
+                <Typography
+                  variant="h6"
+                  noWrap
+                  component="div"
+                  sx={{
+                    display: { xs: "none", lg: "block" },
+                    ml: "5px",
+                    color: "#535353",
+                    ":hover": { color: "#000000" },
+                    fontWeight: 900,
+                  }}
+                >
+                  Jub_Junction
+                </Typography>
+              </Box>
+            </Link>
+            <form onSubmit={handleSearch}>
+              <Search>
+                <SearchIconWrapper>
+                  <SearchIcon />
+                </SearchIconWrapper>
+                <StyledInputBase
+                  placeholder="Search…"
+                  name="searchInput"
+                  id="searchInput"
+                  onChange={handleInputChange}
+                  inputProps={{ "aria-label": "search" }}
+                />
+              </Search>
+            </form>
+
+            <Box sx={{ flexGrow: 1 }} />
+            <Box
+              sx={{
+                display: "flex",
+                gap: "10px",
+              }}
+            >
+              <Link
+                to={"/messaging"}
+                style={{ textDecoration: "none", margin: "0px 5px" }}
+              >
+                <Box
+                  sx={{
+                    display: { xs: "none", md: "flex" },
+                    flexDirection: "column",
+                    placeItems: "center",
+                    position: "relative",
+                    top: "4px",
+                    color: "#535353",
+                    ":hover": { color: "#000000" },
+                  }}
+                >
+                  <Box>
+                    <Badge badgeContent={4} color="error">
+                      <MailIcon />
+                    </Badge>
+                  </Box>
+                  <Typography
+                    variant="h1"
+                    noWrap
+                    component="div"
+                    sx={{
+                      display: { xs: "none", sm: "block" },
+                      textDecoration: "none",
+                      mt: "0px",
+                      padding: "0px",
+                      fontSize: "14px",
+                      fontWeight: 300,
+                      position: "relative",
+                      top: "0px",
+                    }}
+                    style={{ fontWeight: 300 }}
+                  >
+                    Message
+                  </Typography>
+                </Box>
+              </Link>
+              <Link
+                to={"/my-network"}
+                style={{ textDecoration: "none", margin: "0px 5px" }}
+              >
+                <Box
+                  sx={{
+                    display: { xs: "none", md: "flex" },
+                    flexDirection: "column",
+                    placeItems: "center",
+                    position: "relative",
+                    top: "4px",
+                    color: "#535353",
+                    ":hover": { color: "#000000" },
+                  }}
+                >
+                  <Box color="inherit">
+                    <Badge badgeContent={4} color="error">
+                      <RecordVoiceOverIcon />
+                    </Badge>
+                  </Box>
+                  <Typography
+                    variant="h1"
+                    noWrap
+                    component="div"
+                    sx={{
+                      display: { xs: "none", sm: "block" },
+                      textDecoration: "none",
+                      mt: "0px",
+                      padding: "0px",
+                      fontSize: "14px",
+                      position: "relative",
+                      top: "0px",
+                    }}
+                    style={{ fontWeight: 300 }}
+                  >
+                    My Network
+                  </Typography>
+                </Box>
+              </Link>
+              <Link
+                to={"/jobs"}
+                style={{ textDecoration: "none", margin: "0px 5px" }}
+              >
+                <Box
+                  sx={{
+                    display: { xs: "none", md: "flex" },
+                    flexDirection: "column",
+                    placeItems: "center",
+                    position: "relative",
+                    top: "4px",
+                    color: "#535353",
+                    ":hover": { color: "#000000" },
+                  }}
+                >
+                  <Box color="inherit">
+                    <Badge badgeContent={4} color="error">
+                      <WorkIcon />
+                    </Badge>
+                  </Box>
+                  <Typography
+                    variant="h1"
+                    noWrap
+                    component="div"
+                    sx={{
+                      textDecoration: "none",
+                      display: { xs: "none", sm: "block" },
+
+                      mt: "0px",
+                      padding: "0px",
+                      fontSize: "14px",
+
+                      position: "relative",
+                      top: "0px",
+                    }}
+                    style={{ fontWeight: 300 }}
+                  >
+                    Jobs
+                  </Typography>
+                </Box>
+              </Link>
+
               <Box
                 sx={{
-                  display: { xs: "none", md: "flex" },
+                  display: "flex",
                   flexDirection: "column",
                   placeItems: "center",
                   position: "relative",
                   top: "4px",
+                  margin: "0px 5px",
                   color: "#535353",
-                  ":hover": { color: "#000000" },
+                  ":hover": { color: "#000000", cursor: "pointer" },
                 }}
               >
-                <Box>
-                  <Badge badgeContent={4} color="error">
-                    <MailIcon />
+                <Box color="inherit">
+                  <Badge badgeContent={17} color="error">
+                    <NotificationsIcon />
                   </Badge>
                 </Box>
                 <Typography
@@ -306,8 +441,8 @@ const Navbar: React.FC<IPROPS> = ({ setSearchBarIsOpen }) => {
                   noWrap
                   component="div"
                   sx={{
-                    display: { xs: "none", sm: "block" },
                     textDecoration: "none",
+                    display: { xs: "none", sm: "block" },
                     mt: "0px",
                     padding: "0px",
                     fontSize: "14px",
@@ -317,129 +452,11 @@ const Navbar: React.FC<IPROPS> = ({ setSearchBarIsOpen }) => {
                   }}
                   style={{ fontWeight: 300 }}
                 >
-                  Message
+                  Notification
                 </Typography>
               </Box>
-            </Link>
-            <Link
-              to={"/my-network"}
-              style={{ textDecoration: "none", margin: "0px 5px" }}
-            >
-              <Box
-                sx={{
-                  display: { xs: "none", md: "flex" },
-                  flexDirection: "column",
-                  placeItems: "center",
-                  position: "relative",
-                  top: "4px",
-                  color: "#535353",
-                  ":hover": { color: "#000000" },
-                }}
-              >
-                <Box color="inherit">
-                  <Badge badgeContent={4} color="error">
-                    <RecordVoiceOverIcon />
-                  </Badge>
-                </Box>
-                <Typography
-                  variant="h1"
-                  noWrap
-                  component="div"
-                  sx={{
-                    display: { xs: "none", sm: "block" },
-                    textDecoration: "none",
-                    mt: "0px",
-                    padding: "0px",
-                    fontSize: "14px",
-                    position: "relative",
-                    top: "0px",
-                  }}
-                  style={{ fontWeight: 300 }}
-                >
-                  My Network
-                </Typography>
-              </Box>
-            </Link>
-            <Link
-              to={"/jobs"}
-              style={{ textDecoration: "none", margin: "0px 5px" }}
-            >
-              <Box
-                sx={{
-                  display: { xs: "none", md: "flex" },
-                  flexDirection: "column",
-                  placeItems: "center",
-                  position: "relative",
-                  top: "4px",
-                  color: "#535353",
-                  ":hover": { color: "#000000" },
-                }}
-              >
-                <Box color="inherit">
-                  <Badge badgeContent={4} color="error">
-                    <WorkIcon />
-                  </Badge>
-                </Box>
-                <Typography
-                  variant="h1"
-                  noWrap
-                  component="div"
-                  sx={{
-                    textDecoration: "none",
-                    display: { xs: "none", sm: "block" },
 
-                    mt: "0px",
-                    padding: "0px",
-                    fontSize: "14px",
-
-                    position: "relative",
-                    top: "0px",
-                  }}
-                  style={{ fontWeight: 300 }}
-                >
-                  Jobs
-                </Typography>
-              </Box>
-            </Link>
-
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                placeItems: "center",
-                position: "relative",
-                top: "4px",
-                margin: "0px 5px",
-                color: "#535353",
-                ":hover": { color: "#000000", cursor: "pointer" },
-              }}
-            >
-              <Box color="inherit">
-                <Badge badgeContent={17} color="error">
-                  <NotificationsIcon />
-                </Badge>
-              </Box>
-              <Typography
-                variant="h1"
-                noWrap
-                component="div"
-                sx={{
-                  textDecoration: "none",
-                  display: { xs: "none", sm: "block" },
-                  mt: "0px",
-                  padding: "0px",
-                  fontSize: "14px",
-                  fontWeight: 300,
-                  position: "relative",
-                  top: "0px",
-                }}
-                style={{ fontWeight: 300 }}
-              >
-                Notification
-              </Typography>
-            </Box>
-
-            {/* <Link to="/signin" style={{ textDecoration: "none" }}>
+              {/* <Link to="/signin" style={{ textDecoration: "none" }}>
               <Box
                 sx={{
                   display: { xs: "none", md: "flex" },
@@ -478,7 +495,7 @@ const Navbar: React.FC<IPROPS> = ({ setSearchBarIsOpen }) => {
               </Box>
             </Link> */}
 
-            {/* <IconButton
+              {/* <IconButton
               size="large"
               edge="end"
               aria-label="account of current user"
@@ -489,53 +506,55 @@ const Navbar: React.FC<IPROPS> = ({ setSearchBarIsOpen }) => {
             >
               <AccountCircle />
             </IconButton> */}
-            <Box
-              sx={{
-                display: { xs: "none", md: "flex" },
-                placeItems: "center",
-                position: "relative",
-                top: "4px",
-                margin: "0px 5px",
-              }}
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
-              {/* https://i.ibb.co/XxdjZXt/profile-Demo.png */}
-              <Avatar
+              <Box
                 sx={{
-                  width: 42,
-                  height: 42,
+                  display: { xs: "none", md: "flex" },
+                  placeItems: "center",
                   position: "relative",
-                  top: "-5px",
+                  top: "4px",
+                  margin: "0px 5px",
                 }}
-                alt="profile"
-                src="https://i.ibb.co/XxdjZXt/profile-Demo.png"
-              />
-              {/* <AccountCircle
+                aria-label="account of current user"
+                aria-controls={menuId}
+                aria-haspopup="true"
+                onClick={handleProfileMenuOpen}
+                color="inherit"
+              >
+                {/* https://i.ibb.co/XxdjZXt/profile-Demo.png */}
+                <Avatar
+                  sx={{
+                    width: 42,
+                    height: 42,
+                    position: "relative",
+                    top: "-5px",
+                  }}
+                  alt="profile"
+                  src="https://i.ibb.co/XxdjZXt/profile-Demo.png"
+                />
+                {/* <AccountCircle
                 fontSize="large"
                 sx={{ position: "relative", top: "-5px" }}
               /> */}
+              </Box>
             </Box>
-          </Box>
-          <Box sx={{ display: { xs: "flex", md: "none" } }}>
-            <IconButton
-              size="large"
-              aria-label="show more"
-              aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
-              color="inherit"
-            >
-              <MoreIcon />
-            </IconButton>
-          </Box>
-        </Toolbar>
+            <Box sx={{ display: { xs: "flex", md: "none" } }}>
+              <IconButton
+                size="large"
+                aria-label="show more"
+                aria-controls={mobileMenuId}
+                aria-haspopup="true"
+                onClick={handleMobileMenuOpen}
+                color="inherit"
+              >
+                <MoreIcon />
+              </IconButton>
+            </Box>
+          </Toolbar>
+          {renderMobileMenu}
+          {renderMenu}
+          {/* </Box> */}
+        </Container>
       </AppBar>
-      {renderMobileMenu}
-      {renderMenu}
     </Box>
   );
 };
