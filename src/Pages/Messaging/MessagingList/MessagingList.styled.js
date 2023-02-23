@@ -3,11 +3,20 @@ import { alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 
 export const MESSAGINGLISTCONTAINER = styled(Box)(({theme})=> ({
-    background: "#ddd",
+    background: "#ffffff",
+    padding: '1rem',
+    // position: 'relative',
+    // width: '100%',
     '& a': {
         textDecoration: 'none',
         color: '#000000'
-    }
+    },
+    // '& .messaginContainer': {
+    //     position: 'fixed',
+    //     zIndex: '9999',
+    //     height: '100%',
+    //     width: '100%'
+    // }
 }))
 
 // message 
@@ -58,5 +67,16 @@ export const StyledInputBase = styled(InputBase)(({ theme }) => ({
             width: "20ch",
         },
     },
+}));
+
+// single user messaging info
+export const SIGNLEMESSAGINGINFO = styled(Box)(({ theme }) => ({
+    border: '2px solid #fff',
+    ':hover':{
+        background: '#eeeeee',
+        border: '2px solid #eeeeee',
+        borderRadius: '1rem',
+        boxShadow: '2px 2px 40px #eeeeee'
+    }
 }));
 
