@@ -58,10 +58,10 @@ const MyNetworkLeft = () => {
   return (
     <Stack spacing={1} sx={{padding: '10px 20px'}}>
       {
-        networksDatas?.map(networkData => {
+        networksDatas?.map((networkData, i) => {
           return (
 
-              <Box sx={{
+              <Box key={i} sx={{
                 display: 'flex',
                 justifyContent: 'space-between',
                 alignItems: 'center'
