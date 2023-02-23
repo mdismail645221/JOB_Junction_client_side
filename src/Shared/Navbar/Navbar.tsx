@@ -220,11 +220,11 @@ const Navbar: React.FC<IPROPS> = ({ setSearchBarIsOpen }) => {
     <Box
       sx={{
         flexGrow: 1,
-        position: "sticky",
-        top: "0px",
+        // position: "fixed",
+        // top: "0px",
         // left: "0px",
         // right: "0px",
-        zIndex: "1000",
+        // zIndex: "1000",
         // backgroundColor: "#FFFFFF",
       }}
     >

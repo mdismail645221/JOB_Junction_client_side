@@ -1,0 +1,15 @@
+.header {
+  transition: all 400ms ease-in-out;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  z-index: 100000;
+}
+
+#scroll-down {
+  transform: translate3d(0, -100%, 0);
+}
+#scroll-up {
+  filter: drop-shadow(0 -10px 20px rgb(170, 170, 170));
+}

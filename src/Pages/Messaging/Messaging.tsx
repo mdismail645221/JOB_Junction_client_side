@@ -1,6 +1,5 @@
 import { Box } from "@mui/system";
 import React from "react";
-import DefaultHomePage from "../DefaultHomePage/DefaultHomePage";
 import MessagingDetails from "./MessagingDetails/MessagingDetails";
 import MessagingList from "./MessagingList/MessagingList";
 
