@@ -121,7 +121,7 @@ export default function NewsFeedCard({ newsFeed }) {
         </Box>
 
         {/* comments & shate  */}
-        <Box>{allComments}comments</Box>
+        <Box>{allComments} comments</Box>
       </Box>
 
       {/* like, comment, repost, share */}

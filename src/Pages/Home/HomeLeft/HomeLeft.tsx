@@ -6,8 +6,12 @@ import GradeIcon from '@mui/icons-material/Grade';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 
 const HomeLeft = () => {
+
+
   return (
     <Box sx={{ display: { xs: "none", md: "block" }, mt: "1.5em" }}>
+
+
 
       <Box sx={{ border: "2px solid lightGray", backgroundColor: "white", borderRadius: "1em", height: '27em' }}>
 
