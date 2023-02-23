@@ -28,6 +28,25 @@ const HomeRight = () => {
   return (
     <Box sx={{ display: { xs: "none", md: "block" }, mt: "1.5em" }}>
 
+
+      <Box sx={{ display: { xs: "none", md: "block" }, border: "2px solid lightGray", backgroundColor: "white", borderRadius: "1em", marginBottom: "1em", p: "0 2em", height: "18.3em", mt: '1em', textAlign: "center" }}>
+        <p style={{ fontSize: "13px", marginTop: "1.5em" }}>Md Iktiup Mahmud, unlock your full potential with Job-Junction premium.</p>
+
+        {/* box for image */}
+        <Box sx={{ m: "0 auto", pl: "2em" }}>
+          <img style={{ width: "5em", borderRadius: "100%" }} src="https://media.licdn.com/dms/image/D4E35AQHygES8XXsYyA/profile-framedphoto-shrink_400_400/0/1670448958563?e=1677740400&v=beta&t=XTAucRe4hHWa5GPe9wJ9YWGyNrtfVBm2TSDxg8EwIuo" alt="" />
+
+          <img style={{ width: "5em" }} src="https://media.licdn.com/dms/image/C4E0EAQElWt4fvMOIcQ/rightRail-logo-shrink_200_200/0/1631008652608?e=1677740400&v=beta&t=3hRtwb8Sn_EOZL73Euyv2SPgK13y8wm27L4IoA4jVhY" alt="" />
+        </Box>
+
+        <p style={{ fontSize: "13px" }}>See who's viewed your profile in the last 90 days</p>
+
+        <div style={{ margin: "0 auto 1em auto" }}>
+          <Button color="error" variant="outlined" size="small">Try it for free</Button>
+        </div>
+
+      </Box>
+
       <Box sx={{ border: "2px solid lightGray", backgroundColor: "white", borderRadius: "1em", height: '27.5em' }}>
 
         <Box sx={{}}>
@@ -42,7 +61,7 @@ const HomeRight = () => {
                   <Typography variant="body2" sx={{ fontWeight: "bold", m: 0, p: 0 }}>{data.name}</Typography>
                   <Typography variant="caption" sx={{ m: 0, p: 0 }} >{data.type}</Typography>
 
-                  <Button sx={{m: ".3em 0"}} size="small" variant="outlined">
+                  <Button color="error" sx={{m: ".3em 0"}} size="small" variant="outlined">
                     <AddIcon/>
                     Follow
                   </Button>

@@ -6,7 +6,7 @@ const RightSide = () => {
 
             <p style={{ marginTop: '1em', fontSize: "17px", fontWeight: "700" }}>Safety tips for your job search</p>
             <img style={{ width: "14em" }} src="https://media.tenor.com/xnDaTMFs4f0AAAAC/security-shield.gif" alt="" />
-            <p style={{ fontSize: '15px' }}>LinkedIn is committed to your safety as you find your next big opportunity.</p>
+            <p style={{ fontSize: '15px' }}>Job-Junction is committed to your safety as you find your next big opportunity.</p>
 
         </Box>
     );

@@ -64,7 +64,7 @@ const MoreJob = () => {
 
                         <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", width: "100%", gap: "1em" }}>
                             <Box>
-                                <Typography variant='h6' sx={{ color: "orange", m: "0", p: "0" }}>
+                                <Typography variant='h6' sx={{ color: "red", m: "0", p: "0" }}>
                                     {data.name}
                                 </Typography>
 
