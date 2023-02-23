@@ -7,11 +7,16 @@ import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
 import { NavLink } from "react-router-dom";
 
+interface EachInfo{
+  userLogo: string,
+  userName: string,
+  message: string
+};
 
 const MessagingList = () => {
 
 
-  const userInfo: {}[] = [
+  const userInfo: EachInfo[] = [
     {
       userLogo: "https://i.ibb.co/4MnMYkJ/Joseph-Gray.png",
       userName: "Joseph-Gray",
@@ -66,7 +71,7 @@ const MessagingList = () => {
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                   {/* image left side */}
                   <Box>
-                    <img style={{ maxWidth: '50px', marginRight: '8px' }} src:string={info.userLogo} alt="sumit shah" />
+                    <img style={{ maxWidth: '50px', marginRight: '8px' }} src={info.userLogo} alt="sumit shah" />
                   </Box>
                   {/* userInfo ===right side=== */}
                   <Box>
