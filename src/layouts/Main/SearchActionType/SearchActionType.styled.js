@@ -4,7 +4,8 @@ import { Paper, styled } from "@mui/material";
     
     // defualt css 
     '& li': {
-        listStyle: 'none'
+        listStyle: 'none',
+        cursor: 'pointer'
     },
     '& a': {
         textDecoration: 'none',
@@ -30,10 +31,10 @@ import { Paper, styled } from "@mui/material";
         border: "none",
         cursor: 'pointer',
         color: "#444444",
-        
     },
     '& .fillter-btn':{
-        cursor: 'pointer'
+        cursor: 'pointer',
+        // padding: '0px',
     },
 
     padding: "0 37px",
