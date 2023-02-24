@@ -24,11 +24,18 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import GoogleIcon from "@mui/icons-material/Google";
 import { MyContext } from "../../../context/MyProvider/MyProvider";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { useLocation, useNavigate } from "react-router-dom";
+import Loader from "../../../Components/Loader/Loader";
 
 const DefaultHomePage = () => {
-  const { test } = useContext(MyContext);
+  const { emailPasswordSignIn } = useContext(MyContext);
   const [showPassword, setShowPassword] = useState(false);
-
+  const [isSignInLoading, setIsSignInLoading] = useState(false);
+  const [googleSignInError, setGoogleSignInError] = useState("");
+  const [emailPasswordSignInError, setEmailPasswordSignInError] = useState("");
+  const navigate = useNavigate();
+  const location: any = useLocation();
+  const from = location?.state?.from?.pathname || "/";
   // password shoing toggle function implement
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
@@ -47,7 +54,33 @@ const DefaultHomePage = () => {
   } = useForm<Inputs>();
 
   const handleFormSubmit: SubmitHandler<Inputs> = (data) => {
-    console.log(data);
+    // console.log(data);
+    setEmailPasswordSignInError("");
+    setGoogleSignInError("");
+
+    setIsSignInLoading(true);
+    const { email, password } = data;
+    emailPasswordSignIn(email, password)
+      .then((userCredential: any) => {
+        // Signed in
+        const user = userCredential.user;
+        console.log("signin user: ", user);
+        console.log("user sign in succesfully");
+        setIsSignInLoading(false);
+        setTimeout(() => {
+          navigate(from, { replace: true });
+        }, 100);
+
+        // ...
+      })
+      .catch((error: any) => {
+        const errorCode = error?.code;
+        const errorMessage = error.message;
+        // console.log(errorMessage);
+        console.log("user is not sign in succesfully");
+        setIsSignInLoading(false);
+        setEmailPasswordSignInError(errorMessage);
+      });
   };
   return (
     <HOMEPAGECONTAINER
@@ -65,11 +98,11 @@ const DefaultHomePage = () => {
           <Typography
             sx={{
               fontSize: {
-                sx: "2rem",
-                md: "2.50rem",
+                sx: "1rem",
+                md: "1.50rem",
               },
               fontWeight: 400,
-              lineHeight: "2.5rem",
+              lineHeight: "2rem",
               color: "#ff1744a3",
             }}
             component="h3"
@@ -139,9 +172,22 @@ const DefaultHomePage = () => {
 
               {/* signin button */}
               <SIGNINBUTTON>
-                <Button type="submit">Sign in</Button>
+                <Button type="submit" disabled={isSignInLoading}>
+                  Sign in
+                </Button>
               </SIGNINBUTTON>
-
+              {emailPasswordSignInError && (
+                <p role="alert" style={{ color: "red", fontWeight: 700 }}>
+                  {emailPasswordSignInError}
+                </p>
+              )}
+              {isSignInLoading && (
+                <>
+                  <Box sx={{ width: "100%" }}>
+                    <Loader type="progressor" />
+                  </Box>
+                </>
+              )}
               {/* dividar */}
               <Box>
                 <Divider>

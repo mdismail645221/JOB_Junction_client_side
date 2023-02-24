@@ -7,6 +7,7 @@ import Jobs from "../Pages/Jobs/Jobs";
 import Messaging from "../Pages/Messaging/Messaging";
 import MyNetwork from "../Pages/MyNetwork/MyNetwork";
 import MyProfile from "../Pages/MyProfile/MyProfile";
+import PostAJob from "../Pages/PostAJob/PostAJob";
 import SignIn from "../Pages/SignIn/SignIn";
 import SignUp from "../Pages/SignUp/SignUp";
 
@@ -52,6 +53,10 @@ export const router = createBrowserRouter([
       {
         path: "/messaging",
         element: <Messaging />,
+      },
+      {
+        path: "/jobs/post-a-job",
+        element: <PostAJob />,
       },
     ],
   },
