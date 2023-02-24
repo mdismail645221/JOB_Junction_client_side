@@ -96,11 +96,18 @@ const MessagingDetails = () => {
       time: "",
       day: ""
     },
+    {
+      userName: 'Me',
+      logo: "https://i.ibb.co/RTLpQDw/ismail-fb-imjg.png",
+      message: 'Well. Arektu kosto koro. new new technology learn korte thako. InshaAllah valo kicu hobe. tmr jonno thoya roilo. Well. Arektu kosto koro. new new technology learn korte thako. InshaAllah valo kicu hobe. tmr jonno thoya roilo.Well. Arektu kosto koro. new new technology learn korte thako. InshaAllah valo kicu hobe. tmr jonno thoya roilo.Well. Arektu kosto koro. new new technology learn korte thako. InshaAllah valo kicu hobe. tmr jonno thoya roilo.',
+      time: "",
+      day: ""
+    },
   ]
 
 
   return (
-    <MESSAGINGCHATINGCONTAINER sx={{  position: 'relative',  paddingY: '.75rem', paddingBottom: '70px' }}>
+    <MESSAGINGCHATINGCONTAINER sx={{ position: 'relative', paddingY: '.75rem', paddingBottom: '70px' }}>
       {/* top side. its name and logo. call, video, information button initial */}
       <Paper sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <CALLVIDEOSECTION direction="row" spacing={2}>
@@ -130,17 +137,40 @@ const MessagingDetails = () => {
       {/* client or your messaging list section */}
       {/* sx={{ overflowY: 'scroll', height: '100vh' }} */}
       {/* chating section start */}
-      <Box sx={{ overflowY: 'scroll', height: 500, margin: '1rem'}} >
+      <Box sx={{ overflowY: 'scroll', height: 500, margin: '1rem' }} >
         {
           messagingLists.map((message, i) => {
             return (
-              <Box key={i} sx={{ display: 'flex', alignItems: 'center', marginY: '0.75rem' }}>
-                <Box>
-                  <img style={{ width: '25px', borderRadius: '100%', marginRight: '0.75rem' }} src={message?.logo} alt="jhankar-mahbub" />
-                </Box>
-                <USERMESSAGEINFO>
-                  <Typography component='p'>{message?.message}</Typography>
-                </USERMESSAGEINFO>
+              <Box key={i}>
+                {
+                  message?.userName === "Jhankar Mahbub" ?
+
+                  // <Box>
+                      <Box key={i} sx={{ display: 'flex', alignItems: 'center', marginY: '0.75rem', mr: {lg: '150px', md: '100px', sm: "50px", xs: "30px"} }}>
+                        <Box>
+                          <img style={{ width: '25px', borderRadius: '100%', marginRight: '0.75rem' }} src={message?.logo} alt="jhankar-mahbub" />
+                        </Box>
+                        <USERMESSAGEINFO>
+                          <Typography component='p'>{message?.message}</Typography>
+                        </USERMESSAGEINFO>
+                      </Box>
+                  // </Box>
+
+                :
+
+                  // <Box>
+                    <Box key={i} sx={{ display: 'flex', alignItems: 'center', justifyContent: "flex-end", marginY: '0.75rem', ml: { lg: '150px', md: '100px', sm: "50px", xs: "30px" } }}>
+                      <USERMESSAGEINFO sx={{ marginRight: '0.75rem' }}>
+                          <Typography component='p'>{message?.message}</Typography>
+                        </USERMESSAGEINFO>
+                      <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                          <img style={{ width: '25px', borderRadius: '100%', marginRight: '0.75rem' }} src={message?.logo} alt="jhankar-mahbub" />
+                        </Box>
+                      </Box>
+                    
+                  //</Box>
+                
+                }
               </Box>
             )
           })
@@ -149,14 +179,14 @@ const MessagingDetails = () => {
 
         <Box sx={{
           display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-            '& button': {
-              color: '#FF1744'
-            },
-            position: "absolute",
-            bottom: '10px',
-            width: '100%',
-            left: '0',
-            zIndex: '999'
+          '& button': {
+            color: '#FF1744'
+          },
+          position: "absolute",
+          bottom: '10px',
+          width: '100%',
+          left: '0',
+          zIndex: '999'
         }}>
           {/* Plus icons */}
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
