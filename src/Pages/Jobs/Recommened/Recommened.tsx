@@ -41,6 +41,7 @@ const Recommened = () => {
     return (
         <div style={{ border: "2px solid lightGray", backgroundColor: "white", borderRadius: "1em" }}>
 
+
             {/* recommendetion start */}
             <div>
 
@@ -68,7 +69,7 @@ const Recommened = () => {
 
                         <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", width: "100%", gap: "1em" }}>
                             <Box>
-                                <Typography variant='h6' sx={{ color: "orange", m: "0", p: "0" }}>
+                                <Typography variant='h6' sx={{ color: "red", m: "0", p: "0" }}>
                                     {data.name}
                                 </Typography>
 
@@ -83,7 +84,7 @@ const Recommened = () => {
                                 </Typography>
                             </Box>
 
-                            <Box sx={{ p: '7px', ":hover": { backgroundColor: "lightGray",  borderRadius: "100%", cursor: "pointer" }, display: 'flex', placeItems: "center" }}>
+                            <Box sx={{ p: '7px', ":hover": { backgroundColor: "lightGray", borderRadius: "100%", cursor: "pointer" }, display: 'flex', placeItems: "center" }}>
                                 <TurnedInNotIcon sx={{}} />
                             </Box>
                         </div>

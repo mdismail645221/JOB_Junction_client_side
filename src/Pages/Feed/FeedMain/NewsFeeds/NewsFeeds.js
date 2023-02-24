@@ -38,8 +38,8 @@ const NewsFeeds = () => {
       images: "https://i.ibb.co/dD39NC4/jhankar-mahbub-sir-img1.png",
       liked: "100k",
       allComments: "200",
-    }
-  ]
+    },
+  ];
   return (
     <Container maxWidth="lg">
       <UserPost />
