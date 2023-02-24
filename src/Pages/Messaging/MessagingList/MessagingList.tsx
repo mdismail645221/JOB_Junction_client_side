@@ -110,9 +110,9 @@ const MessagingList = () => {
         {/* message user data */}
         <Box paddingY={2} sx={{ overflowY: 'scroll', height: '700px' }}>
           {
-            userInfo.map(info => {
+            userInfo.map((info, i) => {
               return (
-                <NavLink to='#'>
+                <NavLink key={i} to='#'>
                   <SIGNLEMESSAGINGINFO sx={{ padding: '0.25rem', display: 'flex', alignItems: 'center', }}>
                     {/* image left side */}
                     <Box>
