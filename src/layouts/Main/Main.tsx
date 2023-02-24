@@ -35,6 +35,7 @@ const Main = () => {
       lastScroll = window.scrollY;
     });
   }, []);
+
   return (
     <ThemeProvider theme={selectTheme ? darkTheme : lightTheme}>
       <CssBaseline />

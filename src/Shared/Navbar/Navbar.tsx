@@ -90,7 +90,7 @@ const Navbar: React.FC<IPROPS> = ({ setSearchBarIsOpen }) => {
   const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
-
+  const handleSignOut = () => {};
   const menuId = "primary-search-account-menu";
   const renderMenu = (
     <Menu
@@ -111,7 +111,8 @@ const Navbar: React.FC<IPROPS> = ({ setSearchBarIsOpen }) => {
       <Link to={"/my-profile"}>
         <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       </Link>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={handleMenuClose}>Settings</MenuItem>
+      <MenuItem onClick={handleSignOut}>Sign Out</MenuItem>
     </Menu>
   );
 
@@ -216,6 +217,7 @@ const Navbar: React.FC<IPROPS> = ({ setSearchBarIsOpen }) => {
     if (!e.target.value) setSearchBarIsOpen(false);
     setSearchInput(e.target.value);
   };
+
   return (
     <Box
       sx={{

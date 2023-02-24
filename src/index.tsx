@@ -5,7 +5,8 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import MyProvider from "./context/MyProvider/MyProvider";
 // import { BrowserRouter } from "react-router-dom";
-
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
@@ -13,6 +14,7 @@ root.render(
   <React.StrictMode>
     {/* <BrowserRouter> */}
     <MyProvider>
+      <ToastContainer position="top-center" />
       <App />
     </MyProvider>
     {/* </BrowserRouter> */}
