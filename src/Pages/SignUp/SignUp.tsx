@@ -32,6 +32,8 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import Loader from "../../Components/Loader/Loader";
 
+
+
 export default function SignUp() {
   const [showPassword, setShowPassword] = React.useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = React.useState(false);
@@ -42,9 +44,11 @@ export default function SignUp() {
     React.useContext(MyContext);
   const [isSignUpLoading, setIsSignUpLoading] = React.useState(false);
   const navigate = useNavigate();
+
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
   };
+
   const handleClickShowConfirmPassword = () => {
     setShowConfirmPassword(!showConfirmPassword);
   };
@@ -74,6 +78,8 @@ export default function SignUp() {
     });
     return () => subscription.unsubscribe();
   }, [watch]);
+
+  
   const handleFormSubmit: SubmitHandler<Inputs> = (data) => {
     const { name, email, imgFile, password, confirmPassword } = data;
     setEmailPasswordSignUpError("");

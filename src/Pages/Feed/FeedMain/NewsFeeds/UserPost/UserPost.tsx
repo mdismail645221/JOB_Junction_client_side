@@ -1,4 +1,4 @@
-import { Box, TextField } from "@mui/material";
+import { Box, Button, TextField } from "@mui/material";
 import Paper from "@mui/material/Paper";
 import React from "react";
 import IconButton from "@mui/material/IconButton";
@@ -13,15 +13,20 @@ import {
   PostBottom,
   PostBtnGruop,
 } from "./UserPost.styled";
+import ModalUserTimePosted from "../../../ModalUserTimePosted/ModalUserTimePosted";
 
 const UserPost = () => {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   return (
     <PostContainer>
       {/* PostTOp start */}
       <PostTop>
         <img src="https://i.ibb.co/4MnMYkJ/Joseph-Gray.png" alt="Joseph-Gray" />
-        <PostField className="postField">
-          <span>Start Post</span>
+        <PostField className="postField"  onClick={handleOpen}>
+            <Button>Open modal</Button>
         </PostField>
       </PostTop>
       {/* PostTop End */}
@@ -65,6 +70,14 @@ const UserPost = () => {
           <span>Write article</span>
         </PostBtnGruop>
       </PostBottom>
+      {/* nested modal ===userTimeline posted==== */}
+      <ModalUserTimePosted 
+        open={open}
+        setOpen={setOpen}
+        handleOpen={handleOpen}
+        handleClose={handleClose}
+
+       />
     </PostContainer>
   );
 };
