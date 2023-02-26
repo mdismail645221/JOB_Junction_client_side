@@ -103,9 +103,11 @@ const ModalUserTimePosted = (props: any) => {
               .then(res => res.json())
               .then(data => {
                 console.log(data)
-                toast.success("Post added successfully")
-                navigate('/feed')
-                reset();
+                if(data.success){
+                  toast.success("Post added successfully")
+                  navigate('/feed')
+                  reset();
+                }
               })
 
           } else {
