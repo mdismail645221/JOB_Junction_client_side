@@ -5,7 +5,7 @@ import { createTheme } from "@mui/material/styles";
 const lightTheme = createTheme({
   palette: {
     primary: {
-      main: "#fcba03",
+      main: "#FF1744",
     },
     secondary: {
       main: "#a11a83",
@@ -21,7 +21,7 @@ const lightTheme = createTheme({
     h1: {
       color: "black",
     },
-  },
+  }
 });
 
 export default lightTheme;
