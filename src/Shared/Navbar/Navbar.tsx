@@ -21,6 +21,7 @@ import { Link } from "react-router-dom";
 import RecordVoiceOverIcon from "@mui/icons-material/RecordVoiceOver";
 import WorkIcon from "@mui/icons-material/Work";
 import Container from "@mui/material/Container";
+import { MyContext } from "../../context/MyProvider/MyProvider";
 interface IPROPS {
   setSearchBarIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -70,7 +71,8 @@ const Navbar: React.FC<IPROPS> = ({ setSearchBarIsOpen }) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
     React.useState<null | HTMLElement>(null);
-
+  const { currentUser, logOut } = React.useContext(MyContext);
+  console.log(currentUser);
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -90,7 +92,15 @@ const Navbar: React.FC<IPROPS> = ({ setSearchBarIsOpen }) => {
   const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
-  const handleSignOut = () => {};
+  const handleSignOut = () => {
+    logOut()
+      .then(() => {
+        // Sign-out successful.
+      })
+      .catch((error: any) => {
+        // An error happened.
+      });
+  };
   const menuId = "primary-search-account-menu";
   const renderMenu = (
     <Menu
@@ -531,7 +541,11 @@ const Navbar: React.FC<IPROPS> = ({ setSearchBarIsOpen }) => {
                     top: "-5px",
                   }}
                   alt="profile"
-                  src="https://i.ibb.co/XxdjZXt/profile-Demo.png"
+                  src={`${
+                    currentUser?.photoURL
+                      ? currentUser?.photoURL
+                      : "https://i.ibb.co/XxdjZXt/profile-Demo.png"
+                  } `}
                 />
                 {/* <AccountCircle
                 fontSize="large"
