@@ -23,6 +23,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import uploadImageToImageBB from "../../../../../../utilities/uploadImageToImageBB/uploadImageToImageBB";
 import { toast } from "react-toastify";
 import moment from "moment";
+import { useNavigate } from "react-router-dom";
 const style = {
   position: "absolute" as "absolute",
   top: "50%",
@@ -36,15 +37,20 @@ const style = {
 };
 
 const ModalUserTimePosted = (props: any) => {
+
   const { currentUser } = React.useContext(MyContext);
   // console.log("props", props)
   // const [open, setOpen] = React.useState(false);
   // const handleOpen = () => setOpen(true);
   // const handleClose = () => setOpen(false);
+
+
   type Inputs = {
     postDescription: string;
     imgFile: FileList;
   };
+
+
   const {
     register,
     handleSubmit,
@@ -52,6 +58,11 @@ const ModalUserTimePosted = (props: any) => {
     reset,
     formState: { errors },
   } = useForm<Inputs>();
+
+  const navigate = useNavigate()
+
+
+
   const handleFormSubmit: SubmitHandler<Inputs> = (data) => {
     // console.log(data);
     const { postDescription, imgFile } = data;
@@ -68,27 +79,47 @@ const ModalUserTimePosted = (props: any) => {
           // console.log("imageLink", imageLink);
           // if image succesfully uploaded the image link have a link otherwise have a undefined value
           // if image succesfully uploaded , then ,
+
+          // with photo upload
           if (imageLink) {
-            const timelinePosts = {
+            const postWithPhoto = {
               userEmail: currentUser?.email,
               userName: currentUser?.displayName,
-              title: "mern stack developer",
+              title: "Web Developer",
               profilePhotoURL: currentUser?.photoURL,
               postDescription: postDescription,
               postImage: imageLink,
               postDate: postDate,
               allLikes: [],
             };
-            console.log(timelinePosts);
 
-            reset();
+            fetch(`${process.env.REACT_APP_server_link}/usersinglepost`, {
+              method: "POST",
+              headers: {
+                "content-type": "application/json"
+              },
+              body: JSON.stringify(postWithPhoto)
+            })
+              .then(res => res.json())
+              .then(data => {
+                console.log(data)
+                toast.success("Post added successfully")
+                navigate('/feed')
+                reset();
+              })
+
           } else {
             toast.error("something went wrong, please try again");
             return;
           }
         });
-    } else {
-      const timelinePosts = {
+    }
+
+
+
+    // without photo upload fetch method
+    else {
+      const postWithOutPhoto = {
         userEmail: currentUser?.email,
         userName: currentUser?.displayName,
         title: "mern stack developer",
@@ -97,12 +128,29 @@ const ModalUserTimePosted = (props: any) => {
         postDate: postDate,
         allLikes: [],
       };
-      console.log(timelinePosts);
-      //   todo: fetch here
 
-      reset();
+      fetch(`${process.env.REACT_APP_server_link}/usersinglepost`, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json"
+        },
+        body: JSON.stringify(postWithOutPhoto)
+      })
+        .then(res => res.json())
+        .then(data => {
+          console.log(data)
+          toast.success("Post added successfully")
+          navigate('/feed')
+          reset();
+        })
+      console.log(postWithOutPhoto);
     }
+
+
+
+
   };
+
   return (
     <React.Fragment>
       <div>
@@ -114,7 +162,7 @@ const ModalUserTimePosted = (props: any) => {
           aria-describedby="modal-modal-description"
         >
           <MODALCONTAINAER sx={style}>
-            <MODALBODY spacing={2}>
+            <MODALBODY spacing={1}>
               {/* // Modal top  title  container for styled */}
               <MODALTITLE>
                 <Box component="p" sx={{ flexGrow: 1 }}>

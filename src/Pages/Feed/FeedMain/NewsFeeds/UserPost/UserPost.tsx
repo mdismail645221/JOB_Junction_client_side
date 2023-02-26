@@ -29,7 +29,7 @@ const UserPost = () => {
         <img
           src={currentUser?.photoURL}
           alt={currentUser?.displayName}
-          style={{ height: "60px", width: "60px", borderRadius: "100%" }}
+          style={{ height: "40px", width: "40px", borderRadius: "100%" }}
         />
         <PostField className="postField" onClick={handleOpen}>
           <Button>Create a post</Button>
