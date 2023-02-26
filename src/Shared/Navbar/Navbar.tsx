@@ -251,7 +251,7 @@ const Navbar: React.FC<IPROPS> = ({ setSearchBarIsOpen }) => {
               style={{
                 textDecoration: "none",
               }}
-              to={"/"}
+              to={"/feed"}
             >
               <Box sx={{ display: "flex", placeItems: "center" }}>
                 <Avatar

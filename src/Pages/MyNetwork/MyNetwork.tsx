@@ -18,6 +18,7 @@ const MyNetwork = () => {
           xs: "1fr",
           md: "3fr 7fr",
         },
+        marginTop: "1em"
       }}
     >
       <Box

@@ -56,7 +56,7 @@ const MyNetworkLeft = () => {
   ]
 
   return (
-    <Stack spacing={1} sx={{padding: '10px 20px'}}>
+    <Stack spacing={1} sx={{padding: '10px 20px', background: "white", marginRight: "1em", borderRadius: "1em"}}>
       {
         networksDatas?.map((networkData, i) => {
           return (
