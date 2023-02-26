@@ -14,7 +14,7 @@ const NewsFeeds = () => {
     fetch(`${process.env.REACT_APP_server_link}/allposts`)
       .then(res => res.json())
       .then(value => {
-        setData(value.reverse())
+        setData(value?.data?.reverse())
         // console.log(data)
       })
   }, [datas])
