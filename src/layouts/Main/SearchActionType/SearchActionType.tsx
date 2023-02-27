@@ -1,7 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { ACTIONMENUCONTAINER, GROUPLI, TYPEACTIONCONTAINER } from "./SearchActionType.styled";
-import { Box, Button } from '@mui/material'
+import {
+  ACTIONMENUCONTAINER,
+  GROUPLI,
+  TYPEACTIONCONTAINER,
+} from "./SearchActionType.styled";
+import { Box, Button } from "@mui/material";
 
 import DrawerForFilterAction from "./DrawerForFilterAction/DrawerForFilterAction";
 
@@ -10,36 +14,33 @@ interface TPROPS {
 }
 
 const SearchActionType: React.FC = () => {
-
-
   // ----------------------------------------------------
-  const [age, setAge] = React.useState('');
+  const [age, setAge] = React.useState("");
 
-  const handleChange = (event:any) => {
+  const handleChange = (event: any) => {
     setAge(event.target.value);
   };
 
-
   const [state, setState] = React.useState({
-      top: false,
-      left: false,
-      bottom: false,
-      right: false,
+    top: false,
+    left: false,
+    bottom: false,
+    right: false,
   });
 
-
-  const toggleDrawer = (anchor:any , open:any) => (event: React.KeyboardEvent | React.MouseEvent) => {
+  const toggleDrawer =
+    (anchor: any, open: any) =>
+    (event: React.KeyboardEvent | React.MouseEvent) => {
       if (
-          event.type === 'keydown' &&
-          ((event as React.KeyboardEvent).key === 'Tab' ||
-              (event as React.KeyboardEvent).key === 'Shift')
+        event.type === "keydown" &&
+        ((event as React.KeyboardEvent).key === "Tab" ||
+          (event as React.KeyboardEvent).key === "Shift")
       ) {
-          return;
+        return;
       }
 
       setState({ ...state, [anchor]: open });
-  };
-
+    };
 
   // ------------------------------------------------
   return (
@@ -100,29 +101,33 @@ const SearchActionType: React.FC = () => {
             sx={{ width: "10%", display: "grid", placeItems: "center" }}
           ></Box>
 
-          <Box className="btn-action fillter-btn" sx={{ position: 'absolute', top: 15, right: [0, 0, 0, 32], padding: '0px' }}>
-              <Link to="#" onClick={toggleDrawer('right', true)}>All Filters</Link>
-             {/* <Button>All Filters</Button> */}
-             {/* <Link to="#">Modal All filters</Link> */}
+          <Box
+            onClick={toggleDrawer("right", true)}
+            className="btn-action fillter-btn"
+            sx={{
+              position: "absolute",
+              top: 15,
+              right: [0, 0, 0, 32],
+              padding: "0px",
+            }}
+          >
+            <Link to="#">All Filters</Link>
+            {/* <Button>All Filters</Button> */}
+            {/* <Link to="#">Modal All filters</Link> */}
           </Box>
         </Box>
       </TYPEACTIONCONTAINER>
 
-
-
       {/* modal  */}
 
-      <DrawerForFilterAction 
-          age={age}
-          setAge={setAge}
-          handleChange={handleChange}
-          state={state} 
-          setState={setState}
-          toggleDrawer={toggleDrawer}
-
+      <DrawerForFilterAction
+        age={age}
+        setAge={setAge}
+        handleChange={handleChange}
+        state={state}
+        setState={setState}
+        toggleDrawer={toggleDrawer}
       />
-      
-
     </Box>
   );
 };
