@@ -308,6 +308,9 @@ const Navbar: React.FC<IPROPS> = ({ setSearchBarIsOpen }) => {
                   id="searchInput"
                   onChange={handleInputChange}
                   inputProps={{ "aria-label": "search" }}
+                  sx={{
+                    color: "black",
+                  }}
                 />
               </Search>
             </form>
