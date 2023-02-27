@@ -2,6 +2,7 @@ import { Box, styled } from "@mui/material";
 
 // resume container 
 export const RESUMECONTAINER = styled(Box)(({theme})=> ({
+    width: '100%',
     background: '#fff',
     padding: '1rem 1rem',
     '&  .title': {
