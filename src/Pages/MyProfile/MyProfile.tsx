@@ -18,23 +18,23 @@ import MyProfileRight from "./MyProfileRight/MyProfileRight";
 const MyProfile = () => {
   const location = useLocation();
   console.log(location.pathname);
-  let gridTemplateColumns;
-  let display;
+  let gridTemplateColumnsFormLayout;
+  let displayFormLayout;
   if (location?.pathname === "/my-profile") {
-    gridTemplateColumns = {
+    gridTemplateColumnsFormLayout = {
       xs: "1fr",
       md: "7fr 3fr",
     };
-    display = {
+    displayFormLayout = {
       xs: "none",
       md: "block",
     };
   } else {
-    gridTemplateColumns = {
+    gridTemplateColumnsFormLayout = {
       xs: "1fr",
       lg: "7fr 3fr",
     };
-    display = {
+    displayFormLayout = {
       xs: "none",
       lg: "block",
     };
@@ -44,7 +44,7 @@ const MyProfile = () => {
     <Box
       sx={{
         display: "grid",
-        gridTemplateColumns,
+        gridTemplateColumns: { ...gridTemplateColumnsFormLayout },
       }}
     >
       <Box>
@@ -52,7 +52,7 @@ const MyProfile = () => {
       </Box>
       <Box
         sx={{
-          display,
+          display: { ...displayFormLayout },
         }}
       >
         <MyProfileRight />
