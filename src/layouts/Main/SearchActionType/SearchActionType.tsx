@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   ACTIONMENUCONTAINER,
@@ -8,19 +8,8 @@ import {
 import { Box, Button } from "@mui/material";
 
 import DrawerForFilterAction from "./DrawerForFilterAction/DrawerForFilterAction";
-
-interface TPROPS {
-  setSearchBarIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-const SearchActionType: React.FC = () => {
-  // ----------------------------------------------------
-  const [age, setAge] = React.useState("");
-
-  const handleChange = (event: any) => {
-    setAge(event.target.value);
-  };
-
+const SearchActionType = (props: any) => {
+  const { searchType, setSearchType } = props;
   const [state, setState] = React.useState({
     top: false,
     left: false,
@@ -48,67 +37,114 @@ const SearchActionType: React.FC = () => {
       <TYPEACTIONCONTAINER>
         <Box
           sx={{
-            display: "flex",
-            alignItems: "center",
+            display: "grid",
+            gridTemplateColumns: "auto 100px",
+            gap: "40px",
+            alignItems: "start",
             justifyContent: "space-between",
             position: "relative",
           }}
         >
           {/* action all nev items*/}
-          <ACTIONMENUCONTAINER sx={{ width: "90%" }}>
-            {" "}
+          <ACTIONMENUCONTAINER
+          // sx={{ width: "90%" }}
+          >
             {/*this is ul element */}
-            <li className="btn-action">
+            <li
+              // className="btn-action selected-type"
+              className={`btn-action ${
+                searchType === "People" && "selected-type"
+              }`}
+              onClick={() => setSearchType("People")}
+            >
               <Link to="#">People</Link>
             </li>
-            <li className="btn-action">
+            <li
+              className={`btn-action ${
+                searchType === "Jobs" && "selected-type"
+              }`}
+              onClick={() => setSearchType("Jobs")}
+            >
               <Link to="#">Jobs</Link>
             </li>
-            <li className="btn-action">
+            <li
+              className={`btn-action ${
+                searchType === "Companies" && "selected-type"
+              }`}
+              onClick={() => setSearchType("Companies")}
+            >
               <Link to="#">Companies</Link>
             </li>
-            <GROUPLI
-              sx={{
-                display: ["none", "block"],
-              }}
-              className="btn-action"
+            <li
+              className={`btn-action ${
+                searchType === "Groups" && "selected-type"
+              }`}
+              onClick={() => setSearchType("Groups")}
             >
               <Link to="#">Groups</Link>
-            </GROUPLI>
-            <li className="btn-action">
+            </li>
+            <li
+              className={`btn-action ${
+                searchType === "Posts" && "selected-type"
+              }`}
+              onClick={() => setSearchType("Posts")}
+            >
               <Link to="#">Posts</Link>
             </li>
-            <li className="btn-action">
+            <li
+              className={`btn-action ${
+                searchType === "Products" && "selected-type"
+              }`}
+              onClick={() => setSearchType("Products")}
+            >
               <Link to="#">Products</Link>
             </li>
-            <li className="btn-action">
+            <li
+              className={`btn-action ${
+                searchType === "Services" && "selected-type"
+              }`}
+              onClick={() => setSearchType("Services")}
+            >
               <Link to="#">Services</Link>
             </li>
-            <li className="btn-action">
+            <li
+              className={`btn-action ${
+                searchType === "Events" && "selected-type"
+              }`}
+              onClick={() => setSearchType("Events")}
+            >
               <Link to="#">Events</Link>
             </li>
-            <li className="btn-action">
+            <li
+              className={`btn-action ${
+                searchType === "Courses" && "selected-type"
+              }`}
+              onClick={() => setSearchType("Courses")}
+            >
               <Link to="#">Courses</Link>
             </li>
-            <li className="btn-action">
+            <li
+              className={`btn-action ${
+                searchType === "Schools" && "selected-type"
+              }`}
+              onClick={() => setSearchType("Schools")}
+            >
               <Link to="#">Schools</Link>
             </li>
             {/* <li className="btn-action"><Link to="#">All Filters</Link></li> */}
           </ACTIONMENUCONTAINER>
 
           {/* filter button */}
-          <Box
+          {/* <Box
             sx={{ width: "10%", display: "grid", placeItems: "center" }}
-          ></Box>
+          ></Box> */}
 
           <Box
             onClick={toggleDrawer("right", true)}
             className="btn-action fillter-btn"
             sx={{
-              position: "absolute",
-              top: 15,
-              right: [0, 0, 0, 32],
-              padding: "0px",
+              position: "relative",
+              top: "14px",
             }}
           >
             <Link to="#">All Filters</Link>
@@ -121,12 +157,10 @@ const SearchActionType: React.FC = () => {
       {/* modal  */}
 
       <DrawerForFilterAction
-        age={age}
-        setAge={setAge}
-        handleChange={handleChange}
         state={state}
-        setState={setState}
         toggleDrawer={toggleDrawer}
+        searchType={searchType}
+        setSearchType={setSearchType}
       />
     </Box>
   );

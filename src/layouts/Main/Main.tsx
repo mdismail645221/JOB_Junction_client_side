@@ -15,9 +15,15 @@ import "./main.style.css";
 const Main = () => {
   const [selectTheme, setSelectTheme] = useState(false);
   const [searchBarIsOpen, setSearchBarIsOpen] = useState(false);
+  const [searchKey, setSearchKey] = useState("");
+  const [searchType, setSearchType] = useState("People");
   const [scrollStatus, setScrollStatus] = useState("");
   const [ptForMain, setPtForMain] = useState({ pt: "80px" });
   let lastScroll = window.scrollY;
+  // allDataFetchHere
+  useEffect(() => {
+    console.log("searchKey: " + searchKey, "\nsearchType:" + searchType);
+  }, [searchKey, searchType]);
   useEffect(() => {
     setPtForMain({
       pt: searchBarIsOpen ? "20px" : "80px",
@@ -47,16 +53,21 @@ const Main = () => {
       <CssBaseline />
       <Box sx={{ backgroundColor: "#F3F2EF" }}>
         <div id={scrollStatus} className="header">
-          <Navbar setSearchBarIsOpen={setSearchBarIsOpen} />
+          <Navbar
+            setSearchBarIsOpen={setSearchBarIsOpen}
+            setSearchKey={setSearchKey}
+          />
         </div>
 
         <Container maxWidth="lg">
           {searchBarIsOpen && (
             <div style={{ paddingTop: "65px" }}>
-              <SearchActionType />
+              <SearchActionType
+                searchType={searchType}
+                setSearchType={setSearchType}
+              />
             </div>
           )}
-
           <Box sx={{ pt: ptForMain?.pt }}>
             {/* <Typography variant="h1">this is h1</Typography>
         <input type="checkbox" onClick={() => setSelectTheme(!selectTheme)} /> */}

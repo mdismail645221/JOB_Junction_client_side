@@ -24,6 +24,7 @@ import Container from "@mui/material/Container";
 import { MyContext } from "../../context/MyProvider/MyProvider";
 interface IPROPS {
   setSearchBarIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setSearchKey: React.Dispatch<React.SetStateAction<string>>;
 }
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -66,7 +67,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-const Navbar: React.FC<IPROPS> = ({ setSearchBarIsOpen }) => {
+const Navbar: React.FC<IPROPS> = ({ setSearchBarIsOpen, setSearchKey }) => {
   const [searchInput, setSearchInput] = React.useState("");
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
@@ -227,13 +228,19 @@ const Navbar: React.FC<IPROPS> = ({ setSearchBarIsOpen }) => {
 
   const handleSearch: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
-    if (searchInput) setSearchBarIsOpen(true);
+    if (searchInput) {
+      setSearchBarIsOpen(true);
+      setSearchKey(searchInput);
+    }
     // console.log(searchInput);
   };
   const handleInputChange:
     | React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>
     | undefined = (e) => {
-    if (!e.target.value) setSearchBarIsOpen(false);
+    if (!e.target.value) {
+      setSearchBarIsOpen(false);
+      setSearchKey("");
+    }
     setSearchInput(e.target.value);
   };
 
