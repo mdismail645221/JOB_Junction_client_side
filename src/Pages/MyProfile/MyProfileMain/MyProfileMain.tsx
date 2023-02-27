@@ -32,7 +32,12 @@ const MyProfileMain = () => {
                 image={banner}
               /> */}
             <div style={{ position: "relative", top: "0", left: "0" }}>
-              <img src="https://media.licdn.com/dms/image/D4D16AQH_CGCjTm6Emw/profile-displaybackgroundimage-shrink_350_1400/0/1670523661007?e=1682553600&v=beta&t=KoznlnUvCWqc8grw-_qkCsQ3-JcT2UdQaKHNLHA2E4E" alt="" width="100%" />
+
+              <Box sx={{ width:"100%"}}>
+
+                <img width={'100%'} src="https://media.licdn.com/dms/image/D4D16AQH_CGCjTm6Emw/profile-displaybackgroundimage-shrink_350_1400/0/1670523661007?e=1682553600&v=beta&t=KoznlnUvCWqc8grw-_qkCsQ3-JcT2UdQaKHNLHA2E4E" alt="" />
+              </Box>
+
               <div>
                 <Avatar
                   alt="Remy Sharp"
@@ -52,7 +57,7 @@ const MyProfileMain = () => {
               </div>
             </div>
             <CardContent style={{ margin: "2em 20px" }}>
-              <Typography gutterBottom variant="h5" sx={{m: 0}} component="div">
+              <Typography gutterBottom variant="h5" sx={{ m: 0 }} component="div">
                 MD IKTIUP MAHMUD SEYAM
               </Typography>
               <Typography variant="h6" color="text.secondary">
@@ -75,7 +80,7 @@ const MyProfileMain = () => {
                 </Link>
               </Typography>
             </CardContent>
-            <CardActions style={{ margin: "-2em  0 0 1.5em",  }}>
+            <CardActions style={{ margin: "-2em  0 0 1.5em", }}>
               <Stack spacing={2} direction="row">
                 <Button
                   variant="contained"
@@ -115,7 +120,7 @@ const MyProfileMain = () => {
               {/* a card on top section*/}
               <Card
                 sx={{
-                  minWidth: 330,
+                  width: '50%',
                   background: "#fca9a9",
                   margin: "20px 10px",
                   height: "70px",
@@ -136,12 +141,12 @@ const MyProfileMain = () => {
               {/* another card on top section */}
               <Card
                 sx={{
-                  minWidth: 330,
+                  width: '50%',
                   background: "#fca9a9",
                   margin: "20px 10px",
                   height: "70px",
                   pb: "7em",
-        
+
                 }}
               >
                 <CardContent>
@@ -167,17 +172,15 @@ const MyProfileMain = () => {
             }}
           >
             <h2 style={{ color: "black", marginLeft: "0.8em" }}>Analytics</h2>
-            <h4 style={{marginLeft: '1em'}}>Private to you</h4>
+            <h4 style={{ marginLeft: '1em' }}>Private to you</h4>
             <div style={{ display: "flex" }}>
 
               {/* a card */}
               <Card
                 sx={{
-                  minWidth: 210,
+                  width: '33%',
                   background: "#fca9a9",
                   margin: "0px 10px 10px 0",
-                  height: "70px",
-                  pb: "7em",
                   ml: "1em"
                 }}
               >
@@ -194,11 +197,9 @@ const MyProfileMain = () => {
               {/* another card */}
               <Card
                 sx={{
-                  minWidth: 210,
+                  width: '33%',
                   background: "#fca9a9",
                   margin: "0px 10px 10px 0",
-                  height: "70px",
-                  pb: "7em"
                 }}
               >
                 <CardContent>
@@ -207,18 +208,16 @@ const MyProfileMain = () => {
                   </Typography>
                 </CardContent>
                 <CardActions>
-                  <Button sx={{color: "black", ml: ".5em"}} variant={"outlined"} color="error" size="small">Learn More</Button>
+                  <Button sx={{ color: "black", ml: ".5em" }} variant={"outlined"} color="error" size="small">Learn More</Button>
                 </CardActions>
               </Card>
 
               {/* a card */}
               <Card
                 sx={{
-                  minWidth: 210,
+                  width: '33%',
                   background: "#fca9a9",
                   margin: "0px 10px 10px 0",
-                  height: "70px",
-                  pb: "7em"
                 }}
               >
                 <CardContent>
