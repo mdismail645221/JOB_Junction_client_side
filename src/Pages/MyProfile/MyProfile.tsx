@@ -8,7 +8,7 @@ import Typography from "@mui/material/Typography";
 import banner from "../../assests/myprofile/baner.jpg";
 import profile from "../../assests/myprofile/profile.jpg";
 import Avatar from "@mui/material/Avatar";
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import { Box, Stack } from "@mui/system";
 import IconButton from "@mui/material/IconButton";
 import { ThemeContext } from "@emotion/react";
@@ -27,7 +27,7 @@ const MyProfile = () => {
       }}
     >
       <Box>
-        <MyProfileMain />
+        <Outlet />
       </Box>
       <Box
         sx={{
