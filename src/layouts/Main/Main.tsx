@@ -16,7 +16,13 @@ const Main = () => {
   const [selectTheme, setSelectTheme] = useState(false);
   const [searchBarIsOpen, setSearchBarIsOpen] = useState(false);
   const [scrollStatus, setScrollStatus] = useState("");
+  const [ptForMain, setPtForMain] = useState({ pt: "80px" });
   let lastScroll = window.scrollY;
+  useEffect(() => {
+    setPtForMain({
+      pt: searchBarIsOpen ? "20px" : "80px",
+    });
+  }, [searchBarIsOpen]);
   useEffect(() => {
     window.addEventListener("scroll", () => {
       if (lastScroll <= 0) {
@@ -51,12 +57,12 @@ const Main = () => {
             </div>
           )}
 
-          <Box sx={{ pt: "80px" }}>
+          <Box sx={{ pt: ptForMain?.pt }}>
             {/* <Typography variant="h1">this is h1</Typography>
         <input type="checkbox" onClick={() => setSelectTheme(!selectTheme)} /> */}
             <Outlet />
           </Box>
-          <Footer />
+          {/* <Footer /> */}
         </Container>
       </Box>
     </ThemeProvider>

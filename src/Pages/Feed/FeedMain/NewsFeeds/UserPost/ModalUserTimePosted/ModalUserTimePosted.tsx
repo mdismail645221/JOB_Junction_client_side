@@ -37,19 +37,17 @@ const style = {
 };
 
 const ModalUserTimePosted = (props: any) => {
-
+  const { setRefreshAllPost } = props;
   const { currentUser } = React.useContext(MyContext);
   // console.log("props", props)
   // const [open, setOpen] = React.useState(false);
   // const handleOpen = () => setOpen(true);
   // const handleClose = () => setOpen(false);
 
-
   type Inputs = {
     postDescription: string;
     imgFile: FileList;
   };
-
 
   const {
     register,
@@ -59,9 +57,7 @@ const ModalUserTimePosted = (props: any) => {
     formState: { errors },
   } = useForm<Inputs>();
 
-  const navigate = useNavigate()
-
-
+  const navigate = useNavigate();
 
   const handleFormSubmit: SubmitHandler<Inputs> = (data) => {
     // console.log(data);
@@ -96,26 +92,27 @@ const ModalUserTimePosted = (props: any) => {
             fetch(`${process.env.REACT_APP_server_link}/usersinglepost`, {
               method: "POST",
               headers: {
-                "content-type": "application/json"
+                "content-type": "application/json",
               },
-              body: JSON.stringify(postWithPhoto)
+              body: JSON.stringify(postWithPhoto),
             })
-              .then(res => res.json())
-              .then(data => {
-                console.log(data)
-                toast.success("Post added successfully")
-                navigate('/feed')
-                reset();
-              })
+              .then((res) => res.json())
+              .then((data) => {
+                console.log(data);
+                if (data.success) {
+                  toast.success("Post added successfully");
+                  navigate("/feed");
+                  reset();
 
+                  setRefreshAllPost((prev: boolean) => !prev);
+                }
+              });
           } else {
             toast.error("something went wrong, please try again");
             return;
           }
         });
     }
-
-
 
     // without photo upload fetch method
     else {
@@ -132,23 +129,19 @@ const ModalUserTimePosted = (props: any) => {
       fetch(`${process.env.REACT_APP_server_link}/usersinglepost`, {
         method: "POST",
         headers: {
-          "content-type": "application/json"
+          "content-type": "application/json",
         },
-        body: JSON.stringify(postWithOutPhoto)
+        body: JSON.stringify(postWithOutPhoto),
       })
-        .then(res => res.json())
-        .then(data => {
-          console.log(data)
-          toast.success("Post added successfully")
-          navigate('/feed')
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          toast.success("Post added successfully");
+          setRefreshAllPost((prev: boolean) => !prev);
           reset();
-        })
+        });
       console.log(postWithOutPhoto);
     }
-
-
-
-
   };
 
   return (
