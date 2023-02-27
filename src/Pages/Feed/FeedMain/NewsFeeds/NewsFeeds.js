@@ -7,17 +7,17 @@ import NewsFeedCard from "./NewsFeedCard/NewsFeedCard";
 const NewsFeeds = () => {
   // json data in news feed web page
 
-  const [datas, setData] = React.useState(null)
-  
+  const [datas, setData] = React.useState(null);
+  const [refreshAllPost, setRefreshAllPost] = React.useState(false);
 
   React.useEffect(() => {
     fetch(`${process.env.REACT_APP_server_link}/allposts`)
-      .then(res => res.json())
-      .then(value => {
-        setData(value?.data?.reverse())
+      .then((res) => res.json())
+      .then((value) => {
+        setData(value?.data?.reverse());
         // console.log(data)
-      })
-  }, [datas])
+      });
+  }, [refreshAllPost]);
 
   // const NewsFeedCards = [
   //   {
@@ -55,14 +55,12 @@ const NewsFeeds = () => {
   // ];
   return (
     <Container maxWidth="lg">
-      <UserPost />
+      <UserPost setRefreshAllPost={setRefreshAllPost} />
       <NewsFeedContainer>
-        {
-        datas &&
-        datas?.map((data, i) => (
-          <NewsFeedCard key={i} data={data}></NewsFeedCard>
-        ))}
-      
+        {datas &&
+          datas?.map((data, i) => (
+            <NewsFeedCard key={i} data={data}></NewsFeedCard>
+          ))}
       </NewsFeedContainer>
     </Container>
   );

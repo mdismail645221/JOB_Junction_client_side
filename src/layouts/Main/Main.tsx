@@ -56,7 +56,7 @@ const Main = () => {
         <input type="checkbox" onClick={() => setSelectTheme(!selectTheme)} /> */}
             <Outlet />
           </Box>
-          <Footer />
+          {/* <Footer /> */}
         </Container>
       </Box>
     </ThemeProvider>

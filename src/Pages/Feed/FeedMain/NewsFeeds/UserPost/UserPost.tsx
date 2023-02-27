@@ -16,7 +16,8 @@ import {
 import ModalUserTimePosted from "./ModalUserTimePosted/ModalUserTimePosted";
 import { MyContext } from "../../../../../context/MyProvider/MyProvider";
 
-const UserPost = () => {
+const UserPost = (props: any) => {
+  const { setRefreshAllPost } = props;
   const { currentUser } = React.useContext(MyContext);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -78,6 +79,7 @@ const UserPost = () => {
       </PostBottom>
       {/* nested modal ===userTimeline posted==== */}
       <ModalUserTimePosted
+        setRefreshAllPost={setRefreshAllPost}
         open={open}
         setOpen={setOpen}
         handleOpen={handleOpen}

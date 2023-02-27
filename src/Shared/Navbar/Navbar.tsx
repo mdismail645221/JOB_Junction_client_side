@@ -118,8 +118,17 @@ const Navbar: React.FC<IPROPS> = ({ setSearchBarIsOpen }) => {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <Link to={"/my-profile"}>
+      <Link
+        to={"/my-profile"}
+        style={{ textDecoration: "none", color: "black" }}
+      >
         <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+      </Link>
+      <Link
+        to={"/my-profile/my-resume"}
+        style={{ textDecoration: "none", color: "black" }}
+      >
+        <MenuItem onClick={handleMenuClose}>My Resume</MenuItem>
       </Link>
       <MenuItem onClick={handleMenuClose}>Settings</MenuItem>
       <MenuItem onClick={handleSignOut}>Sign Out</MenuItem>
