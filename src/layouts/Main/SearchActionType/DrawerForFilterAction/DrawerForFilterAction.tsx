@@ -12,7 +12,7 @@ import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import { Link } from "react-router-dom";
-import { IconButton, Typography } from "@mui/material";
+import { IconButton, Paper, Typography } from "@mui/material";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
@@ -36,15 +36,18 @@ const DrawerForFilterAction = (props: any) => {
   // Search type LIST
   const { searchType, setSearchType, setFilterInfo } = props;
   const list = (anchor: Anchor) => (
-    <Box sx={{ width: "500px" }} role="presentation">
-      {/* jobs sections */}
+    <Box role="presentation">
+
+
+      {/* jobs sections start */}
       <Box
         sx={{
-          margin: "2rem 0",
+          margin: "1rem 0",
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
           paddingX: "1rem",
+          // position: 'fixed',
         }}
       >
         {/* filter jobs section element */}
@@ -53,9 +56,12 @@ const DrawerForFilterAction = (props: any) => {
             Filter only
             <Select
               defaultValue={searchType}
-              sx={{ border: "none" }}
+              sx={{ border: "none", color: '#FF1714', padding: '0', margin: '14px',
+            '& .css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input': {
+              padding: "4px 32px 4px 19px",
+            } }}
               onChange={(e) => setSearchType(e.target.value)}
-              inputProps={{ "aria-label": "Without label" }}
+              // inputProps={{ "aria-label": "Without label" }}
             >
               <MenuItem value="People">People</MenuItem>
               <MenuItem value="Jobs">Jobs</MenuItem>
@@ -80,6 +86,8 @@ const DrawerForFilterAction = (props: any) => {
         </Box>
         {/* Close btn end */}
       </Box>
+       {/* jobs sections end */}
+
       {/* to do : seyam vy start here */}
     </Box>
   );
@@ -132,14 +140,20 @@ const DrawerForFilterAction = (props: any) => {
   }
 
   return (
-    <Box sx={{ padding: "0px", position: "relative", top: "1000px" }}>
       <React.Fragment>
-        <Drawer anchor={"right"} open={props.state["right"]}>
-          {list("right")}
-          <Box>{searchTypeComponent}</Box>
+        <Drawer sx={{
+          '.css-1160xiw-MuiPaper-root-MuiDrawer-paper': {
+            top: '65px',
+            minWidth: '500px',
+            position: 'absolute',
+            overflow: 'scroll'
+          }
+        }} anchor={"right"} open={props.state["right"]}>
+          <Box>{list("right")}</Box>
+          <Box
+          >{searchTypeComponent}</Box>
         </Drawer>
       </React.Fragment>
-    </Box>
   );
 };
 

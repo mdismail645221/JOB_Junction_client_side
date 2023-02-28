@@ -5,9 +5,11 @@ import {
   FormControlLabel,
   Radio,
   RadioGroup,
+  TextField,
   Typography,
 } from "@mui/material";
 import React, { useState } from "react";
+import { JOBSCONTAINER } from "./Jobs.styled";
 
 const Jobs = (props: any) => {
   const { setFilterInfo } = props;
@@ -67,7 +69,7 @@ const Jobs = (props: any) => {
     setFilterInfo(filterInfo);
   };
   return (
-    <Box>
+    <JOBSCONTAINER>
       {/* sort start */}
       <Box sx={{ marginX: "auto" }}>
         <FormControlLabel
@@ -212,17 +214,16 @@ const Jobs = (props: any) => {
             label="Hybrid"
           />
         </Box>
-        {/* <Box sx={{ display: 'flex', justifyContent: 'space-around' }}>
-        </Box> */}
       </Box>
       {/* On-site/remote end  */}
 
-      {/* location input  */}
-
+      {/* location input start  */}
       <Box>
         <Typography component="p">Location</Typography>
-        <input onChange={(e) => setLocation(e.target.value)} type="text" />
+        <TextField size="small" fullWidth onChange={(e) => setLocation(e.target.value)} type="text" />
       </Box>
+       {/* location input end  */}
+
       {/* <h1
         onClick={() =>
           console.log(
@@ -251,7 +252,7 @@ const Jobs = (props: any) => {
       >
         Submit
       </Button>
-    </Box>
+    </JOBSCONTAINER>
   );
 };
 
