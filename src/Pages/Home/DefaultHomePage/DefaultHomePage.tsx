@@ -28,20 +28,14 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Loader from "../../../Components/Loader/Loader";
 
 const DefaultHomePage = () => {
-  const { emailPasswordSignIn } = useContext(MyContext);
+  const { emailPasswordSignIn, currentUser, isLoading } = useContext(MyContext);
   const [showPassword, setShowPassword] = useState(false);
   const [isSignInLoading, setIsSignInLoading] = useState(false);
   const [googleSignInError, setGoogleSignInError] = useState("");
   const [emailPasswordSignInError, setEmailPasswordSignInError] = useState("");
   const navigate = useNavigate();
   const location: any = useLocation();
-  const from = location?.state?.from?.pathname || "/";
-  // password shoing toggle function implement
-  const handleClickShowPassword = () => {
-    setShowPassword(!showPassword);
-  };
-
-  console.log("showPassword", showPassword);
+  const from = location?.state?.from?.pathname || "/feed";
   type Inputs = {
     email: string;
     password: string;
@@ -52,6 +46,22 @@ const DefaultHomePage = () => {
     watch,
     formState: { errors },
   } = useForm<Inputs>();
+  if (isLoading) {
+    return (
+      <Box sx={{ width: "100%", height: "100vh" }}>
+        <Loader type="" />
+      </Box>
+    );
+  } else if (currentUser && currentUser?.uid) {
+    navigate("/feed");
+  }
+
+  // password shoing toggle function implement
+  const handleClickShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
+
+  console.log("showPassword", showPassword);
 
   const handleFormSubmit: SubmitHandler<Inputs> = (data) => {
     // console.log(data);

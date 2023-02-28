@@ -7,18 +7,18 @@ import MyProvider from "./context/MyProvider/MyProvider";
 // import { BrowserRouter } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
+const queryClient = new QueryClient();
 root.render(
-  <React.StrictMode>
-    {/* <BrowserRouter> */}
+  <QueryClientProvider client={queryClient}>
     <MyProvider>
       <ToastContainer position="top-center" />
       <App />
     </MyProvider>
-    {/* </BrowserRouter> */}
-  </React.StrictMode>
+  </QueryClientProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
