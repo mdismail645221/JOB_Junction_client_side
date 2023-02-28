@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import Box from "@mui/material/Box/Box";
 import { Typography } from "@mui/material";
 import Divider from "@mui/material/Divider";
 import GradeIcon from "@mui/icons-material/Grade";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
+import { MyContext } from '../../../context/MyProvider/MyProvider'
+
 const FeedLeft = () => {
+
+  const { currentUser } = React.useContext(MyContext);
+
+  const { displayName, photoURL } = currentUser
+
   return (
     <Box sx={{ display: { xs: "none", md: "block" }, mt: "1.5em" }}>
       <Box
@@ -26,14 +33,14 @@ const FeedLeft = () => {
           <Box sx={{ ":hover": { cursor: "pointer" } }}>
             <img
               style={{
-                width: "4em",
+                height: "4em", width: "4em", 
                 borderRadius: "100%",
                 position: "absolute",
                 top: "2em",
                 left: "6em",
                 border: "2px solid white",
               }}
-              src="https://media.licdn.com/dms/image/D4E35AQHygES8XXsYyA/profile-framedphoto-shrink_400_400/0/1670448958563?e=1677578400&v=beta&t=9brrQkvv6HEms0K1yloBQgSXUeF5cnDJ1NxMf8Ofzfk"
+              src={photoURL}
               alt=""
             />
           </Box>
@@ -49,7 +56,7 @@ const FeedLeft = () => {
               ":hover": { textDecorationLine: "underline", cursor: "pointer" },
             }}
           >
-            MD IKTIUP MAHMUD SEYAM
+           {displayName}
           </Typography>
 
           <Typography variant="caption" sx={{ mb: "5em", color: "gray" }}>
