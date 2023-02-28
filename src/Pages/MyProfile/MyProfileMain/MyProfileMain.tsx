@@ -10,7 +10,16 @@ import { Link } from "react-router-dom";
 import { Box, Stack } from "@mui/system";
 import IconButton from "@mui/material/IconButton";
 import { ThemeContext } from "@emotion/react";
+import { MyContext } from "../../../context/MyProvider/MyProvider";
+
 const MyProfileMain = () => {
+
+  const { currentUser } = React.useContext(MyContext)
+
+  const { displayName, photoURL } = currentUser
+
+  // const 
+
   return (
     <div
       style={{
@@ -33,7 +42,7 @@ const MyProfileMain = () => {
               /> */}
             <div style={{ position: "relative", top: "0", left: "0" }}>
 
-              <Box sx={{ width:"100%"}}>
+              <Box sx={{ width: "100%" }}>
 
                 <img width={'100%'} src="https://media.licdn.com/dms/image/D4D16AQH_CGCjTm6Emw/profile-displaybackgroundimage-shrink_350_1400/0/1670523661007?e=1682553600&v=beta&t=KoznlnUvCWqc8grw-_qkCsQ3-JcT2UdQaKHNLHA2E4E" alt="" />
               </Box>
@@ -41,7 +50,7 @@ const MyProfileMain = () => {
               <div>
                 <Avatar
                   alt="Remy Sharp"
-                  src="https://media.licdn.com/dms/image/D4E35AQHygES8XXsYyA/profile-framedphoto-shrink_400_400/0/1670448958563?e=1677693600&v=beta&t=KcnVIjdz-651DPeR_lDflwxL4tJZhQebEeU9yF1Mg0U"
+                  src={photoURL}
                   style={{
                     position: "absolute",
                     bottom: "-40px",
@@ -58,7 +67,7 @@ const MyProfileMain = () => {
             </div>
             <CardContent style={{ margin: "2em 20px" }}>
               <Typography gutterBottom variant="h5" sx={{ m: 0 }} component="div">
-                MD IKTIUP MAHMUD SEYAM
+                {displayName}
               </Typography>
               <Typography variant="h6" color="text.secondary">
                 Web Developer
