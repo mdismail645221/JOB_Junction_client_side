@@ -149,7 +149,10 @@ const DrawerForFilterAction = (props: any) => {
             overflow: 'scroll'
           }
         }} anchor={"right"} open={props.state["right"]}>
-          <Box>{list("right")}</Box>
+          <Box sx={{
+                borderBottom: `2.5px solid #ddd`,
+                boxShadow: `3px 10px 20px #ddd`
+          }}>{list("right")}</Box>
           <Box
           >{searchTypeComponent}</Box>
         </Drawer>
