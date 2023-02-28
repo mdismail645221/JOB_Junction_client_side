@@ -17,13 +17,35 @@ const Main = () => {
   const [searchBarIsOpen, setSearchBarIsOpen] = useState(false);
   const [searchKey, setSearchKey] = useState("");
   const [searchType, setSearchType] = useState("People");
+  const [filterInfo, setFilterInfo] = useState<any>({});
   const [scrollStatus, setScrollStatus] = useState("");
   const [ptForMain, setPtForMain] = useState({ pt: "80px" });
   let lastScroll = window.scrollY;
   // allDataFetchHere
   useEffect(() => {
-    console.log("searchKey: " + searchKey, "\nsearchType:" + searchType);
-  }, [searchKey, searchType]);
+    // console.log("searchKey: " + searchKey, "\nsearchType:" + searchType);
+    if (searchKey?.length === 0) {
+      return;
+    }
+    const allFilter = {
+      searchKey,
+      searchType,
+      filterInfo,
+    };
+    // console.log("searchKey: ", searchKey);
+    // console.log("searchType:", searchType);
+    // console.log("filterInfo: " + filterInfo);
+    // console.log("allFilter: " + allFilter);
+    fetch("http://localhost:5000/searchjob", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(allFilter),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log("response data: ", data));
+  }, [searchKey, searchType, filterInfo]);
   useEffect(() => {
     setPtForMain({
       pt: searchBarIsOpen ? "20px" : "80px",
@@ -63,6 +85,7 @@ const Main = () => {
           {searchBarIsOpen && (
             <div style={{ paddingTop: "65px" }}>
               <SearchActionType
+                setFilterInfo={setFilterInfo}
                 searchType={searchType}
                 setSearchType={setSearchType}
               />

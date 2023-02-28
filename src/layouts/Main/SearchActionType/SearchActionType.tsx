@@ -9,7 +9,7 @@ import { Box, Button } from "@mui/material";
 
 import DrawerForFilterAction from "./DrawerForFilterAction/DrawerForFilterAction";
 const SearchActionType = (props: any) => {
-  const { searchType, setSearchType } = props;
+  const { searchType, setSearchType, setFilterInfo } = props;
   const [state, setState] = React.useState({
     top: false,
     left: false,
@@ -157,6 +157,7 @@ const SearchActionType = (props: any) => {
       {/* modal  */}
 
       <DrawerForFilterAction
+        setFilterInfo={setFilterInfo}
         state={state}
         toggleDrawer={toggleDrawer}
         searchType={searchType}

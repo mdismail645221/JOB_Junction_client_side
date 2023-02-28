@@ -1,47 +1,164 @@
-import { Box, Checkbox, FormControlLabel, Radio, Typography } from "@mui/material";
-import React from "react";
+import {
+  Box,
+  Button,
+  Checkbox,
+  FormControlLabel,
+  Radio,
+  RadioGroup,
+  Typography,
+} from "@mui/material";
+import React, { useState } from "react";
 
-const Jobs = () => {
+const Jobs = (props: any) => {
+  const { setFilterInfo } = props;
+  const [experienceLevel, setExperienceLevel] = useState<any>({});
+  const [jobType, setJobType] = useState<any>({});
+  const [workFrom, setWorkFrom] = useState<any>({});
+  const [isEasyApply, setIsEasyApply] = useState(false);
+  const [sortBy, setSortBy] = useState("newest first");
+  const [datePosted, setDatePosted] = useState("Any time");
+  const [location, setLocation] = useState("world Wide");
+  const handleExperienceLevelChange = (e: any) => {
+    const newExperienceLevel = { ...experienceLevel };
+    const field = e.target.value;
+    if (!e.target.checked) {
+      delete newExperienceLevel[field];
+      setExperienceLevel(newExperienceLevel);
+      return;
+    }
+    newExperienceLevel[field] = e.target.checked;
+    setExperienceLevel(newExperienceLevel);
+    // console.log(field, "=", e.target.checked);
+  };
+  const handleJobTypeChange = (e: any) => {
+    const newJobType = { ...jobType };
+    const field = e.target.value;
+    if (!e.target.checked) {
+      delete newJobType[field];
+      setJobType(newJobType);
+      return;
+    }
+    newJobType[field] = e.target.checked;
+    setJobType(newJobType);
+    // console.log(field, "=", e.target.checked);
+  };
+  const handleWorkFromChange = (e: any) => {
+    const newWorkFrom = { ...workFrom };
+    const field = e.target.value;
+    if (!e.target.checked) {
+      delete newWorkFrom[field];
+      setWorkFrom(newWorkFrom);
+      return;
+    }
+    newWorkFrom[field] = e.target.checked;
+    setWorkFrom(newWorkFrom);
+    // console.log(field, "=", e.target.checked);
+  };
+  const handleFilterSubmit = () => {
+    const filterInfo = {
+      jobType,
+      experienceLevel,
+      workFrom,
+      isEasyApply,
+      sortBy,
+      datePosted,
+      location,
+    };
+    setFilterInfo(filterInfo);
+  };
   return (
     <Box>
       {/* sort start */}
+      <Box sx={{ marginX: "auto" }}>
+        <FormControlLabel
+          onChange={(e: any) => setIsEasyApply(e.target.checked)}
+          value="Easy Apply"
+          control={<Checkbox defaultChecked />}
+          label="Easy Apply"
+        />
+      </Box>
       <Box>
         <Typography component="p">Sort by</Typography>
-        <Box sx={{ display: 'flex', justifyContent: 'space-around' }}>
-          <FormControlLabel value="female" control={<Radio />} label="Female" />
-          <FormControlLabel value="male" control={<Radio />} label="Male" />
+        <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+          <RadioGroup onChange={(e) => setSortBy(e.target.value)}>
+            <FormControlLabel
+              value="newest first"
+              control={<Radio />}
+              label="newest first"
+            />
+            <FormControlLabel
+              value="oldest first"
+              control={<Radio />}
+              label="oldest first"
+            />
+          </RadioGroup>
         </Box>
       </Box>
       {/* sort end */}
 
       {/* Date posted start */}
-      <Box>
-        <Typography component="p">Date Posted</Typography>
-        <Box sx={{ display: 'flex', justifyContent: 'space-around' }}>
-          <FormControlLabel value="female" control={<Radio />} label="Female" />
-          <FormControlLabel value="male" control={<Radio />} label="Male" />
+      <RadioGroup onChange={(e) => setDatePosted(e.target.value)}>
+        <Box>
+          <Typography component="p">Date Posted</Typography>
+          <Box sx={{ display: "flex", justifyContent: "space-around" }}>
+            <FormControlLabel
+              value="Any time"
+              control={<Radio />}
+              label="Any Time"
+            />
+            <FormControlLabel
+              value="Past 24 hours"
+              control={<Radio />}
+              label="Past 24 hours"
+            />
+          </Box>
+          <Box sx={{ display: "flex", justifyContent: "space-around" }}>
+            <FormControlLabel
+              value="Last 3 days"
+              control={<Radio />}
+              label="Last 3 days"
+            />
+            <FormControlLabel
+              value="Last 7 days"
+              control={<Radio />}
+              label="Last 7 days"
+            />
+          </Box>
         </Box>
-        <Box sx={{ display: 'flex', justifyContent: 'space-around' }}>
-          <FormControlLabel value="female" control={<Radio />} label="Female" />
-          <FormControlLabel value="male" control={<Radio />} label="Male" />
-        </Box>
-      </Box>
+      </RadioGroup>
+
       {/* Date posted end */}
 
       {/* Experience level start */}
       <Box>
         <Typography component="p">Experience level</Typography>
-        <Box sx={{ display: 'flex', justifyContent: 'space-around' }}>
-          <FormControlLabel control={<Checkbox defaultChecked />} label="Internship" />
-          <FormControlLabel control={<Checkbox defaultChecked />} label="Entry level" />
+        <Box sx={{ display: "flex", justifyContent: "space-around" }}>
+          <FormControlLabel
+            onChange={handleExperienceLevelChange}
+            control={<Checkbox />}
+            label="Internship"
+            value="Internship"
+          />
+          <FormControlLabel
+            onChange={handleExperienceLevelChange}
+            control={<Checkbox />}
+            label="Entry level"
+            value="Entry level"
+          />
         </Box>
-        <Box sx={{ display: 'flex', justifyContent: 'space-around' }}>
-          <FormControlLabel value="female" control={<Checkbox defaultChecked />} label="Associate" />
-          <FormControlLabel value="male" control={<Checkbox defaultChecked />} label="Mid-Senior level" />
-        </Box>
-        <Box sx={{ display: 'flex', justifyContent: 'space-around' }}>
-          <FormControlLabel value="female" control={<Checkbox defaultChecked />} label="Director" />
-          <FormControlLabel value="male" control={<Checkbox defaultChecked />} label="Executive" />
+        <Box sx={{ display: "flex", justifyContent: "space-around" }}>
+          <FormControlLabel
+            onChange={handleExperienceLevelChange}
+            value="Mid senior"
+            control={<Checkbox />}
+            label="Mid senior"
+          />
+          <FormControlLabel
+            onChange={handleExperienceLevelChange}
+            value="Senior"
+            control={<Checkbox />}
+            label="Senior"
+          />
         </Box>
       </Box>
       {/* Experience level end */}
@@ -49,54 +166,91 @@ const Jobs = () => {
       {/* job type section start */}
       <Box>
         <Typography component="p">Job type</Typography>
-        <Box sx={{ display: 'flex', justifyContent: 'space-around' }}>
-          <FormControlLabel value="female" control={<Checkbox defaultChecked />} label="Full-time" />
-          <FormControlLabel value="male" control={<Checkbox defaultChecked />} label="Part-time" />
-        </Box>
-        <Box sx={{ display: 'flex', justifyContent: 'space-around' }}>
-          <FormControlLabel value="female" control={<Checkbox defaultChecked />} label="Contract" />
-          <FormControlLabel value="male" control={<Checkbox defaultChecked />} label="Temporary" />
-        </Box>
-        <Box sx={{ display: 'flex', justifyContent: 'space-around' }}>
-          <FormControlLabel value="female" control={<Checkbox defaultChecked />} label="Volunteer" />
-          <FormControlLabel value="male" control={<Checkbox defaultChecked />} label="Internship" />
-        </Box>
-        <Box sx={{ display: 'flex', justifyContent: 'space-around' }}>
-          <FormControlLabel value="female" control={<Checkbox defaultChecked />} label="Other" />
+        <Box sx={{ display: "flex", justifyContent: "space-around" }}>
+          <FormControlLabel
+            onChange={handleJobTypeChange}
+            value="Full-time"
+            control={<Checkbox />}
+            label="Full-time"
+          />
+          <FormControlLabel
+            onChange={handleJobTypeChange}
+            value="Part-time"
+            control={<Checkbox />}
+            label="Part-time"
+          />
+          <FormControlLabel
+            onChange={handleJobTypeChange}
+            value="Contract"
+            control={<Checkbox />}
+            label="Contract"
+          />
         </Box>
       </Box>
       {/* job type section end */}
 
       {/* On-site/remote start  */}
       <Box>
-        <Typography component="p">On-site/remote</Typography>
-        <Box sx={{ display: 'flex', justifyContent: 'space-around' }}>
-          <FormControlLabel value="female" control={<Checkbox defaultChecked />} label="On-site" />
-          <FormControlLabel value="male" control={<Checkbox defaultChecked />} label="Remote" />
-          <FormControlLabel value="female" control={<Checkbox defaultChecked />} label="Hybrid" />
+        <Typography component="p">Work From</Typography>
+        <Box sx={{ display: "flex", justifyContent: "space-around" }}>
+          <FormControlLabel
+            onChange={handleWorkFromChange}
+            value="Home"
+            control={<Checkbox />}
+            label="Home"
+          />
+          <FormControlLabel
+            onChange={handleWorkFromChange}
+            value="Office"
+            control={<Checkbox />}
+            label="Office"
+          />
+          <FormControlLabel
+            onChange={handleWorkFromChange}
+            value="Hybrid"
+            control={<Checkbox />}
+            label="Hybrid"
+          />
         </Box>
         {/* <Box sx={{ display: 'flex', justifyContent: 'space-around' }}>
         </Box> */}
       </Box>
       {/* On-site/remote end  */}
 
-      <Box>
-        <Typography component="p">Easy Apply</Typography>
-        <Box sx={{ display: 'flex', justifyContent: 'space-around' }}>
-          <FormControlLabel value="female" control={<Checkbox defaultChecked />} label="On site" />
-        </Box>
-      </Box>
-
-
       {/* location input  */}
+
       <Box>
         <Typography component="p">Location</Typography>
-        <input type="text" />
+        <input onChange={(e) => setLocation(e.target.value)} type="text" />
       </Box>
-
-      
-
-
+      {/* <h1
+        onClick={() =>
+          console.log(
+            "jobType:",
+            jobType,
+            "\nexperienceLevel:",
+            experienceLevel,
+            "\nworkFrom:",
+            workFrom,
+            "\nisEasyApply:",
+            isEasyApply,
+            "\nsortBy:",
+            sortBy,
+            "\ndatePosted:",
+            datePosted,
+            "\nlocation:",
+            location
+          )
+        }
+      >
+        test
+      </h1> */}
+      <Button
+        onClick={handleFilterSubmit}
+        sx={{ ":hover": { cursor: "pointer" } }}
+      >
+        Submit
+      </Button>
     </Box>
   );
 };

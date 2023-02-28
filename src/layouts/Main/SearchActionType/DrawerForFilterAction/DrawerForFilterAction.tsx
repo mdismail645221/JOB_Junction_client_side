@@ -35,7 +35,7 @@ type Anchor = "right";
 
 const DrawerForFilterAction = (props: any) => {
   // Search type LIST
-  const { searchType, setSearchType } = props;
+  const { searchType, setSearchType, setFilterInfo } = props;
   const list = (anchor: Anchor) => (
     <Box sx={{ width: "500px" }} role="presentation">
       {/* jobs sections */}
@@ -91,7 +91,7 @@ const DrawerForFilterAction = (props: any) => {
       break;
     }
     case "Jobs": {
-      searchTypeComponent = <Jobs />;
+      searchTypeComponent = <Jobs setFilterInfo={setFilterInfo} />;
       break;
     }
     case "Companies": {
