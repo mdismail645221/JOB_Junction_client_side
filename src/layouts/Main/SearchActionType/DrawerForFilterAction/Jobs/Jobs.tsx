@@ -73,6 +73,7 @@ const Jobs = (props: any) => {
       {/* sort start */}
       <Box sx={{ marginX: "auto" }}>
         <FormControlLabel
+          className="title"
           onChange={(e: any) => setIsEasyApply(e.target.checked)}
           value="Easy Apply"
           control={<Checkbox defaultChecked />}
@@ -101,7 +102,7 @@ const Jobs = (props: any) => {
       {/* sort end */}
 
       {/* Date posted start */}
-      <RadioGroup onChange={(e) => setDatePosted(e.target.value)}>
+      <RadioGroup className="card" onChange={(e) => setDatePosted(e.target.value)}>
         <Box>
           <Typography className="title" component="p">Date Posted</Typography>
           <Box sx={{ display: "flex", justifyContent: "space-evenly" }}>
@@ -134,8 +135,8 @@ const Jobs = (props: any) => {
       {/* Date posted end */}
 
       {/* Experience level start */}
-      <Box>
-        <Typography className="title"  component="p">Experience level</Typography>
+      <Box className="card">
+        <Typography className="title" component="p">Experience level</Typography>
         <Box sx={{ display: "flex", justifyContent: "space-around" }}>
           <FormControlLabel
             onChange={handleExperienceLevelChange}
@@ -168,8 +169,8 @@ const Jobs = (props: any) => {
       {/* Experience level end */}
 
       {/* job type section start */}
-      <Box>
-        <Typography className="title"  component="p">Job type</Typography>
+      <Box className="card">
+        <Typography className="title" component="p">Job type</Typography>
         <Box sx={{ display: "flex", justifyContent: "space-around" }}>
           <FormControlLabel
             onChange={handleJobTypeChange}
@@ -194,8 +195,8 @@ const Jobs = (props: any) => {
       {/* job type section end */}
 
       {/* Work From start  */}
-      <Box>
-        <Typography className="title"  component="p">Work From</Typography>
+      <Box className="card">
+        <Typography className="title" component="p">Work From</Typography>
         <Box sx={{ display: "flex", justifyContent: "space-around" }}>
           <FormControlLabel
             onChange={handleWorkFromChange}
@@ -220,9 +221,9 @@ const Jobs = (props: any) => {
       {/* Work From end  */}
 
       {/* location input start  */}
-      <Box>
+      <Box className="card">
         <Typography className="title" component="p">Location</Typography>
-        <TextField size="small" fullWidth onChange={(e) => setLocation(e.target.value)} type="text" />
+        <TextField sx={{margin: '10px 0'}} size="small" fullWidth onChange={(e) => setLocation(e.target.value)} type="text" />
       </Box>
       {/* location input end  */}
 
@@ -248,12 +249,15 @@ const Jobs = (props: any) => {
       >
         test
       </h1> */}
-      <Button
-        onClick={handleFilterSubmit}
-        sx={{ ":hover": { cursor: "pointer" } }}
-      >
-        Submit
-      </Button>
+      <Box sx={{paddingBottom: '2rem', display: 'grid', placeItems: 'center'}}>
+        <Button
+          className="btn-submit"
+          onClick={handleFilterSubmit}
+          sx={{ ":hover": { cursor: "pointer" } }}
+        >
+          Submit
+        </Button>
+      </Box>
     </JOBSCONTAINER>
   );
 };
