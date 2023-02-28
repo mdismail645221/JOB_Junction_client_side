@@ -69,7 +69,7 @@ const Jobs = (props: any) => {
     setFilterInfo(filterInfo);
   };
   return (
-    <JOBSCONTAINER>
+    <JOBSCONTAINER spacing={3}>
       {/* sort start */}
       <Box sx={{ marginX: "auto" }}>
         <FormControlLabel
@@ -79,10 +79,11 @@ const Jobs = (props: any) => {
           label="Easy Apply"
         />
       </Box>
-      <Box>
-        <Typography component="p">Sort by</Typography>
-        <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-          <RadioGroup onChange={(e) => setSortBy(e.target.value)}>
+
+      <Box className="card">
+        <Typography className="title" component="p">Sort by</Typography>
+        <RadioGroup onChange={(e) => setSortBy(e.target.value)}>
+          <Box sx={{ display: "flex", justifyContent: "space-evenly" }}>
             <FormControlLabel
               value="newest first"
               control={<Radio />}
@@ -93,16 +94,17 @@ const Jobs = (props: any) => {
               control={<Radio />}
               label="oldest first"
             />
-          </RadioGroup>
-        </Box>
+          </Box>
+        </RadioGroup>
       </Box>
+
       {/* sort end */}
 
       {/* Date posted start */}
       <RadioGroup onChange={(e) => setDatePosted(e.target.value)}>
         <Box>
-          <Typography component="p">Date Posted</Typography>
-          <Box sx={{ display: "flex", justifyContent: "space-around" }}>
+          <Typography className="title" component="p">Date Posted</Typography>
+          <Box sx={{ display: "flex", justifyContent: "space-evenly" }}>
             <FormControlLabel
               value="Any time"
               control={<Radio />}
@@ -114,7 +116,7 @@ const Jobs = (props: any) => {
               label="Past 24 hours"
             />
           </Box>
-          <Box sx={{ display: "flex", justifyContent: "space-around" }}>
+          <Box sx={{ display: "flex", justifyContent: "space-evenly" }}>
             <FormControlLabel
               value="Last 3 days"
               control={<Radio />}
@@ -133,7 +135,7 @@ const Jobs = (props: any) => {
 
       {/* Experience level start */}
       <Box>
-        <Typography component="p">Experience level</Typography>
+        <Typography className="title"  component="p">Experience level</Typography>
         <Box sx={{ display: "flex", justifyContent: "space-around" }}>
           <FormControlLabel
             onChange={handleExperienceLevelChange}
@@ -167,7 +169,7 @@ const Jobs = (props: any) => {
 
       {/* job type section start */}
       <Box>
-        <Typography component="p">Job type</Typography>
+        <Typography className="title"  component="p">Job type</Typography>
         <Box sx={{ display: "flex", justifyContent: "space-around" }}>
           <FormControlLabel
             onChange={handleJobTypeChange}
@@ -191,9 +193,9 @@ const Jobs = (props: any) => {
       </Box>
       {/* job type section end */}
 
-      {/* On-site/remote start  */}
+      {/* Work From start  */}
       <Box>
-        <Typography component="p">Work From</Typography>
+        <Typography className="title"  component="p">Work From</Typography>
         <Box sx={{ display: "flex", justifyContent: "space-around" }}>
           <FormControlLabel
             onChange={handleWorkFromChange}
@@ -215,14 +217,14 @@ const Jobs = (props: any) => {
           />
         </Box>
       </Box>
-      {/* On-site/remote end  */}
+      {/* Work From end  */}
 
       {/* location input start  */}
       <Box>
-        <Typography component="p">Location</Typography>
+        <Typography className="title" component="p">Location</Typography>
         <TextField size="small" fullWidth onChange={(e) => setLocation(e.target.value)} type="text" />
       </Box>
-       {/* location input end  */}
+      {/* location input end  */}
 
       {/* <h1
         onClick={() =>
