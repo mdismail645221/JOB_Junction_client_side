@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { MyContext } from "../../../../context/MyProvider/MyProvider";
 import { useLoaderData } from "react-router-dom";
+import Loader from "../../../../Components/Loader/Loader";
 const PeopleDetails = () => {
   const { currentUser } = useContext(MyContext);
   const [isConnectionSent, setIsConnectionSent] = useState(false);
@@ -27,7 +28,7 @@ const PeopleDetails = () => {
         );
         const data = await res.json();
         const pendingUSer: [] = data?.pendingReq;
-        const isSent = pendingUSer.findIndex(
+        const isSent = pendingUSer?.findIndex(
           ({ senderEmail }) => senderEmail === currentUser?.email
         );
         if (isSent === -1) {
@@ -62,10 +63,14 @@ const PeopleDetails = () => {
         console.log(data);
         if (data?.modifiedCount) {
           // to do : set state is connection sen
+          setIsConnectionSent(true)
         }
       });
   };
   console.log(people);
+  if (isLoading) {
+    return <Loader type="" />
+  }
 
   return (
     <div>
