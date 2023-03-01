@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { MyContext } from "../../../../context/MyProvider/MyProvider";
 import { useLoaderData } from "react-router-dom";
-import Loader from "../../../../Components/Loader/Loader";
 const PeopleDetails = () => {
   const { currentUser } = useContext(MyContext);
   const [isConnectionSent, setIsConnectionSent] = useState(false);
@@ -63,14 +62,10 @@ const PeopleDetails = () => {
         console.log(data);
         if (data?.modifiedCount) {
           // to do : set state is connection sen
-          setIsConnectionSent(true)
         }
       });
   };
   console.log(people);
-  if (isLoading) {
-    return <Loader type="" />
-  }
 
   return (
     <div>
@@ -87,11 +82,9 @@ const PeopleDetails = () => {
             style={{
               fontSize: "20px",
             }}
-            onClick={handleAddConnection}
-            disabled={isConnectionSent}
+            onClick={handleConnectionAction}
           >
-            {/* {isConnectionSent ? "cancel request" : "add connection"} */}
-            add connection
+            {isConnectionSent ? "cancel request" : "add connection"}
           </button>
         </div>
       )}

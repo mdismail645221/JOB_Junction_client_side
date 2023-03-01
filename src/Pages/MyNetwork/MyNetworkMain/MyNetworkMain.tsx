@@ -1,13 +1,24 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Box, Stack, Avatar } from "@mui/material";
+import { useQuery } from "@tanstack/react-query";
 import {
   ACCEPTIGNORE,
   INVITATION,
   PROFILEINFOACCEPT,
   SHOWMOREBTN,
 } from "./MyNetwork.styled";
+import { MyContext } from "../../../context/MyProvider/MyProvider";
+import { useMyProfile } from "../../../useHooks/useMyProfile/useMyProfile";
+import Loader from "../../../Components/Loader/Loader";
+import EachMyReq from "./EachMyReq/EachMyReq";
 
 const MyNetworkMain = () => {
+  const { data: myProfile, isLoading, refetch } = useMyProfile();
+  if (isLoading) {
+    return <Loader type="" />;
+  }
+  const { pendingReq } = myProfile;
+
   return (
     <div>
       <Stack>
@@ -15,93 +26,17 @@ const MyNetworkMain = () => {
           <h5>Invitations</h5>
           <h5>See all 5</h5>
         </INVITATION>
-        {/* Accept or ignore area */}
-        <PROFILEINFOACCEPT paddingX={2}>
-          {/* profile img or degecnation */}
-          <Box
-            sx={{
-              display: "flex",
-              padding: "1.50rem 0",
-            }}
-          >
-            <Avatar
-              alt="Remy Sharp"
-              src="https://i.ibb.co/4MnMYkJ/Joseph-Gray.png"
-            />
-            <Stack sx={{ marginLeft: "10px" }}>
-              <h5>
-                Member’s name Jewel Hossain Fahim follows you and is inviting
-                you to connect
-              </h5>
-              <h6>Front end developer | Mean stack web developer</h6>
-            </Stack>
-          </Box>
 
-          {/* accept or ignore btn */}
-
-          <ACCEPTIGNORE direction="row" spacing={3}>
-            <button className="accept-btn">Accept</button>
-            <button className="ignore-btn">ignore</button>
-          </ACCEPTIGNORE>
-        </PROFILEINFOACCEPT>
-        {/* Accept or ignore area */}
-        <PROFILEINFOACCEPT paddingX={2}>
-          {/* profile img or degecnation */}
-          <Box
-            sx={{
-              display: "flex",
-              padding: "1.50rem 0",
-            }}
-          >
-            <Avatar
-              alt="Remy Sharp"
-              src="https://i.ibb.co/4MnMYkJ/Joseph-Gray.png"
-            />
-            <Stack sx={{ marginLeft: "10px" }}>
-              <h5>
-                Member’s name Jewel Hossain Fahim follows you and is inviting
-                you to connect
-              </h5>
-              <h6>Front end developer | Mean stack web developer</h6>
-            </Stack>
-          </Box>
-
-          {/* accept or ignore btn */}
-
-          <ACCEPTIGNORE direction="row" spacing={3}>
-            <button className="accept-btn">Accept</button>
-            <button className="ignore-btn">ignore</button>
-          </ACCEPTIGNORE>
-        </PROFILEINFOACCEPT>
-        {/* Accept or ignore area */}
-        <PROFILEINFOACCEPT paddingX={2}>
-          {/* profile img or degecnation */}
-          <Box
-            sx={{
-              display: "flex",
-              padding: "1.50rem 0",
-            }}
-          >
-            <Avatar
-              alt="Remy Sharp"
-              src="https://i.ibb.co/4MnMYkJ/Joseph-Gray.png"
-            />
-            <Stack sx={{ marginLeft: "10px" }}>
-              <h5>
-                Member’s name Jewel Hossain Fahim follows you and is inviting
-                you to connect
-              </h5>
-              <h6>Front end developer | Mean stack web developer</h6>
-            </Stack>
-          </Box>
-
-          {/* accept or ignore btn */}
-
-          <ACCEPTIGNORE direction="row" spacing={3}>
-            <button className="accept-btn">Accept</button>
-            <button className="ignore-btn">ignore</button>
-          </ACCEPTIGNORE>
-        </PROFILEINFOACCEPT>
+        <>
+          {pendingReq?.length !== 0 &&
+            pendingReq?.map((eachhReq: any) => (
+              <EachMyReq
+                key={eachhReq?.senderEmail}
+                eachhReq={eachhReq}
+                refetch={refetch}
+              />
+            ))}
+        </>
 
         <SHOWMOREBTN sx={{ display: "grid", placeItems: "center" }}>
           <button>
