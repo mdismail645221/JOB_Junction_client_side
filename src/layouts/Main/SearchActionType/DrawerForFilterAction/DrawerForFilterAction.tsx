@@ -28,17 +28,17 @@ import Services from "./Services/Services";
 import Events from "./Events/Events";
 import Courses from "./Courses/Courses";
 import Schools from "./Schools/Schools";
+import { SearchContext } from "../../../../context/SearchPovider/SearchPovider";
 
 // 'top' | 'left' | 'bottom' |
 type Anchor = "right";
 
 const DrawerForFilterAction = (props: any) => {
   // Search type LIST
-  const { searchType, setSearchType, setFilterInfo } = props;
+  const { searchType, setSearchType } = React.useContext(SearchContext);
+
   const list = (anchor: Anchor) => (
     <Box role="presentation">
-
-
       {/* jobs sections start */}
       <Box
         sx={{
@@ -56,10 +56,16 @@ const DrawerForFilterAction = (props: any) => {
             Filter only
             <Select
               defaultValue={searchType}
-              sx={{ border: "none", color: '#FF1714', padding: '0', margin: '14px',
-            '& .css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input': {
-              padding: "4px 32px 4px 19px",
-            } }}
+              sx={{
+                border: "none",
+                color: "#FF1714",
+                padding: "0",
+                margin: "14px",
+                "& .css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input":
+                  {
+                    padding: "4px 32px 4px 19px",
+                  },
+              }}
               onChange={(e) => setSearchType(e.target.value)}
               // inputProps={{ "aria-label": "Without label" }}
             >
@@ -86,7 +92,7 @@ const DrawerForFilterAction = (props: any) => {
         </Box>
         {/* Close btn end */}
       </Box>
-       {/* jobs sections end */}
+      {/* jobs sections end */}
 
       {/* to do : seyam vy start here */}
     </Box>
@@ -98,7 +104,7 @@ const DrawerForFilterAction = (props: any) => {
       break;
     }
     case "Jobs": {
-      searchTypeComponent = <Jobs setFilterInfo={setFilterInfo} />;
+      searchTypeComponent = <Jobs />;
       break;
     }
     case "Companies": {
@@ -140,23 +146,30 @@ const DrawerForFilterAction = (props: any) => {
   }
 
   return (
-      <React.Fragment>
-        <Drawer sx={{
-          '.css-1160xiw-MuiPaper-root-MuiDrawer-paper': {
-            top: '65px',
-            minWidth: '500px',
-            position: 'absolute',
-            overflow: 'scroll'
-          }
-        }} anchor={"right"} open={props.state["right"]}>
-          <Box sx={{
-                borderBottom: `2.5px solid #ddd`,
-                boxShadow: `3px 10px 20px #ddd`
-          }}>{list("right")}</Box>
-          <Box
-          >{searchTypeComponent}</Box>
-        </Drawer>
-      </React.Fragment>
+    <React.Fragment>
+      <Drawer
+        sx={{
+          ".css-1160xiw-MuiPaper-root-MuiDrawer-paper": {
+            top: "65px",
+            minWidth: "500px",
+            position: "absolute",
+            overflow: "scroll",
+          },
+        }}
+        anchor={"right"}
+        open={props.state["right"]}
+      >
+        <Box
+          sx={{
+            borderBottom: `2.5px solid #ddd`,
+            boxShadow: `3px 10px 20px #ddd`,
+          }}
+        >
+          {list("right")}
+        </Box>
+        <Box>{searchTypeComponent}</Box>
+      </Drawer>
+    </React.Fragment>
   );
 };
 

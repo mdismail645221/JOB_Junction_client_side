@@ -9,10 +9,11 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useState } from "react";
+import { SearchContext } from "../../../../../context/SearchPovider/SearchPovider";
 import { JOBSCONTAINER } from "./Jobs.styled";
 
-const Jobs = (props: any) => {
-  const { setFilterInfo } = props;
+const Jobs = () => {
+  const { setFilterInfo } = React.useContext(SearchContext);
   const [experienceLevel, setExperienceLevel] = useState<any>({});
   const [jobType, setJobType] = useState<any>({});
   const [workFrom, setWorkFrom] = useState<any>({});
@@ -82,7 +83,9 @@ const Jobs = (props: any) => {
       </Box>
 
       <Box className="card">
-        <Typography className="title" component="p">Sort by</Typography>
+        <Typography className="title" component="p">
+          Sort by
+        </Typography>
         <RadioGroup onChange={(e) => setSortBy(e.target.value)}>
           <Box sx={{ display: "flex", justifyContent: "space-evenly" }}>
             <FormControlLabel
@@ -102,9 +105,14 @@ const Jobs = (props: any) => {
       {/* sort end */}
 
       {/* Date posted start */}
-      <RadioGroup className="card" onChange={(e) => setDatePosted(e.target.value)}>
+      <RadioGroup
+        className="card"
+        onChange={(e) => setDatePosted(e.target.value)}
+      >
         <Box>
-          <Typography className="title" component="p">Date Posted</Typography>
+          <Typography className="title" component="p">
+            Date Posted
+          </Typography>
           <Box sx={{ display: "flex", justifyContent: "space-evenly" }}>
             <FormControlLabel
               value="Any time"
@@ -136,7 +144,9 @@ const Jobs = (props: any) => {
 
       {/* Experience level start */}
       <Box className="card">
-        <Typography className="title" component="p">Experience level</Typography>
+        <Typography className="title" component="p">
+          Experience level
+        </Typography>
         <Box sx={{ display: "flex", justifyContent: "space-around" }}>
           <FormControlLabel
             onChange={handleExperienceLevelChange}
@@ -170,7 +180,9 @@ const Jobs = (props: any) => {
 
       {/* job type section start */}
       <Box className="card">
-        <Typography className="title" component="p">Job type</Typography>
+        <Typography className="title" component="p">
+          Job type
+        </Typography>
         <Box sx={{ display: "flex", justifyContent: "space-around" }}>
           <FormControlLabel
             onChange={handleJobTypeChange}
@@ -196,7 +208,9 @@ const Jobs = (props: any) => {
 
       {/* Work From start  */}
       <Box className="card">
-        <Typography className="title" component="p">Work From</Typography>
+        <Typography className="title" component="p">
+          Work From
+        </Typography>
         <Box sx={{ display: "flex", justifyContent: "space-around" }}>
           <FormControlLabel
             onChange={handleWorkFromChange}
@@ -222,8 +236,16 @@ const Jobs = (props: any) => {
 
       {/* location input start  */}
       <Box className="card">
-        <Typography className="title" component="p">Location</Typography>
-        <TextField sx={{margin: '10px 0'}} size="small" fullWidth onChange={(e) => setLocation(e.target.value)} type="text" />
+        <Typography className="title" component="p">
+          Location
+        </Typography>
+        <TextField
+          sx={{ margin: "10px 0" }}
+          size="small"
+          fullWidth
+          onChange={(e) => setLocation(e.target.value)}
+          type="text"
+        />
       </Box>
       {/* location input end  */}
 
@@ -249,7 +271,9 @@ const Jobs = (props: any) => {
       >
         test
       </h1> */}
-      <Box sx={{paddingBottom: '2rem', display: 'grid', placeItems: 'center'}}>
+      <Box
+        sx={{ paddingBottom: "2rem", display: "grid", placeItems: "center" }}
+      >
         <Button
           className="btn-submit"
           onClick={handleFilterSubmit}

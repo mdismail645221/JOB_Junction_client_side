@@ -8,8 +8,10 @@ import {
 import { Box, Button } from "@mui/material";
 
 import DrawerForFilterAction from "./DrawerForFilterAction/DrawerForFilterAction";
-const SearchActionType = (props: any) => {
-  const { searchType, setSearchType, setFilterInfo } = props;
+import { SearchContext } from "../../../context/SearchPovider/SearchPovider";
+const SearchActionType = () => {
+  const { searchType, setSearchType, setFilterInfo } =
+    React.useContext(SearchContext);
   const [state, setState] = React.useState({
     top: false,
     left: false,
@@ -157,11 +159,11 @@ const SearchActionType = (props: any) => {
       {/* modal  */}
 
       <DrawerForFilterAction
-        setFilterInfo={setFilterInfo}
+        // setFilterInfo={setFilterInfo}
         state={state}
         toggleDrawer={toggleDrawer}
-        searchType={searchType}
-        setSearchType={setSearchType}
+        // searchType={searchType}
+        // setSearchType={setSearchType}
       />
     </Box>
   );

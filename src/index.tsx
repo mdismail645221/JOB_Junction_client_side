@@ -8,6 +8,7 @@ import MyProvider from "./context/MyProvider/MyProvider";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import SearchPovider from "./context/SearchPovider/SearchPovider";
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
@@ -15,8 +16,10 @@ const queryClient = new QueryClient();
 root.render(
   <QueryClientProvider client={queryClient}>
     <MyProvider>
-      <ToastContainer position="top-center" />
-      <App />
+      <SearchPovider>
+        <ToastContainer position="top-center" />
+        <App />
+      </SearchPovider>
     </MyProvider>
   </QueryClientProvider>
 );

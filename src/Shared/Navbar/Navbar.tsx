@@ -22,10 +22,11 @@ import RecordVoiceOverIcon from "@mui/icons-material/RecordVoiceOver";
 import WorkIcon from "@mui/icons-material/Work";
 import Container from "@mui/material/Container";
 import { MyContext } from "../../context/MyProvider/MyProvider";
-interface IPROPS {
-  setSearchBarIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  setSearchKey: React.Dispatch<React.SetStateAction<string>>;
-}
+import { SearchContext } from "../../context/SearchPovider/SearchPovider";
+// interface IPROPS {
+//   setSearchBarIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+//   setSearchKey: React.Dispatch<React.SetStateAction<string>>;
+// }
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
@@ -67,7 +68,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-const Navbar: React.FC<IPROPS> = ({ setSearchBarIsOpen, setSearchKey }) => {
+// const Navbar: React.FC<IPROPS> = () => {
+const Navbar = () => {
+  const { setSearchBarIsOpen, setSearchKey } = React.useContext(SearchContext);
   const [searchInput, setSearchInput] = React.useState("");
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
