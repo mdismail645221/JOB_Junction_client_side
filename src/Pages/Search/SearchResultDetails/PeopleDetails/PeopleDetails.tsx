@@ -83,8 +83,10 @@ const PeopleDetails = () => {
               fontSize: "20px",
             }}
             onClick={handleAddConnection}
+            disabled={isConnectionSent}
           >
-            {isConnectionSent ? "cancel request" : "add connection"}
+            {/* {isConnectionSent ? "cancel request" : "add connection"} */}
+            add connection
           </button>
         </div>
       )}
