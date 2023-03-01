@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { MyContext } from "../../../../context/MyProvider/MyProvider";
 import { useLoaderData } from "react-router-dom";
+import { toast } from "react-toastify";
 const PeopleDetails = () => {
   const { currentUser } = useContext(MyContext);
   const [isConnectionSent, setIsConnectionSent] = useState(false);
@@ -41,31 +42,60 @@ const PeopleDetails = () => {
     },
   });
 
-  const handleAddConnection = () => {
-    const connectionInfo = {
-      senderaInfo: {
-        senderEmail: currentUser?.email,
-        senderName: currentUser?.displayName,
-        senderPhoto: currentUser?.photoURL,
-      },
-      receiverEmail: people?.email,
-    };
-    fetch("http://localhost:5000/addconnecion", {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(connectionInfo),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        if (data?.modifiedCount) {
-          // to do : set state is connection sen
-        }
-      });
+  const handleConnectionAction = () => {
+    switch (isConnectionSent) {
+      case true:
+        // to for cancel request
+        const info = {
+          senderEmail: currentUser?.email,
+          recieverEmail: people?.email,
+        };
+
+        fetch("http://localhost:5000/caancelconnection", {
+          method: "PUT",
+          headers: {
+            "content-type": "application/json",
+            info: JSON.stringify(info),
+          },
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data?.modifiedCount) {
+              toast.error(`${people?.name} request canceled`);
+              refetch();
+            }
+          });
+        break;
+      case false:
+        // to do for add connection
+
+        const connectionInfo = {
+          senderaInfo: {
+            senderEmail: currentUser?.email,
+            senderName: currentUser?.displayName,
+            senderPhoto: currentUser?.photoURL,
+          },
+          receiverEmail: people?.email,
+        };
+        fetch("http://localhost:5000/addconnecion", {
+          method: "PUT",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(connectionInfo),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            if (data?.modifiedCount) {
+              // to do : set state is connection sen
+              toast.success("connection sent successfully");
+              refetch();
+            }
+          });
+        break;
+    }
   };
-  console.log(people);
 
   return (
     <div>
@@ -82,11 +112,9 @@ const PeopleDetails = () => {
             style={{
               fontSize: "20px",
             }}
-            onClick={handleAddConnection}
-            disabled={isConnectionSent}
+            onClick={handleConnectionAction}
           >
-            {/* {isConnectionSent ? "cancel request" : "add connection"} */}
-            add connection
+            {isConnectionSent ? "cancel request" : "add connection"}
           </button>
         </div>
       )}
