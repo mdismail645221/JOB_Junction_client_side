@@ -1,8 +1,8 @@
-import { Stack, styled } from "@mui/material";
+import { Stack, styled, Box } from "@mui/material";
 
 
-export const EDIT_CONTAINER = styled(Stack)(({theme})=> ({
-    
+export const EDIT_CONTAINER = styled(Stack)(({ theme }) => ({
+
     '& .edit-intro': {
         display: 'flex',
         justifyContent: 'space-between',
@@ -31,11 +31,42 @@ export const EDIT_CONTAINER = styled(Stack)(({theme})=> ({
         fontSize: '1rem'
     },
 
+    '& .submit-btn button': {
+        backgroundColor: '#ff1714',
+        color: '#fff',
+        padding: '5px 20px',
+        borderRadius: '50px'
+    },
+    '& .submit-btn:hover button': {
+        backgroundColor: '#ff1714',
+        color: '#fff',
+        padding: '5px 20px',
+        borderRadius: '50px',
+        boxShadow: '1px 1.5px 7px #ff1714'
+    }
+
 
 }))
 
 
-export const ISERT_FIELD = styled(Stack)(({theme})=> ({
+export const MODAL_BODY = styled(Box)(({ theme }) => ({
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: "600px",
+    backgroundColor: '#fff',
+    border: '2px solid #ff1714',
+    boxShadow: "2px 2px 10px #ddd",
+    padding: "1rem",
+    borderRadius: '25px',
+    '@media (max-width:600px)': {
+        width: '100%',
+      },
+}))
+
+
+export const ISERT_FIELD = styled(Stack)(({ theme }) => ({
     '& #file-input': {
         display: 'none'
     },

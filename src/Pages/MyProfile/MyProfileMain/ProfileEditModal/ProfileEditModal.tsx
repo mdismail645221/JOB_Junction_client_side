@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import { EDIT_CONTAINER, ISERT_FIELD } from './ProfileEditModal.styled';
+import { EDIT_CONTAINER, ISERT_FIELD, MODAL_BODY } from './ProfileEditModal.styled';
 import { IconButton, TextField } from '@mui/material';
 import ClearIcon from '@mui/icons-material/Clear';
 import GetAppIcon from '@mui/icons-material/GetApp';
@@ -12,17 +12,7 @@ const ProfileEditModal = (props: any) => {
 
     const { open, setOpen, handleOpen, handleClose } = props
 
-    const style = {
-        position: 'absolute' as 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        width: 600,
-        bgcolor: 'background.paper',
-        border: '2px solid #000',
-        boxShadow: 24,
-        p: 4,
-    };
+   
 
 
 
@@ -34,7 +24,7 @@ const ProfileEditModal = (props: any) => {
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
-                <Box sx={style}>
+                <MODAL_BODY>
                     <EDIT_CONTAINER spacing={3}>
                         <Box className="edit-intro">
                             <Typography component="h2" className="title">Edit intro</Typography>
@@ -102,8 +92,12 @@ const ProfileEditModal = (props: any) => {
                         </Box>
                         {/* LOCATION input end */}
 
+                        <Box className="submit-btn">
+                            <Button>Submit</Button>
+                        </Box>
+
                     </EDIT_CONTAINER>
-                </Box>
+                </MODAL_BODY>
             </Modal>
         </div>
     );

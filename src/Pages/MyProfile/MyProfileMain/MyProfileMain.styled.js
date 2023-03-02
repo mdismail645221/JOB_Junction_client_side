@@ -23,6 +23,7 @@ export const MY_PROFILE_CONTAINER = styled(Box)(({ theme }) => ({
 }))
 
 
+
 export const BACKGROUND_PROFILE_IMG_CONTAINER = styled(Box)(({ theme }) => ({
     width: '100%',
     position: 'relative',
