@@ -20,6 +20,7 @@ import { DisplayFlex, LCRSBTN } from "./DisplayFlex.styled";
 import TextsmsOutlinedIcon from "@mui/icons-material/TextsmsOutlined";
 import RepeatOutlinedIcon from "@mui/icons-material/RepeatOutlined";
 import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
+import { useMyProfile } from "../../../../../useHooks/useMyProfile/useMyProfile";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -42,7 +43,19 @@ export default function NewsFeedCard({ data }) {
     times: postDate,
     profilePhotoURL: userLogo,
     userName,
+    _id
   } = data;
+
+  const { data: data1, isLoading, refetch } = useMyProfile()
+
+  console.log("post data", data1?.email)
+
+  const handelLike = () => {
+    const info = {
+      _id,
+      email: data1?.email
+    }
+  }
 
   return (
     // single NewsFeed Cards
@@ -131,13 +144,18 @@ export default function NewsFeedCard({ data }) {
           borderTop: "1.5px solid #eee",
         }}
       >
+
+
         {/* like btn */}
-        <LCRSBTN>
+        <LCRSBTN onClick={()=> handelLike()}>
           <IconButton>
             <ThumbUpOutlinedIcon fontSize="small" />
           </IconButton>
           <span>Like</span>
         </LCRSBTN>
+
+
+
         <LCRSBTN>
           {/* comment btn */}
           <IconButton>
