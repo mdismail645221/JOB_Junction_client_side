@@ -8,9 +8,10 @@ import {
 } from "../MyNetwork.styled";
 import { useMyProfile } from "../../../../useHooks/useMyProfile/useMyProfile";
 import { toast } from "react-toastify";
+import Loader from "../../../../Components/Loader/Loader";
 const EachMyReq = (props: any) => {
   const { eachhReq, refetch } = props;
-  const { data: myProfile } = useMyProfile();
+  const { data: myProfile, isLoading } = useMyProfile();
 
   const handleConnectionIgnore = () => {
     const info = {
@@ -58,6 +59,9 @@ const EachMyReq = (props: any) => {
         }
       });
   };
+  if (isLoading) {
+    return <Loader type="" />;
+  }
   return (
     <PROFILEINFOACCEPT paddingX={2}>
       {/* profile img or degecnation */}
