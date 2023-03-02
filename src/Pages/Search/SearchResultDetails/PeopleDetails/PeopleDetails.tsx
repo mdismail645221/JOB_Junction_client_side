@@ -3,10 +3,12 @@ import { useQuery } from "@tanstack/react-query";
 import { MyContext } from "../../../../context/MyProvider/MyProvider";
 import { useLoaderData } from "react-router-dom";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 const PeopleDetails = () => {
   const { currentUser } = useContext(MyContext);
   const [isConnectionSent, setIsConnectionSent] = useState(false);
-
+  const [isMyFriends, setIsMyFriends] = useState(false);
+  const [isMyProfile, setIsMyProfile] = useState(false);
   const _id = useLoaderData();
   console.log("_id: ", _id);
   const {
@@ -26,15 +28,33 @@ const PeopleDetails = () => {
         const res = await fetch(
           `http://localhost:5000/searchpeople?_id=${_id}`
         );
+        setIsMyProfile(false);
+        setIsMyFriends(false);
+        setIsConnectionSent(false);
         const data = await res.json();
         const pendingUSer: [] = data?.pendingReq;
-        const isSent = pendingUSer.findIndex(
-          ({ senderEmail }) => senderEmail === currentUser?.email
-        );
-        if (isSent === -1) {
-          setIsConnectionSent(false);
+        const allFriends: [] = data?.allFriends;
+        const isMyProfile = data?.email === currentUser?.email;
+        console.log("my profile: ", isMyProfile);
+        if (isMyProfile) {
+          console.log("this is your profile");
+          setIsMyProfile(true);
         } else {
-          setIsConnectionSent(true);
+          const isFriend = allFriends.findIndex(
+            ({ friendEmail }) => friendEmail === currentUser?.email
+          );
+          if (isFriend !== -1) {
+            setIsMyFriends(true);
+          } else {
+            const isSent = pendingUSer.findIndex(
+              ({ senderEmail }) => senderEmail === currentUser?.email
+            );
+            if (isSent === -1) {
+              setIsConnectionSent(false);
+            } else {
+              setIsConnectionSent(true);
+            }
+          }
         }
 
         return data;
@@ -108,14 +128,29 @@ const PeopleDetails = () => {
             style={{ width: "50ppx", height: "50px" }}
           />
           <h1>view profile</h1>
-          <button
-            style={{
-              fontSize: "20px",
-            }}
-            onClick={handleConnectionAction}
-          >
-            {isConnectionSent ? "cancel request" : "add connection"}
-          </button>
+          {isMyProfile ? (
+            <div>
+              {/* <h1>thi is your profile</h1> */}
+              <Link to="/my-profile">my profile</Link>
+            </div>
+          ) : (
+            <div>
+              {isMyFriends ? (
+                <div>
+                  <h1>you are connected</h1>
+                </div>
+              ) : (
+                <button
+                  style={{
+                    fontSize: "20px",
+                  }}
+                  onClick={handleConnectionAction}
+                >
+                  {isConnectionSent ? "cancel request" : "add connection"}
+                </button>
+              )}
+            </div>
+          )}
         </div>
       )}
     </div>
