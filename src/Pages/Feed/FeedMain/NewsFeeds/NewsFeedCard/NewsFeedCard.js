@@ -47,124 +47,125 @@ export default function NewsFeedCard({ data }) {
 
   return (
     // single NewsFeed Cards
-    <Box>
-      <Card sx={{width: '100%'}}>
-        <CardHeader
-          avatar={
-            <Avatar aria-label="recipe">
-              <img style={{width: '100%'}} src={userLogo} alt={userName} />
-            </Avatar>
-          }
-          action={
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
-            >
-              <IconButton aria-label="settings">
-                <AddIcon />
-              </IconButton>
-              <a href="/#">Follow</a>
-            </Box>
-          }
-          title={userName}
-          subheader={title}
-        />
-        <CardContent>
-          <Typography variant="body2" color="text.secondary">
-            {postDescription.length > 150
-              ? `${postDescription.slice(0, 150)}....`
-              : postDescription}
-          </Typography>
-        </CardContent>
-        <CardMedia
-          component="img"
-          height="194"
-          image={postImage}
-          alt="Paella dish"
-        />
+    <Card sx={{ width: "100%" }}>
+      <CardHeader
+        avatar={
+          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+            <img src={userLogo} alt={userName} />
+          </Avatar>
+        }
+        action={
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <IconButton aria-label="settings">
+              <AddIcon />
+            </IconButton>
+            <a href="/#">Follow</a>
+          </Box>
+        }
+        title={userName}
+        subheader={title}
+      />
+      <CardContent>
+        <Typography variant="body2" color="text.secondary">
+          {postDescription.length > 150
+            ? `${postDescription.slice(0, 150)}....`
+            : postDescription}
+        </Typography>
+      </CardContent>
+      <CardMedia
+        component="img"
+        height="194"
+        image={postImage}
+        alt="Paella dish"
+      />
 
-        {/*all like comment share container  */}
+      {/*all like comment share container  */}
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          padding: "0.75rem",
+        }}
+      >
         <Box
           sx={{
             display: "flex",
-            justifyContent: "space-between",
             alignItems: "center",
-            padding: "0.75rem",
+            fontSize: "1em",
+            fontWeight: 600,
           }}
         >
           <Box
             sx={{
               display: "flex",
+              // justifyContent: 'center',
               alignItems: "center",
-              fontSize: "1em",
-              fontWeight: 600,
             }}
           >
-            <Box
-              sx={{
-                display: "flex",
-                // justifyContent: 'center',
-                alignItems: "center",
-              }}
-            >
-              <FavoriteIcon fontSize="small" />
-              <ThumbUpOutlinedIcon fontSize="small" />
-              <SentimentVeryDissatisfiedOutlinedIcon fontSize="small" />
-            </Box>
-            <Box>
-              <span>{allLikes} other likes</span>
-            </Box>
+            <FavoriteIcon fontSize="small" />
+            <ThumbUpOutlinedIcon fontSize="small" />
+            <SentimentVeryDissatisfiedOutlinedIcon fontSize="small" />
           </Box>
-
-          {/* comments & shate  */}
-          {/* <Box>{allComments}comments</Box> */}
+          <Box>
+            <span>{allLikes} other likes</span>
+          </Box>
         </Box>
 
-        {/* like, comment, repost, share */}
+        {/* comments & shate  */}
+        {/* <Box>{allComments}comments</Box> */}
+      </Box>
 
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            borderTop: "1.5px solid #eee",
-          }}
-        >
-          {/* like btn */}
-          <LCRSBTN>
-            <IconButton>
-              <ThumbUpOutlinedIcon fontSize="small" />
-            </IconButton>
-            <span>Like</span>
-          </LCRSBTN>
-          <LCRSBTN>
-            {/* comment btn */}
-            <IconButton>
-              <TextsmsOutlinedIcon fontSize="small" />
-            </IconButton>
-            <span>comments</span>
-          </LCRSBTN>
+      {/* like, comment, repost, share */}
 
-          {/* repost btn */}
-          <LCRSBTN>
-            <IconButton>
-              <RepeatOutlinedIcon fontSize="small" />
-            </IconButton>
-            <span>Reposts</span>
-          </LCRSBTN>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          borderTop: "1.5px solid #eee",
+        }}
+      >
+        {/* like btn */}
+        <LCRSBTN>
+          <IconButton>
+            <ThumbUpOutlinedIcon fontSize="small" />
+          </IconButton>
+          <span>Like</span>
+        </LCRSBTN>
+        <LCRSBTN>
+          {/* comment btn */}
+          <IconButton>
+            <TextsmsOutlinedIcon fontSize="small" />
+          </IconButton>
+          <span>comments</span>
+        </LCRSBTN>
 
-          {/* send btn */}
-          <LCRSBTN>
-            <IconButton>
-              <SendOutlinedIcon fontSize="small" />
-            </IconButton>
-            <span>Send</span>
-          </LCRSBTN>
-        </Box>
-      </Card>
-    </Box>
+        {/* repost btn */}
+        <LCRSBTN>
+          <IconButton>
+            <RepeatOutlinedIcon fontSize="small" />
+          </IconButton>
+          <span>Reposts</span>
+        </LCRSBTN>
+
+        {/* send btn */}
+        <LCRSBTN>
+          <IconButton>
+            <SendOutlinedIcon fontSize="small" />
+          </IconButton>
+          <span>Send</span>
+        </LCRSBTN>
+      </Box>
+
+        <UserComment/>
+
+    </Card>
   );
 }
