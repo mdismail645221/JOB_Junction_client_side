@@ -35,6 +35,19 @@ export const BACKGROUND_PROFILE_IMG_CONTAINER = styled(Box)(({ theme }) => ({
         right: '10px',
         color: '#ff1714',
         border: '1px solid #ff1714'
+    },
+    '& .profileImg': {
+        position: "absolute",
+        bottom: "-40px",
+        left: "-10px",
+        width: "156px",
+        height: "156px",
+        margin: "0px 40px",
+        border: "3px solid white",
+        '@media (max-width:600px)': {
+            width: '100px',
+            height: '100px',
+          },
     }
     // zIndex: '-1'
 }))

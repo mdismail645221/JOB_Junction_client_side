@@ -48,19 +48,9 @@ const MyProfileMain = () => {
               {/* profile img start */}
               <div>
                 <Avatar
-                  alt="Remy Sharp"
+                  className="profileImg"
+                  alt={displayName}
                   src={photoURL}
-                  style={{
-                    position: "absolute",
-                    bottom: "-40px",
-                    left: "-10px",
-                  }}
-                  sx={{
-                    width: 156,
-                    height: 156,
-                    margin: "0px 40px",
-                    border: "3px solid white",
-                  }}
                 />
               </div>
               {/* profile img end */}
