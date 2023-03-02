@@ -59,7 +59,7 @@ const NewsFeeds = () => {
       <NewsFeedContainer>
         {datas &&
           datas?.map((data, i) => (
-            <NewsFeedCard key={i} data={data}></NewsFeedCard>
+            <NewsFeedCard key={i} data={data} setRefreshAllPost={setRefreshAllPost}></NewsFeedCard>
           ))}
       </NewsFeedContainer>
     </Container>

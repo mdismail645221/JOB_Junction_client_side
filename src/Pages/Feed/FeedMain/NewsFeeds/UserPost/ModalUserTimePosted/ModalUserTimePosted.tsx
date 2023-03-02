@@ -87,6 +87,7 @@ const ModalUserTimePosted = (props: any) => {
               postImage: imageLink,
               postDate: postDate,
               allLikes: [],
+              allComments: []
             };
 
             fetch(`${process.env.REACT_APP_server_link}/usersinglepost`, {
@@ -124,6 +125,7 @@ const ModalUserTimePosted = (props: any) => {
         postDescription: postDescription,
         postDate: postDate,
         allLikes: [],
+        allComments: []
       };
 
       fetch(`${process.env.REACT_APP_server_link}/usersinglepost`, {
