@@ -26,6 +26,7 @@ import { MyContext } from "../../../context/MyProvider/MyProvider";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useLocation, useNavigate } from "react-router-dom";
 import Loader from "../../../Components/Loader/Loader";
+import { Link } from "react-router-dom";
 
 const DefaultHomePage = () => {
   const { emailPasswordSignIn, currentUser, isLoading } = useContext(MyContext);
@@ -215,7 +216,10 @@ const DefaultHomePage = () => {
                 </Box>
                 <Box className="LinkedinBtn">
                   <Typography component="a">
-                    New to linkedin? Join now
+                    New to linkedin?{" "}
+                    <Link style={{ textDecoration: "none" }} to="/signup">
+                      Join now
+                    </Link>
                   </Typography>
                 </Box>
               </SOCIALSIGNCONTAINER>
