@@ -13,12 +13,22 @@ import { useQuery } from "@tanstack/react-query";
 import SearchActionType from "./SearchActionType/SearchActionType";
 import DrawerForFilterAction from "./SearchActionType/DrawerForFilterAction/DrawerForFilterAction";
 import "./main.style.css";
+import { MyContext } from "../../context/MyProvider/MyProvider";
+import { SearchContext } from "../../context/SearchPovider/SearchPovider";
 const Main = () => {
   const [selectTheme, setSelectTheme] = useState(false);
-  const [searchBarIsOpen, setSearchBarIsOpen] = useState(false);
-  const [searchKey, setSearchKey] = useState("");
-  const [searchType, setSearchType] = useState("People");
-  const [filterInfo, setFilterInfo] = useState<any>({});
+  const {
+    searchBarIsOpen,
+    setSearchBarIsOpen,
+    searchKey,
+    setSearchKey,
+    searchType,
+    setSearchType,
+    filterInfo,
+    setFilterInfo,
+    setSearchResultList,
+  } = React.useContext(SearchContext);
+
   const [scrollStatus, setScrollStatus] = useState("");
   const [ptForMain, setPtForMain] = useState({ pt: "80px" });
   const navigate = useNavigate();
@@ -44,37 +54,19 @@ const Main = () => {
         searchType,
         filterInfo,
       };
-      const res = await fetch("http://localhost:5000/searchjob", {
+      const res = await fetch("http://localhost:5000/search", {
         headers: {
           "content-type": "application/json",
           data: JSON.stringify(allFilter),
         },
       });
       const data = await res.json();
+      console.log("result: ", data);
+      setSearchResultList(data?.data);
       return data;
     },
   });
 
-  // allDataFetchHere
-  // useEffect(() => {
-  //   // console.log("searchKey: " + searchKey, "\nsearchType:" + searchType);
-  //   if (searchKey?.length === 0) {
-  //     return;
-  //   }
-  //   const allFilter = {
-  //     searchKey,
-  //     searchType,
-  //     filterInfo,
-  //   };
-  //   fetch("http://localhost:5000/searchjob", {
-  //     headers: {
-  //       "content-type": "application/json",
-  //       data: JSON.stringify(allFilter),
-  //     },
-  //   })
-  //     .then((res) => res.json())
-  //     .then((data) => console.log("response data: ", data));
-  // }, [searchKey, searchType, filterInfo]);
   useEffect(() => {
     setPtForMain({
       pt: searchBarIsOpen ? "20px" : "80px",
@@ -105,19 +97,16 @@ const Main = () => {
       <CssBaseline />
       <Box sx={{ backgroundColor: "#F3F2EF" }}>
         <div id={scrollStatus} className="header">
-          <Navbar
-            setSearchBarIsOpen={setSearchBarIsOpen}
-            setSearchKey={setSearchKey}
-          />
+          <Navbar />
         </div>
 
         <Container maxWidth="lg">
           {searchBarIsOpen && (
             <div style={{ paddingTop: "65px" }}>
               <SearchActionType
-                setFilterInfo={setFilterInfo}
-                searchType={searchType}
-                setSearchType={setSearchType}
+              // setFilterInfo={setFilterInfo}
+              // searchType={searchType}
+              // setSearchType={setSearchType}
               />
             </div>
           )}

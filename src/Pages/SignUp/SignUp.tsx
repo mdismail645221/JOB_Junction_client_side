@@ -124,6 +124,9 @@ export default function SignUp() {
                       role: "user",
                       profilePhoto: imageLink,
                       uid: uid,
+                      title: "web developer",
+                      allFriends: [],
+                      pendingReq: [],
                     };
                     // upload user info to mongodb database
                     uploadProfileToMongoDB(userInfoForDB)
@@ -161,6 +164,9 @@ export default function SignUp() {
                       role: "user",
                       profilePhoto: "",
                       uid: uid,
+                      title: "web developer",
+                      allFriends: [],
+                      pendingReq: [],
                     };
                     // upload user info to mongodb database
                     uploadProfileToMongoDB(userInfoForDB)
@@ -197,6 +203,9 @@ export default function SignUp() {
                 role: "user",
                 profilePhoto: "",
                 uid: uid,
+                title: "web developer",
+                allFriends: [],
+                pendingReq: [],
               };
               // upload user info to mongodb database
               uploadProfileToMongoDB(userInfoForDB)
