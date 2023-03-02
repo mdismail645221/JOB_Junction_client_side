@@ -4,13 +4,24 @@ import { MyContext } from "../../../../context/MyProvider/MyProvider";
 import { useLoaderData } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
+import IsMyProfile from "./IsMyProfile/IsMyProfile";
+import IsMyFriend from "./IsMyFriend/IsMyFriend";
+import { useMyProfile } from "../../../../useHooks/useMyProfile/useMyProfile";
+import IsSentMeConnection from "./IsSentMeConnection/IsSentMeConnection";
+import Default from "./Default/Default";
+import Loader from "../../../../Components/Loader/Loader";
 const PeopleDetails = () => {
+  const _id = useLoaderData();
+  console.log("_id: ", _id);
+  let displayElement;
   const { currentUser } = useContext(MyContext);
+  const { data: myProfiile, isLoading: isLoadingForUseProfile } =
+    useMyProfile();
   const [isConnectionSent, setIsConnectionSent] = useState(false);
   const [isMyFriends, setIsMyFriends] = useState(false);
   const [isMyProfile, setIsMyProfile] = useState(false);
-  const _id = useLoaderData();
-  console.log("_id: ", _id);
+  const [showDisplayElement, setShowDisplayElement] = useState<any>(null);
+  const [peopleConnectionType, setPeopleConnectionType] = useState<any>(null);
   const {
     data: people,
     error,
@@ -25,6 +36,7 @@ const PeopleDetails = () => {
     queryKey: [_id],
     queryFn: async () => {
       if (_id) {
+        console.log("hitted");
         const res = await fetch(
           `http://localhost:5000/searchpeople?_id=${_id}`
         );
@@ -32,36 +44,77 @@ const PeopleDetails = () => {
         setIsMyFriends(false);
         setIsConnectionSent(false);
         const data = await res.json();
+        console.log("display user", data);
         const pendingUSer: [] = data?.pendingReq;
         const allFriends: [] = data?.allFriends;
         const isMyProfile = data?.email === currentUser?.email;
-        console.log("my profile: ", isMyProfile);
         if (isMyProfile) {
           console.log("this is your profile");
           setIsMyProfile(true);
+          displayElement = <IsMyProfile />;
+          setPeopleConnectionType("IsMyProfile");
         } else {
-          const isFriend = allFriends.findIndex(
+          const isFriend = allFriends?.findIndex(
             ({ friendEmail }) => friendEmail === currentUser?.email
           );
           if (isFriend !== -1) {
             setIsMyFriends(true);
+            console.log("this is friends profile");
+            displayElement = <IsMyFriend />;
+            setPeopleConnectionType("IsMyFriend");
           } else {
-            const isSent = pendingUSer.findIndex(
-              ({ senderEmail }) => senderEmail === currentUser?.email
+            console.log("myProfile", myProfiile);
+            // const myPendingUser = myProfiile?.pendingReq;
+            const isSentMeConnection = myProfiile?.pendingReq?.findIndex(
+              (eachPending: any) => eachPending?.senderEmail === data?.email
             );
-            if (isSent === -1) {
-              setIsConnectionSent(false);
+            // console.log("isSentMeConnection; ", isSentMeConnection);
+            if (isSentMeConnection !== -1) {
+              // to do
+              console.log("this user sent you connection");
+              displayElement = <IsSentMeConnection />;
+              setPeopleConnectionType("IsSentMeConnection");
             } else {
-              setIsConnectionSent(true);
+              console.log(
+                "pendingUSer: ",
+                pendingUSer,
+                "\ncurrentUser?.email= ",
+                currentUser?.email
+              );
+              const isSent = pendingUSer?.findIndex(
+                ({ senderEmail }) => senderEmail === currentUser?.email
+              );
+              console.log(" isesent =", isSent);
+              if (isSent === -1) {
+                setIsConnectionSent(false);
+                console.log(" is not sent ");
+              } else {
+                setIsConnectionSent(true);
+                console.log(" is  sent ");
+              }
+              console.log("this is defaault users");
+              displayElement = (
+                <Default
+                  isSent={isSent}
+                  currentUser={currentUser}
+                  people={people}
+                  refetch={refetch}
+                  handleConnectionAction={handleConnectionAction}
+                  isConnectionSent={isConnectionSent}
+                />
+              );
+              setPeopleConnectionType("Default");
             }
           }
         }
-
+        setShowDisplayElement(displayElement);
         return data;
       }
     },
   });
-
+  // if (isLoadingForUseProfile || isLoading) {
+  //   return <Loader type="" />;
+  // }
   const handleConnectionAction = () => {
     switch (isConnectionSent) {
       case true:
@@ -81,7 +134,7 @@ const PeopleDetails = () => {
           .then((res) => res.json())
           .then((data) => {
             if (data?.modifiedCount) {
-              toast.error(`${people?.name} request canceled`);
+              toast.error(`${ people?.name } request canceled`);
               refetch();
             }
           });
@@ -128,29 +181,9 @@ const PeopleDetails = () => {
             style={{ width: "50ppx", height: "50px" }}
           />
           <h1>view profile</h1>
-          {isMyProfile ? (
-            <div>
-              {/* <h1>thi is your profile</h1> */}
-              <Link to="/my-profile">my profile</Link>
-            </div>
-          ) : (
-            <div>
-              {isMyFriends ? (
-                <div>
-                  <h1>you are connected</h1>
-                </div>
-              ) : (
-                <button
-                  style={{
-                    fontSize: "20px",
-                  }}
-                  onClick={handleConnectionAction}
-                >
-                  {isConnectionSent ? "cancel request" : "add connection"}
-                </button>
-              )}
-            </div>
-          )}
+          {peopleConnectionType}
+
+          {showDisplayElement}
         </div>
       )}
     </div>
