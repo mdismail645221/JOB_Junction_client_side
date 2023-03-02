@@ -48,7 +48,8 @@ const MyProfileMain = () => {
               {/* profile img start */}
               <div>
                 <Avatar
-                  alt="Remy Sharp"
+                  className="profileImg"
+                  alt={displayName}
                   src={photoURL}
                   style={{
                     position: "absolute",

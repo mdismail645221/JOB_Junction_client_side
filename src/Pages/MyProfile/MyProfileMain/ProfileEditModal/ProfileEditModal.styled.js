@@ -1,4 +1,4 @@
-import { Stack, styled } from "@mui/material";
+import { Stack, styled, Box} from "@mui/material";
 
 
 export const EDIT_CONTAINER = styled(Stack)(({theme})=> ({
@@ -31,7 +31,37 @@ export const EDIT_CONTAINER = styled(Stack)(({theme})=> ({
         fontSize: '1rem'
     },
 
+    '& .submit_btn button': {
+        backgroundColor: '#ff1714',
+        color: '#fff',
+        padding: '5px 15px',
+        borderRadius: '50px'
+    },
+    '& .submit_btn:hover button': {
+        backgroundColor: '#ff1714',
+        boxShadow: '1px 1px 5px #ff1714',
+        color: '#fff',
+        padding: '5px 15px',
+        borderRadius: '50px'
+    },
 
+
+}))
+
+export const MODAL_BODY = styled(Box)(({theme})=> ({
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 600,
+    backgroundColor: '#fff',
+    border: '3px solid #ff1714',
+    borderRadius: '25px',
+    boxShadow: '2px 2px 10px #fff',
+    padding: '1.25rem',
+    '@media (max-width:600px)': {
+        width: '100%',
+      },
 }))
 
 
