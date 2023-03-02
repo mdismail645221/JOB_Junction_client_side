@@ -11,8 +11,6 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import { red } from "@mui/material/colors";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import ShareIcon from "@mui/icons-material/Share";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import AddIcon from "@mui/icons-material/Add";
 // import FavoriteIcon from '@mui/icons-material/Favorite';
 import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
@@ -34,18 +32,17 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function NewsFeedCard({ newsFeed }) {
+export default function NewsFeedCard({ data }) {
   // destructure all newsFeed
   const {
-    allComments,
-    description,
-    images,
-    liked,
-    occupation,
-    times,
-    userLogo,
+    postDescription,
+    postImage,
+    allLikes,
+    occupation: title,
+    times: postDate,
+    profilePhotoURL: userLogo,
     userName,
-  } = newsFeed;
+  } = data;
 
   return (
     // single NewsFeed Cards
@@ -71,19 +68,19 @@ export default function NewsFeedCard({ newsFeed }) {
           </Box>
         }
         title={userName}
-        subheader={occupation}
+        subheader={title}
       />
       <CardContent>
         <Typography variant="body2" color="text.secondary">
-          {description.length > 150
-            ? `${description.slice(0, 150)}....`
-            : description}
+          {postDescription.length > 150
+            ? `${postDescription.slice(0, 150)}....`
+            : postDescription}
         </Typography>
       </CardContent>
       <CardMedia
         component="img"
         height="194"
-        image={images}
+        image={postImage}
         alt="Paella dish"
       />
 
@@ -116,12 +113,12 @@ export default function NewsFeedCard({ newsFeed }) {
             <SentimentVeryDissatisfiedOutlinedIcon fontSize="small" />
           </Box>
           <Box>
-            <span>{liked} other likes</span>
+            <span>{allLikes} other likes</span>
           </Box>
         </Box>
 
         {/* comments & shate  */}
-        <Box>{allComments}comments</Box>
+        {/* <Box>{allComments}comments</Box> */}
       </Box>
 
       {/* like, comment, repost, share */}

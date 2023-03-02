@@ -21,8 +21,10 @@ import { Link } from "react-router-dom";
 import RecordVoiceOverIcon from "@mui/icons-material/RecordVoiceOver";
 import WorkIcon from "@mui/icons-material/Work";
 import Container from "@mui/material/Container";
+import { MyContext } from "../../context/MyProvider/MyProvider";
 interface IPROPS {
   setSearchBarIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setSearchKey: React.Dispatch<React.SetStateAction<string>>;
 }
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -65,12 +67,13 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-const Navbar: React.FC<IPROPS> = ({ setSearchBarIsOpen }) => {
+const Navbar: React.FC<IPROPS> = ({ setSearchBarIsOpen, setSearchKey }) => {
   const [searchInput, setSearchInput] = React.useState("");
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
     React.useState<null | HTMLElement>(null);
-
+  const { currentUser, logOut } = React.useContext(MyContext);
+  console.log(currentUser);
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -90,7 +93,15 @@ const Navbar: React.FC<IPROPS> = ({ setSearchBarIsOpen }) => {
   const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
-  const handleSignOut = () => {};
+  const handleSignOut = () => {
+    logOut()
+      .then(() => {
+        // Sign-out successful.
+      })
+      .catch((error: any) => {
+        // An error happened.
+      });
+  };
   const menuId = "primary-search-account-menu";
   const renderMenu = (
     <Menu
@@ -108,8 +119,17 @@ const Navbar: React.FC<IPROPS> = ({ setSearchBarIsOpen }) => {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <Link to={"/my-profile"}>
+      <Link
+        to={"/my-profile"}
+        style={{ textDecoration: "none", color: "black" }}
+      >
         <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+      </Link>
+      <Link
+        to={"/my-profile/my-resume"}
+        style={{ textDecoration: "none", color: "black" }}
+      >
+        <MenuItem onClick={handleMenuClose}>My Resume</MenuItem>
       </Link>
       <MenuItem onClick={handleMenuClose}>Settings</MenuItem>
       <MenuItem onClick={handleSignOut}>Sign Out</MenuItem>
@@ -208,13 +228,19 @@ const Navbar: React.FC<IPROPS> = ({ setSearchBarIsOpen }) => {
 
   const handleSearch: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
-    if (searchInput) setSearchBarIsOpen(true);
+    if (searchInput) {
+      setSearchBarIsOpen(true);
+      setSearchKey(searchInput);
+    }
     // console.log(searchInput);
   };
   const handleInputChange:
     | React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>
     | undefined = (e) => {
-    if (!e.target.value) setSearchBarIsOpen(false);
+    if (!e.target.value) {
+      setSearchBarIsOpen(false);
+      setSearchKey("");
+    }
     setSearchInput(e.target.value);
   };
 
@@ -251,7 +277,7 @@ const Navbar: React.FC<IPROPS> = ({ setSearchBarIsOpen }) => {
               style={{
                 textDecoration: "none",
               }}
-              to={"/"}
+              to={"/feed"}
             >
               <Box sx={{ display: "flex", placeItems: "center" }}>
                 <Avatar
@@ -289,6 +315,9 @@ const Navbar: React.FC<IPROPS> = ({ setSearchBarIsOpen }) => {
                   id="searchInput"
                   onChange={handleInputChange}
                   inputProps={{ "aria-label": "search" }}
+                  sx={{
+                    color: "black",
+                  }}
                 />
               </Search>
             </form>
@@ -531,7 +560,11 @@ const Navbar: React.FC<IPROPS> = ({ setSearchBarIsOpen }) => {
                     top: "-5px",
                   }}
                   alt="profile"
-                  src="https://i.ibb.co/XxdjZXt/profile-Demo.png"
+                  src={`${
+                    currentUser?.photoURL
+                      ? currentUser?.photoURL
+                      : "https://i.ibb.co/XxdjZXt/profile-Demo.png"
+                  } `}
                 />
                 {/* <AccountCircle
                 fontSize="large"

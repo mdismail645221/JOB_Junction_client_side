@@ -13,9 +13,12 @@ import {
   PostBottom,
   PostBtnGruop,
 } from "./UserPost.styled";
-import ModalUserTimePosted from "../../../ModalUserTimePosted/ModalUserTimePosted";
+import ModalUserTimePosted from "./ModalUserTimePosted/ModalUserTimePosted";
+import { MyContext } from "../../../../../context/MyProvider/MyProvider";
 
-const UserPost = () => {
+const UserPost = (props: any) => {
+  const { setRefreshAllPost } = props;
+  const { currentUser } = React.useContext(MyContext);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -24,9 +27,13 @@ const UserPost = () => {
     <PostContainer>
       {/* PostTOp start */}
       <PostTop>
-        <img src="https://i.ibb.co/4MnMYkJ/Joseph-Gray.png" alt="Joseph-Gray" />
-        <PostField className="postField"  onClick={handleOpen}>
-            <Button>Open modal</Button>
+        <img
+          src={currentUser?.photoURL}
+          alt={currentUser?.displayName}
+          style={{ height: "40px", width: "40px", borderRadius: "100%" }}
+        />
+        <PostField className="postField" onClick={handleOpen}>
+          <Button>Create a post</Button>
         </PostField>
       </PostTop>
       {/* PostTop End */}
@@ -71,13 +78,13 @@ const UserPost = () => {
         </PostBtnGruop>
       </PostBottom>
       {/* nested modal ===userTimeline posted==== */}
-      <ModalUserTimePosted 
+      <ModalUserTimePosted
+        setRefreshAllPost={setRefreshAllPost}
         open={open}
         setOpen={setOpen}
         handleOpen={handleOpen}
         handleClose={handleClose}
-
-       />
+      />
     </PostContainer>
   );
 };

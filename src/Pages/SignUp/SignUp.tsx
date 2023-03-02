@@ -29,10 +29,8 @@ import { MyContext } from "../../context/MyProvider/MyProvider";
 import uploadImageToImageBB from "../../utilities/uploadImageToImageBB/uploadImageToImageBB";
 import uploadProfileToMongoDB from "../../utilities/uploadProfileToMongoDB/uploadProfileToMongoDB";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Loader from "../../Components/Loader/Loader";
-
-
 
 export default function SignUp() {
   const [showPassword, setShowPassword] = React.useState(false);
@@ -79,7 +77,6 @@ export default function SignUp() {
     return () => subscription.unsubscribe();
   }, [watch]);
 
-  
   const handleFormSubmit: SubmitHandler<Inputs> = (data) => {
     const { name, email, imgFile, password, confirmPassword } = data;
     setEmailPasswordSignUpError("");

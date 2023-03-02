@@ -26,17 +26,17 @@ export const MODALTITLE = styled(Box)(({theme})=> ({
 
 // DEFAULTIMGINFO for styled 
 export const DEFAULTIMGINFO = styled(MODALTITLE)(({theme})=> ({
-    padding: '1.50rem 0',
+    padding: '1rem 0',
     border: 'none',
 }))
 
 
 // modal text area for styled
 export const MODALTEXTAREA = styled(Box)(({theme})=> ({
-    // padding: '1.50rem 0'
+    margin: '1.50rem 0'
 }))
 
- {/* IMG & video & document file and post button section for styled */}
+//  {/* IMG & video & document file and post button section for styled */}
 export const POSTBUTTONCONTAINER = styled(Box)(({theme})=> ({
     display: 'flex',
     alignItems: 'center',

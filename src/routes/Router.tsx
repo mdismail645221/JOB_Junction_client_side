@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, useNavigate } from "react-router-dom";
 import ErrorPage from "../Components/ErrorPage/ErrorPage";
 import Main from "../layouts/Main/Main";
 import Feed from "../Pages/Feed/Feed";
@@ -7,15 +7,21 @@ import Jobs from "../Pages/Jobs/Jobs";
 import Messaging from "../Pages/Messaging/Messaging";
 import MyNetwork from "../Pages/MyNetwork/MyNetwork";
 import MyProfile from "../Pages/MyProfile/MyProfile";
+import MyProfileMain from "../Pages/MyProfile/MyProfileMain/MyProfileMain";
+import MyResume from "../Pages/MyProfile/MyResume/MyResume";
 import PostAJob from "../Pages/PostAJob/PostAJob";
+import Search from "../Pages/Search/Search";
+import SearchResultDetails from "../Pages/Search/SearchResultDetails/SearchResultDetails";
 import SignIn from "../Pages/SignIn/SignIn";
 import SignUp from "../Pages/SignUp/SignUp";
+import PrivetRoute from "./PrivetRoute/PrivetRoute";
 
 //  don't touch this file anymore
 //  don't touch this file anymore
 //  don't touch this file anymore
 //  don't touch this file anymore
 //  don't touch this file anymore
+
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -28,7 +34,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/feed",
-        element: <Feed />,
+        element: (
+          <PrivetRoute>
+            <Feed />
+          </PrivetRoute>
+        ),
       },
       {
         path: "/my-network",
@@ -41,6 +51,31 @@ export const router = createBrowserRouter([
       {
         path: "/my-profile",
         element: <MyProfile />,
+        children: [
+          {
+            path: "/my-profile",
+            element: <MyProfileMain />,
+          },
+          {
+            path: "/my-profile/my-resume",
+            element: <MyResume />,
+          },
+        ],
+      },
+      {
+        path: "/search",
+        element: <Search />,
+        children: [
+          {
+            path: "/search",
+            element: <SearchResultDetails />,
+          },
+          {
+            path: "/search/:id",
+            loader: ({ params }) => params?.id,
+            element: <SearchResultDetails />,
+          },
+        ],
       },
       {
         path: "/signin",
