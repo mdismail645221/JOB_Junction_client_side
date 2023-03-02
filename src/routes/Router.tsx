@@ -8,6 +8,7 @@ import Messaging from "../Pages/Messaging/Messaging";
 import MyNetwork from "../Pages/MyNetwork/MyNetwork";
 import MyProfile from "../Pages/MyProfile/MyProfile";
 import MyProfileMain from "../Pages/MyProfile/MyProfileMain/MyProfileMain";
+// import MyProfileMain from "../Pages/MyProfile/MyProfileMainxxxx/MyProfileMain";
 import MyResume from "../Pages/MyProfile/MyResume/MyResume";
 import PostAJob from "../Pages/PostAJob/PostAJob";
 import Search from "../Pages/Search/Search";

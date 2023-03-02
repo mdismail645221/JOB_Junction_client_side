@@ -1,5 +1,6 @@
 import { Box, Paper, Typography, IconButton } from "@mui/material";
 import Modal from "@mui/material/Modal";
+import TextField from "@mui/material/TextField";
 import React from "react";
 import {
   MESSAGINGLISTCONTAINER,
@@ -122,7 +123,13 @@ const MessagingList = () => {
         >
           <Box sx={style}>
             <Typography id="modal-modal-title" variant="h6" component="h2">
-              Text in a modal
+              <TextField
+                id="standard-textarea"
+                label="Multiline Placeholder"
+                placeholder="Placeholder"
+                multiline
+                variant="standard"
+              />
             </Typography>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
               Duis mollis, est non commodo luctus, nisi erat porttitor ligula.

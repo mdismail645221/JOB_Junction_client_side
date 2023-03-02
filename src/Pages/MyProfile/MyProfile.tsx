@@ -12,7 +12,6 @@ import { Link, Outlet, useLocation } from "react-router-dom";
 import { Box, Stack } from "@mui/system";
 import IconButton from "@mui/material/IconButton";
 import { ThemeContext } from "@emotion/react";
-import MyProfileMain from "./MyProfileMain/MyProfileMain";
 import MyProfileRight from "./MyProfileRight/MyProfileRight";
 
 const MyProfile = () => {

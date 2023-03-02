@@ -11,8 +11,16 @@ import { Box, Stack } from "@mui/system";
 import IconButton from "@mui/material/IconButton";
 import { ThemeContext } from "@emotion/react";
 import { MyContext } from "../../../context/MyProvider/MyProvider";
+import EditIcon from '@mui/icons-material/Edit';
+import { BACKGROUND_PROFILE_IMG_CONTAINER, MY_PROFILE_CONTAINER } from "./MyProfileMain.styled";
+import ProfileEditModal from "./ProfileEditModal/ProfileEditModal";
 
 const MyProfileMain = () => {
+
+  // modal state
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const { currentUser } = React.useContext(MyContext)
 
@@ -21,50 +29,36 @@ const MyProfileMain = () => {
   // const 
 
   return (
-    <div
-      style={{
-        width: "100%",
-        marginTop: "1em",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-      }}
-    >
+    <MY_PROFILE_CONTAINER>
       <div style={{ display: "flex", width: "100%", margin: "auto" }}>
         <div style={{ width: "100%", margin: "auto" }}>
           <Card sx={{ width: "100%", margin: "auto", borderRadius: "1em" }}>
-            {/* <CardMedia
-                component="img"
-                alt="green iguana"
-                height="340"
-                width="100%"
-                image={banner}
-              /> */}
-            <div style={{ position: "relative", top: "0", left: "0" }}>
-
-              <Box sx={{ width: "100%" }}>
-
-                <img width={'100%'} src="https://media.licdn.com/dms/image/D4D16AQH_CGCjTm6Emw/profile-displaybackgroundimage-shrink_350_1400/0/1670523661007?e=1682553600&v=beta&t=KoznlnUvCWqc8grw-_qkCsQ3-JcT2UdQaKHNLHA2E4E" alt="" />
+            {/* profile img or background img area start */}
+            <BACKGROUND_PROFILE_IMG_CONTAINER className="userImg_and_bgImg_container">
+              {/* background img  start */}
+              <Box className="bgImgContainer" sx={{ width: "100%" }}>
+                <img width={'100%'} src="https://media.licdn.com/dms/image/D5616AQEvdIjzJzVe8A/profile-displaybackgroundimage-shrink_350_1400/0/1670510690803?e=1683158400&v=beta&t=tmINKTLZRWsGia0F1I9AY-zIM6nCKJQl3UeOBTWf7dw" alt="" />
+                <IconButton title="Edit" onClick={handleOpen}>
+                  <EditIcon />
+                </IconButton>
               </Box>
 
+              {/* background img end */}
+
+              {/* profile img start */}
               <div>
                 <Avatar
-                  alt="Remy Sharp"
+                  className="profileImg"
+                  alt={displayName}
                   src={photoURL}
-                  style={{
-                    position: "absolute",
-                    bottom: "-40px",
-                    left: "-10px",
-                  }}
-                  sx={{
-                    width: 156,
-                    height: 156,
-                    margin: "0px 40px",
-                    border: "3px solid white",
-                  }}
                 />
               </div>
-            </div>
+              {/* profile img end */}
+
+            </BACKGROUND_PROFILE_IMG_CONTAINER>
+            {/* profile img or background img area end */}
+
+
             <CardContent style={{ margin: "2em 20px" }}>
               <Typography gutterBottom variant="h5" sx={{ m: 0 }} component="div">
                 {displayName}
@@ -128,6 +122,7 @@ const MyProfileMain = () => {
             <div style={{ display: "flex", marginLeft: "1.6em", marginBottom: "1em" }}>
               {/* a card on top section*/}
               <Card
+                className="Card"
                 sx={{
                   width: '50%',
                   background: "#fca9a9",
@@ -149,6 +144,7 @@ const MyProfileMain = () => {
 
               {/* another card on top section */}
               <Card
+                className="Card"
                 sx={{
                   width: '50%',
                   background: "#fca9a9",
@@ -186,6 +182,7 @@ const MyProfileMain = () => {
 
               {/* a card */}
               <Card
+                className="Card"
                 sx={{
                   width: '33%',
                   background: "#fca9a9",
@@ -193,7 +190,9 @@ const MyProfileMain = () => {
                   ml: "1em"
                 }}
               >
-                <CardContent>
+                <CardContent
+
+                >
                   <Typography sx={{ fontSize: 20, m: 0 }} color="black" gutterBottom>
                     Open to work
                   </Typography>
@@ -205,6 +204,7 @@ const MyProfileMain = () => {
 
               {/* another card */}
               <Card
+                className="Card"
                 sx={{
                   width: '33%',
                   background: "#fca9a9",
@@ -223,6 +223,7 @@ const MyProfileMain = () => {
 
               {/* a card */}
               <Card
+                className="Card"
                 sx={{
                   width: '33%',
                   background: "#fca9a9",
@@ -301,7 +302,16 @@ const MyProfileMain = () => {
 
         {/* <div style={{ width: "40%" }}></div> */}
       </div>
-    </div>
+
+      {/* modal nested */}
+      <ProfileEditModal 
+        open={open}
+        setOpen={setOpen}
+        handleOpen={handleOpen}
+        handleClose={handleClose}
+       />
+
+    </MY_PROFILE_CONTAINER>
   );
 };
 
