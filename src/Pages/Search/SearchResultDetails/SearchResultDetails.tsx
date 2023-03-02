@@ -40,8 +40,8 @@ const SearchResultDetails = () => {
     // eslint-disable-next-line
   }, [currentUser]);
   // socket.emit("join chat", )
-  const _id = useLoaderData();
-  console.log("_id: ", _id);
+  // const _id = useLoaderData();
+  // console.log("_id: ", _id);
   // if (_id) {
   //   fetch(`http://localhost:5000/searchpeople?_id=${_id}`)
   //     .then((res) => res.json())

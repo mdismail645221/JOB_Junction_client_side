@@ -134,7 +134,7 @@ const PeopleDetails = () => {
           .then((res) => res.json())
           .then((data) => {
             if (data?.modifiedCount) {
-              toast.error(`${people?.name} request canceled`);
+              toast.error(`${ people?.name } request canceled`);
               refetch();
             }
           });
@@ -169,9 +169,7 @@ const PeopleDetails = () => {
         break;
     }
   };
-  // if (!_id || isLoadingForUseProfile || isLoading) {
-  //   return <Loader type="" />;
-  // }
+
   return (
     <div>
       {people && (
