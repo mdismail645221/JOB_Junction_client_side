@@ -3,7 +3,7 @@ import { styled, Box, Stack } from "@mui/material";
 export const JOBSCONTAINER = styled(Stack)(({ theme }) => ({
   // background:'#eeeeee',
   padding: "1.50rem 1rem",
-  overflow: "scroll",
+//   overflow: "scroll",
   height: "100%",
 
   "& .title": {
@@ -21,7 +21,6 @@ export const JOBSCONTAINER = styled(Stack)(({ theme }) => ({
     background: "#ff1714",
     color: "#fff",
     fontWeight: "medium",
-
     border: "2px solid #ff1714",
     borderRadius: "50px",
     minWidth: "200px",
