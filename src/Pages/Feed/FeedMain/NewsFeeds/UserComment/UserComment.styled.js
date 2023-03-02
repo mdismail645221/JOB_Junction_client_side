@@ -4,7 +4,7 @@ import { Box, Stack, styled } from "@mui/material";
 
 export const COMMENT_CONTAINER = styled(Stack)(({theme})=> ({
     backgroundColor: '#FFF',
-    margin : '5rem 1rem',
+    margin : '2rem 1rem',
 
     '& .input-area': {
         background: '#eee',
@@ -14,6 +14,11 @@ export const COMMENT_CONTAINER = styled(Stack)(({theme})=> ({
     },
     '& .css-1d3z3hw-MuiOutlinedInput-notchedOutline': {
         border: 'none'
+    },
+
+    '& .send-btn button': {
+        background: '#ff1714',
+        color: '#fff'
     }
 }))
 
@@ -21,7 +26,7 @@ export const COMMENT_INPUT_CONTAINER = styled(Box)(({theme})=> ({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    flexWrap: 'wrap'
+    // flexWrap: 'wrap'
 }))
 
 
@@ -34,12 +39,12 @@ export const USER_COMMENT_CONTAINER = styled(Box)(({theme})=> ({
         flexDirection: 'column',
         gap: '0.25rem',
         border: '1px solid #ddd',
-        borderRadius: '50px',
+        borderRadius: '25px',
         background: '#eee',
         flexGrow: 1,
         overflow: 'hidden',
         padding: '.75rem 1.25rem',
-
+        marginLeft: '10px'
     },
     '& .userName h3': {
         fontSize: '0.98rem',

@@ -32,7 +32,7 @@ const UserComment = () => {
                     </Box>
                     {/* comment input field end */}
                 </Box>
-                <Box>
+                <Box className="send-btn">
                     <Button>Send</Button>
                 </Box>
             </COMMENT_INPUT_CONTAINER>
