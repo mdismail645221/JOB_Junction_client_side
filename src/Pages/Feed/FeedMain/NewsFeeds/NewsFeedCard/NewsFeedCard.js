@@ -21,12 +21,16 @@ import { DisplayFlex, LCRSBTN } from "./DisplayFlex.styled";
 import TextsmsOutlinedIcon from "@mui/icons-material/TextsmsOutlined";
 import RepeatOutlinedIcon from "@mui/icons-material/RepeatOutlined";
 import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
+import UserComment from "../UserComment/UserComment";
+
+//fvfdvfdvfdvfdfdfdfdcvcvcvcvvccvccccvvccccccccccccccccvvvvvvvv
 import { useMyProfile } from "../../../../../useHooks/useMyProfile/useMyProfile";
 import { useQuery } from "@tanstack/react-query";
 import { async } from "@firebase/util";
 import { toast } from "react-toastify";
 import Loader from "../../../../../Components/Loader/Loader";
 import { MyContext } from "../../../../../context/MyProvider/MyProvider";
+//fvfdvfdvfdvfdfdfdfdcccvcvcvcvcccvcvcvccvvvvvvvvvvvccvvcvcvcvcv
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -236,6 +240,9 @@ export default function NewsFeedCard({ data, setRefreshAllPost }) {
           <span>Send</span>
         </LCRSBTN>
       </Box>
+
+        <UserComment/>
+
     </Card>
   );
 }
