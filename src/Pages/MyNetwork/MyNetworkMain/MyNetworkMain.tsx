@@ -19,6 +19,7 @@ const MyNetworkMain = () => {
     return <Loader type="" />;
   }
   const { pendingReq } = myProfile;
+  console.log("pendin req", pendingReq);
 
 
   return (

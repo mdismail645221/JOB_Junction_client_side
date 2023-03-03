@@ -1,119 +1,79 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Box, Paper } from "@mui/material";
-import { MESSAGINGCHATINGCONTAINER, CALLVIDEOSECTION, USERMESSAGEINFO } from "./MessagingDetails.styled";
+import {
+  MESSAGINGCHATINGCONTAINER,
+  CALLVIDEOSECTION,
+  USERMESSAGEINFO,
+} from "./MessagingDetails.styled";
 import Typography from "@mui/material/Typography";
-import CallIcon from '@mui/icons-material/Call';
-import VideocamOutlinedIcon from '@mui/icons-material/VideocamOutlined';
+import CallIcon from "@mui/icons-material/Call";
+import VideocamOutlinedIcon from "@mui/icons-material/VideocamOutlined";
 import IconButton from "@mui/material/IconButton";
-import InfoIcon from '@mui/icons-material/Info';
-import AttachmentIcon from '@mui/icons-material/Attachment';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
-import TextsmsIcon from '@mui/icons-material/Textsms';
-import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
-import MoodIcon from '@mui/icons-material/Mood';
+import InfoIcon from "@mui/icons-material/Info";
+import AttachmentIcon from "@mui/icons-material/Attachment";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
+import TextsmsIcon from "@mui/icons-material/Textsms";
+import KeyboardVoiceIcon from "@mui/icons-material/KeyboardVoice";
+import MoodIcon from "@mui/icons-material/Mood";
 import { CHATINGINPUT } from "../MessagingList/MessagingList.styled";
-
+import { useLoaderData } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { MyContext } from "../../../context/MyProvider/MyProvider";
 const MessagingDetails = () => {
+  const { currentUser } = useContext(MyContext);
+  const chatId = useLoaderData();
+  console.log("chatId: ", chatId);
 
+  const {
+    data: messages,
+    error,
+    isError,
+    isFetched,
+    isFetching,
+    isLoading,
+    isRefetchError,
+    isRefetching,
+    refetch,
+  } = useQuery({
+    queryKey: [chatId],
+    queryFn: async () => {
+      const res = await fetch(
+        `http://localhost:5000/search-messages?chatId=${chatId}`
+      );
+      const data = await res.json();
+      console.log("result: ", data);
+      return data;
+    },
+  });
 
   interface MessageList {
-    userName: string,
-    logo: string
-    message: string
-    time: string,
-    day: string
+    userName: string;
+    logo: string;
+    message: string;
+    time: string;
+    day: string;
   }
 
-  const messagingLists: MessageList[] = [
-    {
-      userName: 'Mohammad Ismail',
-      logo: "https://i.ibb.co/RTLpQDw/ismail-fb-img.png",
-      message: 'Kemon asen sir',
-      time: "",
-      day: ""
-    },
-    {
-      userName: 'Jhankar Mahbub',
-      logo: "https://i.ibb.co/jvj33G3/jhankar-mahbub.png",
-      message: 'Alhumdurilla. kemn aso tmi?',
-      time: "",
-      day: ""
-    },
-    {
-      userName: 'Mohammad Ismail',
-      logo: "https://i.ibb.co/RTLpQDw/ismail-fb-img.png",
-      message: 'Alhumdurilla sir. Sir, ami apnar web development course ti kore onek kicu gain koreci. akhn job placement aci.',
-      time: "",
-      day: ""
-    },
-    {
-      userName: 'Mohammad Ismail',
-      logo: "https://i.ibb.co/RTLpQDw/ismail-fb-img.png",
-      message: 'sir, apnar proti onek kitoggo thakbe. thoya korben sir.',
-      time: "",
-      day: ""
-    },
-    {
-      userName: 'Jhankar Mahbub',
-      logo: "https://i.ibb.co/jvj33G3/jhankar-mahbub.png",
-      message: 'Well. Arektu kosto koro. new new technology learn korte thako. InshaAllah valo kicu hobe. tmr jonno thoya roilo.',
-      time: "",
-      day: ""
-    },
-    // ------
-    {
-      userName: 'Jhankar Mahbub',
-      logo: "https://i.ibb.co/jvj33G3/jhankar-mahbub.png",
-      message: 'Well. Arektu kosto koro. new new technology learn korte thako. InshaAllah valo kicu hobe. tmr jonno thoya roilo.',
-      time: "",
-      day: ""
-    },
-    {
-      userName: 'Jhankar Mahbub',
-      logo: "https://i.ibb.co/jvj33G3/jhankar-mahbub.png",
-      message: 'Well. Arektu kosto koro. new new technology learn korte thako. InshaAllah valo kicu hobe. tmr jonno thoya roilo.',
-      time: "",
-      day: ""
-    },
-    {
-      userName: 'Jhankar Mahbub',
-      logo: "https://i.ibb.co/jvj33G3/jhankar-mahbub.png",
-      message: 'Well. Arektu kosto koro. new new technology learn korte thako. InshaAllah valo kicu hobe. tmr jonno thoya roilo.',
-      time: "",
-      day: ""
-    },
-    {
-      userName: 'Jhankar Mahbub',
-      logo: "https://i.ibb.co/jvj33G3/jhankar-mahbub.png",
-      message: 'Well. Arektu kosto koro. new new technology learn korte thako. InshaAllah valo kicu hobe. tmr jonno thoya roilo.',
-      time: "",
-      day: ""
-    },
-    {
-      userName: 'Jhankar Mahbub',
-      logo: "https://i.ibb.co/jvj33G3/jhankar-mahbub.png",
-      message: 'Well. Arektu kosto koro. new new technology learn korte thako. InshaAllah valo kicu hobe. tmr jonno thoya roilo.',
-      time: "",
-      day: ""
-    },
-    {
-      userName: 'Me',
-      logo: "https://i.ibb.co/RTLpQDw/ismail-fb-imjg.png",
-      message: 'Well. Arektu kosto koro. new new technology learn korte thako. InshaAllah valo kicu hobe. tmr jonno thoya roilo. Well. Arektu kosto koro. new new technology learn korte thako. InshaAllah valo kicu hobe. tmr jonno thoya roilo.Well. Arektu kosto koro. new new technology learn korte thako. InshaAllah valo kicu hobe. tmr jonno thoya roilo.Well. Arektu kosto koro. new new technology learn korte thako. InshaAllah valo kicu hobe. tmr jonno thoya roilo.',
-      time: "",
-      day: ""
-    },
-  ]
-
-
   return (
-    <MESSAGINGCHATINGCONTAINER sx={{ position: 'relative', paddingY: '.75rem', paddingBottom: '70px' }}>
+    <MESSAGINGCHATINGCONTAINER
+      sx={{ position: "relative", paddingY: ".75rem", paddingBottom: "70px" }}
+    >
       {/* top side. its name and logo. call, video, information button initial */}
-      <Paper sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+      <Paper
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
+      >
         <CALLVIDEOSECTION direction="row" spacing={2}>
           {/* client images */}
           <Box>
-            <img style={{ width: '50px', borderRadius: '100%' }} src="https://i.ibb.co/jvj33G3/jhankar-mahbub.png" alt="jhankar-mahbub" />
+            <img
+              style={{ width: "50px", borderRadius: "100%" }}
+              src="https://i.ibb.co/jvj33G3/jhankar-mahbub.png"
+              alt="jhankar-mahbub"
+            />
           </Box>
           {/* client name  */}
           <Box>
@@ -137,76 +97,110 @@ const MessagingDetails = () => {
       {/* client or your messaging list section */}
       {/* sx={{ overflowY: 'scroll', height: '100vh' }} */}
       {/* chating section start */}
-      <Box sx={{ overflowY: 'scroll', height: 500, margin: '1rem' }} >
-        {
-          messagingLists.map((message, i) => {
-            return (
-              <Box key={i}>
-                {
-                  message?.userName === "Jhankar Mahbub" ?
-
+      <Box sx={{ overflowY: "scroll", height: 500, margin: "1rem" }}>
+        {messages?.map((eachMessage: any) => {
+          return (
+            <Box key={eachMessage?._id}>
+              {
+                eachMessage?.sender?.email !== currentUser?.email ? (
                   // <Box>
-                      <Box key={i} sx={{ display: 'flex', alignItems: 'center', marginY: '0.75rem', mr: {lg: '150px', md: '100px', sm: "50px", xs: "30px"} }}>
-                        <Box>
-                          <img style={{ width: '25px', borderRadius: '100%', marginRight: '0.75rem' }} src={message?.logo} alt="jhankar-mahbub" />
-                        </Box>
-                        <USERMESSAGEINFO>
-                          <Typography component='p'>{message?.message}</Typography>
-                        </USERMESSAGEINFO>
-                      </Box>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      marginY: "0.75rem",
+                      mr: { lg: "150px", md: "100px", sm: "50px", xs: "30px" },
+                    }}
+                  >
+                    <Box>
+                      <img
+                        style={{
+                          width: "25px",
+                          borderRadius: "100%",
+                          marginRight: "0.75rem",
+                        }}
+                        src=""
+                        alt="jhankar-mahbub"
+                      />
+                    </Box>
+                    <USERMESSAGEINFO>
+                      <Typography component="p">
+                        {eachMessage?.message}
+                      </Typography>
+                    </USERMESSAGEINFO>
+                  </Box>
+                ) : (
                   // </Box>
 
-                :
-
                   // <Box>
-                    <Box key={i} sx={{ display: 'flex', alignItems: 'center', justifyContent: "flex-end", marginY: '0.75rem', ml: { lg: '150px', md: '100px', sm: "50px", xs: "30px" } }}>
-                      <USERMESSAGEINFO sx={{ marginRight: '0.75rem' }}>
-                          <Typography component='p'>{message?.message}</Typography>
-                        </USERMESSAGEINFO>
-                      <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                          <img style={{ width: '25px', borderRadius: '100%', marginRight: '0.75rem' }} src={message?.logo} alt="jhankar-mahbub" />
-                        </Box>
-                      </Box>
-                    
-                  //</Box>
-                
-                }
-              </Box>
-            )
-          })
-        }
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "flex-end",
+                      marginY: "0.75rem",
+                      ml: { lg: "150px", md: "100px", sm: "50px", xs: "30px" },
+                    }}
+                  >
+                    <USERMESSAGEINFO sx={{ marginRight: "0.75rem" }}>
+                      <Typography component="p">
+                        {eachMessage?.message}
+                      </Typography>
+                    </USERMESSAGEINFO>
+                    <Box sx={{ display: "flex", alignItems: "center" }}>
+                      <img
+                        style={{
+                          width: "25px",
+                          borderRadius: "100%",
+                          marginRight: "0.75rem",
+                        }}
+                        src=""
+                        alt="jhankar-mahbub"
+                      />
+                    </Box>
+                  </Box>
+                )
 
+                //</Box>
+              }
+            </Box>
+          );
+        })}
 
-        <Box sx={{
-          display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-          '& button': {
-            color: '#FF1744'
-          },
-          position: "absolute",
-          bottom: '10px',
-          width: '100%',
-          left: '0',
-          zIndex: '999'
-        }}>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            "& button": {
+              color: "#FF1744",
+            },
+            position: "absolute",
+            bottom: "10px",
+            width: "100%",
+            left: "0",
+            zIndex: "999",
+          }}
+        >
           {/* Plus icons */}
-          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+          <Box sx={{ display: "flex", alignItems: "center" }}>
             <IconButton>
               <AddCircleIcon />
             </IconButton>
             {/* attacth icons */}
             <IconButton>
-              < AttachmentIcon />
+              <AttachmentIcon />
             </IconButton>
             <IconButton>
-              < TextsmsIcon />
+              <TextsmsIcon />
             </IconButton>
             {/* voice icons */}
             <IconButton>
-              < KeyboardVoiceIcon />
+              <KeyboardVoiceIcon />
             </IconButton>
             {/* smile icons */}
             <IconButton>
-              < MoodIcon />
+              <MoodIcon />
             </IconButton>
           </Box>
           {/* middle section chat input filed start */}
@@ -221,15 +215,12 @@ const MessagingDetails = () => {
           <Box>
             {/* voice icons */}
             <IconButton>
-              < KeyboardVoiceIcon />
+              <KeyboardVoiceIcon />
             </IconButton>
           </Box>
         </Box>
-
       </Box>
       {/* chating section end */}
-
-
     </MESSAGINGCHATINGCONTAINER>
   );
 };

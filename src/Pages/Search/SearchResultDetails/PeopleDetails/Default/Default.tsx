@@ -1,5 +1,7 @@
+import { Box, Button } from "@mui/material";
 import React from "react";
 import { toast } from "react-toastify";
+import { DEFAULT_CONTAINER } from "./Default.styled";
 
 const Default = (props: any) => {
   const { isConnectionSent, refetch, people, currentUser, isSent } = props;
@@ -111,14 +113,18 @@ const Default = (props: any) => {
     }
   };
   return (
-    <button
-      style={{
-        fontSize: "20px",
-      }}
-      onClick={handleConnectionAction}
-    >
-      {isSent !== -1 ? "cancel request" : "add connection"}
-    </button>
+
+    <DEFAULT_CONTAINER>
+      <Button
+        style={{
+          fontSize: "1rem",
+        }}
+        onClick={handleConnectionAction}
+      >
+        {isSent !== -1 ? "cancel Connection" : "Send Connection"}
+        <span onClick={handleConnectionAction} className="hoverEffect"> {isSent !== -1 ? "cancel Connection" : "Send Connection"}</span>
+      </Button>
+    </DEFAULT_CONTAINER>
   );
 };
 

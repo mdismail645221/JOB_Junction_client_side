@@ -27,6 +27,7 @@ const Main = () => {
     filterInfo,
     setFilterInfo,
     setSearchResultList,
+    shouldNavigate,
   } = React.useContext(SearchContext);
 
   const [scrollStatus, setScrollStatus] = useState("");
@@ -48,6 +49,7 @@ const Main = () => {
       if (searchKey?.length === 0) {
         return;
       }
+      console.log("fucking: ", searchKey, searchType, filterInfo);
       navigate("/search");
       const allFilter = {
         searchKey,
