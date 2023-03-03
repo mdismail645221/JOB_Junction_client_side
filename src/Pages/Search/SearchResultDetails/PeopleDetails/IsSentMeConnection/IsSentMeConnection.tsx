@@ -1,11 +1,12 @@
 import React from "react";
+import { CONTAINER } from "./IsSentMeConnection.styled";
 
 const IsSentMeConnection = () => {
   return (
-    <div>
+    <CONTAINER>
       <h1>accept</h1>
       <h1>ignore</h1>
-    </div>
+    </CONTAINER>
   );
 };
 

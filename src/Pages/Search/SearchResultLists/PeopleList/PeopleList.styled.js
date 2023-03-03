@@ -42,27 +42,5 @@ export const PEOPLE_CONTAINER = styled(Stack)(({ theme }) => ({
         fontWeight: 'bold',
         fontSize: '1.25rem'
     },
-    // '& .userName_container p': {
-    //     background: 'red',
-    //     position: 'absolute',
-    //     width: '0%',
-    //     height: '100%',
-    //     top: '0',
-    //     left: '0',
-    //     margin: '0px',
-    //     opacity: '0',
-    //     transition: '3s',
-    // },
-    // '& .userName_container:hover p': {
-    //     background: 'red',
-    //     position: 'absolute',
-    //     width: '100%',
-    //     height: '100%',
-    //     top: '0',
-    //     left: '0',
-    //     margin: '0px',
-    //     opacity: '.5',
-    //     transition: '3s',
-    //     color: '#fff'
-    // },
+
 }))

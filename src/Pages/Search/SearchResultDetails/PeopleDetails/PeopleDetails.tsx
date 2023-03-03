@@ -10,7 +10,7 @@ import { useMyProfile } from "../../../../useHooks/useMyProfile/useMyProfile";
 import IsSentMeConnection from "./IsSentMeConnection/IsSentMeConnection";
 import Default from "./Default/Default";
 import Loader from "../../../../Components/Loader/Loader";
-import { Avatar, Box, Stack, Typography } from "@mui/material";
+import { Avatar, Box, Button, Stack, Typography } from "@mui/material";
 import { PEOPLE_DETAILS_CONTAINER } from "./PeopleDetails.styled";
 const PeopleDetails = () => {
   const _id = useLoaderData();
@@ -181,21 +181,26 @@ const PeopleDetails = () => {
           <PEOPLE_DETAILS_CONTAINER spacing={2} direction="row">
             <Box>
               <Avatar
-                sx={{ width: '70px', height: '70px', borderRadius: '50px' }}
+                className="userPhoto"
                 src={people?.profilePhoto}
                 alt={people?.name} />
             </Box>
             <Box>
-              <Typography component='h3'>{people?.name}</Typography>
-              <Typography component='h3'>{people?.title}</Typography>
+              <Typography className="userName" component='h3'>{people?.name}</Typography>
+              <Typography className="userTitle" component='h3'>{people?.title}</Typography>
             </Box>
-
           </PEOPLE_DETAILS_CONTAINER>
 
-          <h1>view profile</h1>
-          {peopleConnectionType}
+          <Box sx={{ padding: '0 2rem' }}>
+            <h1>view profile</h1>
+            {/* peopleConnectionType */}
+            {/* showDisplayElement */}
+            {/* <IsMyFriend /> */}
+            {/* <IsMyProfile/> */}
+            <IsSentMeConnection/>
+            {/* <Default /> */}
+          </Box>
 
-          {showDisplayElement}
         </Box>
       )}
     </div>

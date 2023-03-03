@@ -19,12 +19,13 @@ const Search = () => {
             xs: "none",
             md: "block",
           },
+          backgroundColor: '#fff'
         }}
       >
         <SearchResultLists />
       </Box>
 
-      <Box sx={{}}>
+      <Box sx={{background: '#fff'}}>
         <Outlet />
       </Box>
     </Box>
