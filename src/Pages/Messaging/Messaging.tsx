@@ -1,5 +1,6 @@
 import { Box } from "@mui/system";
 import React from "react";
+import { Outlet } from "react-router-dom";
 import MessagingDetails from "./MessagingDetails/MessagingDetails";
 import MessagingList from "./MessagingList/MessagingList";
 
@@ -26,7 +27,8 @@ const Messaging = () => {
       </Box>
 
       <Box sx={{}}>
-        <MessagingDetails />
+        {/* <MessagingDetails /> */}
+        <Outlet />
       </Box>
     </Box>
   );

@@ -8,6 +8,7 @@ const SearchPovider = ({ children }) => {
   const test = { message: "okk" };
 
   const [searchBarIsOpen, setSearchBarIsOpen] = useState(false);
+  const [shouldNavigate, setShouldNavigate] = useState(false);
   const [searchKey, setSearchKey] = useState("");
   const [searchType, setSearchType] = useState("People");
   const [filterInfo, setFilterInfo] = useState({});

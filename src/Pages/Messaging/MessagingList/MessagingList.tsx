@@ -1,7 +1,7 @@
 import { Box, Paper, Typography, IconButton } from "@mui/material";
 import Modal from "@mui/material/Modal";
 import TextField from "@mui/material/TextField";
-import React from "react";
+import React, { useContext } from "react";
 import {
   MESSAGINGLISTCONTAINER,
   Search,
@@ -12,11 +12,14 @@ import {
 } from "./MessagingList.styled";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import SaveAsIcon from "@mui/icons-material/SaveAs";
-import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
 import { NavLink } from "react-router-dom";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
+import SearchIcon from "@mui/icons-material/Search";
 import GroupAddIcon from "@mui/icons-material/GroupAdd";
+import { useQuery } from "@tanstack/react-query";
+import { MyContext } from "../../../context/MyProvider/MyProvider";
+import EachList from "./EachList/EachList";
 interface EachInfo {
   userLogo: string;
   userName: string;
@@ -24,66 +27,11 @@ interface EachInfo {
 }
 
 const MessagingList = () => {
+  const { currentUser } = useContext(MyContext);
   const [open, setOpen] = React.useState(false);
+  const [chatLists, setChatLists] = React.useState([]);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const userInfo: EachInfo[] = [
-    {
-      userLogo: "https://i.ibb.co/4MnMYkJ/Joseph-Gray.png",
-      userName: "Joseph-Gray",
-      message: "this is paragraph.this is paragraph. this is paragraph",
-    },
-    {
-      userLogo: "https://i.ibb.co/4Wk94qt/sumit-shah-logo.png",
-      userName: "Sumit Saha",
-      message: "this is paragraph.this is paragraph. this is paragraph",
-    },
-    {
-      userLogo: "https://i.ibb.co/jvj33G3/jhankar-mahbub.png",
-      userName: "Jhankar Mahbub",
-      message: "this is paragraph.this is paragraph. this is paragraph",
-    },
-    {
-      userLogo: "https://i.ibb.co/jvj33G3/jhankar-mahbub.png",
-      userName: "Jhankar Mahbub",
-      message: "this is paragraph.this is paragraph. this is paragraph",
-    },
-    {
-      userLogo: "https://i.ibb.co/jvj33G3/jhankar-mahbub.png",
-      userName: "Jhankar Mahbub",
-      message: "this is paragraph.this is paragraph. this is paragraph",
-    },
-    {
-      userLogo: "https://i.ibb.co/jvj33G3/jhankar-mahbub.png",
-      userName: "Jhankar Mahbub",
-      message: "this is paragraph.this is paragraph. this is paragraph",
-    },
-    {
-      userLogo: "https://i.ibb.co/jvj33G3/jhankar-mahbub.png",
-      userName: "Jhankar Mahbub",
-      message: "this is paragraph.this is paragraph. this is paragraph",
-    },
-    {
-      userLogo: "https://i.ibb.co/jvj33G3/jhankar-mahbub.png",
-      userName: "Jhankar Mahbub",
-      message: "this is paragraph.this is paragraph. this is paragraph",
-    },
-    {
-      userLogo: "https://i.ibb.co/jvj33G3/jhankar-mahbub.png",
-      userName: "Jhankar Mahbub",
-      message: "this is paragraph.this is paragraph. this is paragraph",
-    },
-    {
-      userLogo: "https://i.ibb.co/jvj33G3/jhankar-mahbub.png",
-      userName: "Jhankar Mahbub",
-      message: "this is paragraph.this is paragraph. this is paragraph",
-    },
-    {
-      userLogo: "https://i.ibb.co/jvj33G3/jhankar-mahbub.png",
-      userName: "Jhankar Mahbub",
-      message: "this is paragraph.this is paragraph. this is paragraph",
-    },
-  ];
 
   // handle conditional hover
   // const handleHover: string = () => {}
@@ -98,6 +46,30 @@ const MessagingList = () => {
     boxShadow: 24,
     p: 4,
   };
+
+  const {
+    data,
+    error,
+    isError,
+    isFetched,
+    isFetching,
+    isLoading,
+    isRefetchError,
+    isRefetching,
+    refetch,
+  } = useQuery({
+    queryKey: [],
+    queryFn: async () => {
+      const res = await fetch(
+        `http://localhost:5000/messagelists?myEmail=${currentUser?.email}`
+      );
+      const data = await res.json();
+      setChatLists(data);
+      console.log(data);
+      return data;
+    },
+  });
+
   return (
     <MESSAGINGLISTCONTAINER>
       <Box className="messaginContainer">
@@ -152,51 +124,10 @@ const MessagingList = () => {
 
         {/* message user data */}
         <Box paddingY={2} sx={{ overflowY: "scroll", height: "700px" }}>
-          {userInfo.map((info, i) => {
-            return (
-              <NavLink key={i} to="#">
-                <SIGNLEMESSAGINGINFO
-                  sx={{
-                    padding: "0.25rem",
-                    display: "flex",
-                    alignItems: "center",
-                  }}
-                >
-                  {/* image left side */}
-                  <Box>
-                    <img
-                      style={{
-                        maxWidth: "50px",
-                        borderRadius: "100%",
-                        marginRight: "8px",
-                      }}
-                      src={info.userLogo}
-                      alt="sumit shah"
-                    />
-                  </Box>
-                  {/* userInfo ===right side=== */}
-                  <Box sx={{ borderBottom: "1px solid #ddd" }}>
-                    <Box
-                      sx={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Typography sx={{ fontWeight: "medium" }} component="p">
-                        {info.userName}
-                      </Typography>
-                      <Typography component="p">Feb 22</Typography>
-                    </Box>
-                    <Typography sx={{ color: "#555" }} component="p">
-                      <span>You:</span>I am a MERN stack web developer. I would
-                      like to...
-                    </Typography>
-                  </Box>
-                </SIGNLEMESSAGINGINFO>
-              </NavLink>
-            );
-          })}
+          {chatLists?.length !== 0 &&
+            chatLists?.map((eachList: any) => (
+              <EachList key={eachList?._id} eachList={eachList} />
+            ))}
         </Box>
       </Box>
     </MESSAGINGLISTCONTAINER>

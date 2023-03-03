@@ -5,6 +5,7 @@ import Feed from "../Pages/Feed/Feed";
 import Home from "../Pages/Home/Home";
 import Jobs from "../Pages/Jobs/Jobs";
 import Messaging from "../Pages/Messaging/Messaging";
+import MessagingDetails from "../Pages/Messaging/MessagingDetails/MessagingDetails";
 import MyNetwork from "../Pages/MyNetwork/MyNetwork";
 import MyProfile from "../Pages/MyProfile/MyProfile";
 import MyProfileMain from "../Pages/MyProfile/MyProfileMain/MyProfileMain";
@@ -88,6 +89,13 @@ export const router = createBrowserRouter([
       {
         path: "/messaging",
         element: <Messaging />,
+        children: [
+          {
+            path: "/messaging/message-details/:chat_id",
+            loader: ({ params }) => params?.chat_id,
+            element: <MessagingDetails />,
+          },
+        ],
       },
       {
         path: "/jobs/post-a-job",
