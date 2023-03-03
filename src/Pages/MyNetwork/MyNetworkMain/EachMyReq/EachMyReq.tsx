@@ -53,10 +53,10 @@ const EachMyReq = (props: any) => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        if (data?.modifiedCount) {
+        if (data) {
           toast.success(`${eachhReq?.senderName} connected succesfully`);
-          refetch();
         }
+        refetch();
       });
   };
   if (isLoading) {
