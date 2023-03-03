@@ -14,10 +14,12 @@ import EachMyReq from "./EachMyReq/EachMyReq";
 
 const MyNetworkMain = () => {
   const { data: myProfile, isLoading, refetch } = useMyProfile();
+
   if (isLoading) {
     return <Loader type="" />;
   }
   const { pendingReq } = myProfile;
+
 
   return (
     <div>
