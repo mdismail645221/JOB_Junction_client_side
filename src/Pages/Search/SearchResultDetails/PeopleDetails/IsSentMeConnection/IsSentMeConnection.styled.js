@@ -4,12 +4,14 @@ import { Box , styled} from "@mui/material";
 
 export const CONTAINER = styled(Box)(({ theme }) => ({
     display: 'grid',
+    gridAutoColumns: '1fr 1fr',
     placeItems: 'center',
+    gap: '2rem',
     '& button': {
         position: 'relative',
         border: '2px solid #ff1714',
         color: 'black',
-        fontSize: '1.25rem',
+        fontSize: '1rem',
         padding: '8px 15px',
         borderRadius: '50px'
     },

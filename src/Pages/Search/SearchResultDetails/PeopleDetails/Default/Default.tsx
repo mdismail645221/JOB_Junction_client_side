@@ -122,7 +122,7 @@ const Default = (props: any) => {
         onClick={handleConnectionAction}
       >
         {isSent !== -1 ? "cancel Connection" : "Send Connection"}
-        <span className="hoverEffect"> {isSent !== -1 ? "cancel Connection" : "Send Connection"}</span>
+        <span onClick={handleConnectionAction} className="hoverEffect"> {isSent !== -1 ? "cancel Connection" : "Send Connection"}</span>
       </Button>
     </DEFAULT_CONTAINER>
   );

@@ -1,11 +1,22 @@
+import { Box, Button } from "@mui/material";
 import React from "react";
 import { CONTAINER } from "./IsSentMeConnection.styled";
 
 const IsSentMeConnection = () => {
   return (
     <CONTAINER>
-      <h1>accept</h1>
-      <h1>ignore</h1>
+      <Box>
+        <Button>
+          Accept
+          <span className="hoverEffect">Accept</span>
+        </Button>
+      </Box>
+      <Box>
+        <Button>
+          Ignore
+          <span className="hoverEffect">Ignore</span>
+        </Button>
+      </Box>
     </CONTAINER>
   );
 };

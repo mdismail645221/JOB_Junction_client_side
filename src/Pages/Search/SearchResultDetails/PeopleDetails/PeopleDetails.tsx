@@ -195,9 +195,9 @@ const PeopleDetails = () => {
             <h1>view profile</h1>
             {/* peopleConnectionType */}
             {/* showDisplayElement */}
-            {/* <IsMyFriend /> */}
+            <IsMyFriend />
             {/* <IsMyProfile/> */}
-            <IsSentMeConnection/>
+            {/* <IsSentMeConnection/> */}
             {/* <Default /> */}
           </Box>
 

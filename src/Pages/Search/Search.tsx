@@ -11,6 +11,7 @@ const Search = () => {
           xs: "1fr",
           md: "4fr 7fr",
         },
+        height: '100vh'
       }}
     >
       <Box
@@ -19,7 +20,8 @@ const Search = () => {
             xs: "none",
             md: "block",
           },
-          backgroundColor: '#fff'
+          backgroundColor: '#fff',
+          
         }}
       >
         <SearchResultLists />
