@@ -10,6 +10,8 @@ import { useMyProfile } from "../../../../useHooks/useMyProfile/useMyProfile";
 import IsSentMeConnection from "./IsSentMeConnection/IsSentMeConnection";
 import Default from "./Default/Default";
 import Loader from "../../../../Components/Loader/Loader";
+import { Avatar, Box, Stack, Typography } from "@mui/material";
+import { PEOPLE_DETAILS_CONTAINER } from "./PeopleDetails.styled";
 const PeopleDetails = () => {
   const _id = useLoaderData();
   console.log("_id: ", _id);
@@ -112,6 +114,8 @@ const PeopleDetails = () => {
       }
     },
   });
+
+  console.log("Peopleeeeeeeeee", people)
   // if (isLoadingForUseProfile || isLoading) {
   //   return <Loader type="" />;
   // }
@@ -134,7 +138,7 @@ const PeopleDetails = () => {
           .then((res) => res.json())
           .then((data) => {
             if (data?.modifiedCount) {
-              toast.error(`${ people?.name } request canceled`);
+              toast.error(`${people?.name} request canceled`);
               refetch();
             }
           });
@@ -173,18 +177,26 @@ const PeopleDetails = () => {
   return (
     <div>
       {people && (
-        <div>
-          <h1>{people?.name}</h1>
-          <img
-            src={people?.profilePhoto}
-            alt=""
-            style={{ width: "50ppx", height: "50px" }}
-          />
+        <Box>
+          <PEOPLE_DETAILS_CONTAINER spacing={2} direction="row">
+            <Box>
+              <Avatar
+                sx={{ width: '70px', height: '70px', borderRadius: '50px' }}
+                src={people?.profilePhoto}
+                alt={people?.name} />
+            </Box>
+            <Box>
+              <Typography component='h3'>{people?.name}</Typography>
+              <Typography component='h3'>{people?.title}</Typography>
+            </Box>
+
+          </PEOPLE_DETAILS_CONTAINER>
+
           <h1>view profile</h1>
           {peopleConnectionType}
 
           {showDisplayElement}
-        </div>
+        </Box>
       )}
     </div>
   );
