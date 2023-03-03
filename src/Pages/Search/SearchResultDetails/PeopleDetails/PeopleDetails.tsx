@@ -10,6 +10,8 @@ import { useMyProfile } from "../../../../useHooks/useMyProfile/useMyProfile";
 import IsSentMeConnection from "./IsSentMeConnection/IsSentMeConnection";
 import Default from "./Default/Default";
 import Loader from "../../../../Components/Loader/Loader";
+import { Avatar, Box, Button, Stack, Typography } from "@mui/material";
+import { PEOPLE_DETAILS_CONTAINER } from "./PeopleDetails.styled";
 const PeopleDetails = () => {
   const _id = useLoaderData();
   console.log("_id: ", _id);
@@ -112,6 +114,8 @@ const PeopleDetails = () => {
       }
     },
   });
+
+  console.log("Peopleeeeeeeeee", people)
   // if (isLoadingForUseProfile || isLoading) {
   //   return <Loader type="" />;
   // }
@@ -134,7 +138,7 @@ const PeopleDetails = () => {
           .then((res) => res.json())
           .then((data) => {
             if (data?.modifiedCount) {
-              toast.error(`${ people?.name } request canceled`);
+              toast.error(`${people?.name} request canceled`);
               refetch();
             }
           });
@@ -173,18 +177,31 @@ const PeopleDetails = () => {
   return (
     <div>
       {people && (
-        <div>
-          <h1>{people?.name}</h1>
-          <img
-            src={people?.profilePhoto}
-            alt=""
-            style={{ width: "50ppx", height: "50px" }}
-          />
-          <h1>view profile</h1>
-          {peopleConnectionType}
+        <Box>
+          <PEOPLE_DETAILS_CONTAINER spacing={2} direction="row">
+            <Box>
+              <Avatar
+                className="userPhoto"
+                src={people?.profilePhoto}
+                alt={people?.name} />
+            </Box>
+            <Box>
+              <Typography className="userName" component='h3'>{people?.name}</Typography>
+              <Typography className="userTitle" component='h3'>{people?.title}</Typography>
+            </Box>
+          </PEOPLE_DETAILS_CONTAINER>
 
-          {showDisplayElement}
-        </div>
+          <Box sx={{ padding: '0 2rem' }}>
+            <h1>view profile</h1>
+            {/* peopleConnectionType */}
+            {/* showDisplayElement */}
+            <IsMyFriend />
+            {/* <IsMyProfile/> */}
+            {/* <IsSentMeConnection/> */}
+            {/* <Default /> */}
+          </Box>
+
+        </Box>
       )}
     </div>
   );
