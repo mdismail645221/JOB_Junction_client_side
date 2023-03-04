@@ -10,6 +10,7 @@ import GetAppIcon from '@mui/icons-material/GetApp';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { MyContext } from '../../../../context/MyProvider/MyProvider';
 import uploadImageToImageBB from "../../../../utilities/uploadImageToImageBB/uploadImageToImageBB";
+import { toast } from "react-toastify";
 
 
 
@@ -20,32 +21,29 @@ const ProfileEditModal = (props: any) => {
 
 
 
-    const [isHereProfileImg, setIsHereProfileImg] = React.useState<any>(false);
-    const [isHereCoverImg, setIsHereCoverImg] = React.useState<any>(false);
+    const [isHereProfileImg, setIsHereProfileImg] = React.useState<any>({});
+    const [isHereCoverImg, setIsHereCoverImg] = React.useState<any>({});
     const [photoHandle, setPhotoHandle] = React.useState<any>({});
     // const [profileImg, setProfileImg] = React.useState("")
 
-    const handlephotoHandle = (e: any) => {
-        // console.log("---------------->", e?.target?.value)
+    // const handlephotoHandle = (e: any) => {
+         
+    //     console.log("e.target.files", e.target.value)
+         
 
-        console.log("profileEdit Modal", currentUser)
-
-
-        const field = e.target.name;
-        console.log("field: ", FileSystemDirectoryHandle)
-        let newPhotoHandle = { ...photoHandle }
-        if (e.target.value) {
-            console.log("isaddedd")
-            newPhotoHandle[field] = true;
-            setPhotoHandle(newPhotoHandle)
-        }
-        else {
-            console.log("is removed")
-            newPhotoHandle[field] = false;
-            setPhotoHandle(newPhotoHandle)
-        }
-        // console.log("photoHandle: ", photoHandle)
-    }
+    //     const field = e.target.name;
+    //     let newPhotoHandle = { ...photoHandle }
+    //     if (e.target.value) {
+    //         console.log("isaddedd")
+    //         newPhotoHandle[field] = e.target.files;
+    //         setPhotoHandle(newPhotoHandle)
+    //     }
+    //     else {
+    //         console.log("is removed")
+    //         newPhotoHandle[field] = false;
+    //         setPhotoHandle(newPhotoHandle)
+    //     }
+    // }
 
 
     type Inputs = {
@@ -54,7 +52,7 @@ const ProfileEditModal = (props: any) => {
         title: string;
         city: string;
         location: string;
-        phone: number;
+        phone: number | string;
     };
 
     const {
@@ -68,15 +66,10 @@ const ProfileEditModal = (props: any) => {
 
 
     const handleFormSubmit: SubmitHandler<Inputs> = (data) => {
-       
+        // console.log("allllll daaaaa", data.profileImg)
         const { title, phone, location, coverImg, profileImg, city } = data;
-       
         const profileImgPicture = profileImg[0]
         const coverImgPicture = coverImg[0];
-        
-    
-        
-
         uploadImageToImageBB(profileImgPicture)
         .then(res => res.json())
         .then((profileImgData)=> {
@@ -107,11 +100,14 @@ const ProfileEditModal = (props: any) => {
                     },
                     body: JSON.stringify(userEditInfo)
                 })
-                
-                
-               
-
-
+                .then(res=> res.json())
+                .then(data => {
+                    console.log("success data updated", data)
+                    if(data.data.acknowledged){
+                        reset()
+                        toast.success("Your Bio Data is successfully update")
+                    }
+                })
             })
         })
 
@@ -130,20 +126,18 @@ const ProfileEditModal = (props: any) => {
             >
                 <MODAL_BODY>
                     <form onSubmit={handleSubmit(handleFormSubmit)}>
-                        <EDIT_CONTAINER spacing={3}>
                             <Box className="edit-intro">
                                 <Typography component="h2" className="title">Edit intro</Typography>
                                 <IconButton className='clear-btn' onClick={handleClose}>
                                     <ClearIcon />
                                 </IconButton>
                             </Box>
-
-
+                        <EDIT_CONTAINER spacing={3}>
                             {/* profile img input start */}
                             <Box>
                                 <Typography component="h2" className="titleLabel">Profile Photo</Typography>
                                 <ISERT_FIELD >
-                                    <label className={allInputDatas?.profilePhoto ? "isFile" : undefined} htmlFor="file-input1">
+                                    <label htmlFor="file-input1">
                                         <IconButton>
                                             <GetAppIcon />
                                         </IconButton>
@@ -151,8 +145,9 @@ const ProfileEditModal = (props: any) => {
                                     <input
                                         {...register("profileImg")}
                                         // name="profilePhoto"  
-                                        // onChange={handlephotoHandle}
-                                        id="file-input1" type="file" />
+                                        id="file-input1" 
+                                        type="file"
+                                         />
                                     {/* <TextField id="file-input" size='small' fullWidth type="file" /> */}
                                 </ISERT_FIELD>
                             </Box>
