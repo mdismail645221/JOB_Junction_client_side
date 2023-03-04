@@ -81,6 +81,10 @@ export const ISERT_FIELD = styled(Stack)(({ theme }) => ({
         boxShadow: '1px 1px 7px #ddd',
         transition: '7ms'
     },
+    '& .isFile': {
+        border: "2px solid #1919",
+        boxShadow: '1.5px 2px 5px #1919'
+    },
     '& label:hover button': {
         color: '#ff1714',
         boxShadow: '2px 2px 10px #ff1714',
